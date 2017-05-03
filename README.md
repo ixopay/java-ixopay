@@ -1,6 +1,8 @@
 
 # README
 
+[![Release](https://jitpack.io/v/Ixolit/java-ixopay.svg)](https://jitpack.io/#Ixolit/java-ixopay)
+
 ## Using the library
 
 See [`src/example/java`](src/example/java) for examples on how to integrate the library.
