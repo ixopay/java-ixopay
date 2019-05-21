@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://gateway.ixopay.com/Schema/V2/StatusResult" targetNamespace="http://gateway.ixopay.com/Schema/V2/StatusResult">
+    <!-- ROOT ELEMENT -->
+    <xs:element name="statusResult" type="statusResultType">
+
+    </xs:element>
+
+    <!-- ROOT TYPE -->
+    <xs:complexType name="statusResultType">
+        <xs:sequence>
+            <xs:element type="xs:boolean" name="operationSuccess" minOccurs="1" maxOccurs="1" />
+            <xs:element type="transactionStatusType" name="transactionStatus" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="transactionUuid" minOccurs="0" maxOccurs="1" /> <!-- referenceId -->
+            <xs:element type="xs:string" name="merchantTransactionId" minOccurs="0" maxOccurs="1" /> <!-- transactionId -->
+            <xs:element type="xs:string" name="purchaseId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="transactionMethodType" name="transactionType" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="paymentMethod" minOccurs="0" maxOccurs="1" />
+            <xs:element type="amountType" name="amount" minOccurs="0" maxOccurs="1" />
+            <xs:element type="currencyType" name="currency" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="scheduleId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="scheduleStatusType" name="scheduleStatus" minOccurs="0" maxOccurs="1" />
+            <xs:element type="errorsType" name="errors" minOccurs="0" maxOccurs="1" />
+            <xs:element type="chargebackDataType" name="chargebackData" minOccurs="0" maxOccurs="1" />
+            <xs:element type="chargebackReversalDataType" name="chargebackReversalData" minOccurs="0" maxOccurs="1" />
+            <xs:element type="extraDataType" name="extraData" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
+            <xs:element type="returnDataType" name="returnData" minOccurs="0" maxOccurs="1" />
+            <xs:element type="customerDataType" name="customerData" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- CUSTOM TYPES -->
+    <xs:complexType name="extraDataType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="key" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:simpleType name="merchantMetaDataType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="scheduleStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACTIVE" />
+            <xs:enumeration value="PAUSED" />
+            <xs:enumeration value="CANCELLED" />
+            <xs:enumeration value="ERROR" />
+            <xs:enumeration value="CREATE-PENDING" /> <!-- create process of schedule is not finished yet -->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="transactionMethodType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DEBIT" />
+            <xs:enumeration value="CAPTURE" />
+            <xs:enumeration value="DEREGISTER" />
+            <xs:enumeration value="PREAUTHORIZE" />
+            <xs:enumeration value="REFUND" />
+            <xs:enumeration value="REGISTER" />
+            <xs:enumeration value="VOID" />
+            <xs:enumeration value="CHARGEBACK" />
+            <xs:enumeration value="CHARGEBACK-REVERSAL" />
+            <xs:enumeration value="PAYOUT" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="transactionStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS" />
+            <xs:enumeration value="PENDING" />
+            <xs:enumeration value="REDIRECT" />
+            <xs:enumeration value="CANCELLED" />
+            <xs:enumeration value="ERROR" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="currencyType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][A-Z][A-Z]" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="amountType">
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="2" fixed="true" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="countryType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][A-Z]" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="threeDSecureType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OFF" />
+            <xs:enumeration value="OPTIONAL" />
+            <xs:enumeration value="MANDATORY" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="errorsType">
+        <xs:sequence>
+            <xs:element type="errorType" name="error" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="errorType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="message" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:positiveInteger" name="code" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="adapterMessage" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="adapterCode" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="chargebackDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="originalReferenceId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="originalTransactionId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="amountType" name="amount" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="currencyType" name="currency" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="xs:string" name="reason" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:dateTime" name="chargebackDateTime" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="chargebackReversalDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="originalReferenceId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="originalTransactionId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="chargebackReferenceId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="amountType" name="amount" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="currencyType" name="currency" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="xs:string" name="reason" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:dateTime" name="reversalDateTime" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="returnDataTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="creditcardData" />
+            <xs:enumeration value="phoneData" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="returnDataType">
+        <xs:choice>
+            <xs:element type="creditcardDataType" name="creditcardData" />
+            <xs:element type="phoneDataType" name="phoneData" />
+            <xs:element type="ibanDataType" name="ibanData" />
+        </xs:choice>
+        <xs:attribute name="type" type="returnDataTypeEnum" use="required" />
+    </xs:complexType>
+    <xs:complexType name="creditcardDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="type" minOccurs="0" maxOccurs="1" />
+            <xs:element type="countryType" name="country" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="cardHolder" minOccurs="0" maxOccurs="1" />
+            <xs:element name="expiryMonth" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                        <xs:maxInclusive value="12" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="expiryYear" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:totalDigits value="4" />
+                        <xs:fractionDigits value="0" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="firstSixDigits" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="6" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="lastFourDigits" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="4" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="fingerprint" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="binBrand" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="binBank" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="binType" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="binLevel" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="binCountry" minOccurs="0" maxOccurs="1" />
+            <xs:element type="threeDSecureType" name="threeDSecure" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="eci" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="phoneDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="phoneNumber" minOccurs="0" maxOccurs="1" />
+            <xs:element type="countryType" name="country" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="operator" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ibanDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="accountOwner" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="iban" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="bic" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="bankName" minOccurs="0" maxOccurs="1" />
+            <xs:element type="countryType" name="country" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="genderType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="M" />
+            <xs:enumeration value="F" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="customerDataType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="identification" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="firstName" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="lastName" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:date" name="birthDate" minOccurs="0" maxOccurs="1" />
+            <xs:element type="genderType" name="gender" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingAddress1" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingAddress2" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingCity" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingPostcode" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingState" minOccurs="0" maxOccurs="1" />
+            <xs:element type="countryType" name="billingCountry" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="billingPhone" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingFirstName" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingLastName" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingCompany" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingAddress1" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingAddress2" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingCity" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingPostcode" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingState" minOccurs="0" maxOccurs="1" />
+            <xs:element type="countryType" name="shippingCountry" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="shippingPhone" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="company" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="email" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:boolean" name="emailVerified" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="ipAddress" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="nationalId" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

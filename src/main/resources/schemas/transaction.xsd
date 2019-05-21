@@ -27,6 +27,9 @@
                 <xs:element type="voidType" name="void"/>
                 <xs:element type="payoutType" name="payout" />
             </xs:choice>
+            <!-- BEGIN HIDDEN --> <!-- This part is not public and hidden -->
+            <xs:element type ="cardAdditionalDataType" name="cardAdditionalData" minOccurs="0" maxOccurs="1" />
+            <!-- END HIDDEN -->
         </xs:sequence>
     </xs:complexType>
 
@@ -70,8 +73,51 @@
             <xs:enumeration value="F" />
         </xs:restriction>
     </xs:simpleType>
-
-    <!-- CUSTOMER TYPE -->
+    <xs:simpleType name="transactionIndicatorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE" /> <!-- single transaction, no recurring, default value if not with register -->
+            <xs:enumeration value="INITIAL" /> <!-- initial transaction of a recurring series, default value if with register -->
+            <xs:enumeration value="RECURRING" /> <!-- recurring transaction after a inital one -->
+            <xs:enumeration value="CARDONFILE" /> <!-- card on file transaction -->
+            <xs:enumeration value="CARDONFILE-MERCHANT-INITIATED" /> <!-- card on file transaction initiated by merchant -->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="merchantMetaDataType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="periodUnitType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DAY" />
+            <xs:enumeration value="WEEK" />
+            <xs:enumeration value="MONTH" />
+            <xs:enumeration value="YEAR" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="scheduleDateTime">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [A-Z]{1,5}" /> <!-- YYYY-MM-DD HH:mm:ss T, eg. "2019-12-30 23:59:59 UTC" -->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="scheduleType">
+        <xs:sequence>
+            <xs:element type="amountType" name="amount" minOccurs="1" maxOccurs="1"/>
+            <xs:element type="currencyType" name="currency" minOccurs="1" maxOccurs="1"/>
+            <xs:element type="xs:unsignedInt" name="periodLength" minOccurs="1" maxOccurs="1" />
+            <xs:element type="periodUnitType" name="periodUnit" minOccurs="1" maxOccurs="1" />
+            <xs:element type="scheduleDateTime" name="startDateTime" minOccurs="0" maxOccurs="1" /> <!-- date for first scheduled payment -->
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addToCustomerProfileType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element type="xs:string" name="profileGuid" minOccurs="1" maxOccurs="1" />
+                <xs:element type="xs:string" name="customerIdentification" minOccurs="1" maxOccurs="1" />
+            </xs:choice>
+            <xs:element type="xs:boolean" name="markAsPreferred" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="customerType">
         <xs:sequence>
             <xs:element type="xs:string" name="identification" minOccurs="0" maxOccurs="1" />
@@ -146,6 +192,7 @@
                 <xs:element type="ibanCustomerType" name="ibanCustomer" minOccurs="0" maxOccurs="1" />
             </xs:choice>
             <xs:element type="extraDataType" name="extraData" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
             <xs:element type="requestType" name="request" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
@@ -217,6 +264,9 @@
                     <xs:group ref="offsiteGroup" />
                     <xs:group ref="itemsGroup" />
                     <xs:element type="xs:boolean" name="withRegister" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="transactionIndicatorType" name="transactionIndicator" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="scheduleType" name="startSchedule" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="addToCustomerProfileType" name="addToCustomerProfile" minOccurs="0" maxOccurs="1" />
                 </xs:sequence>
                 <!-- <xs:attribute type="updateType" name="update" use="optional" /> -->
             </xs:extension>
@@ -230,6 +280,9 @@
                     <xs:group ref="offsiteGroup" />
                     <xs:group ref="itemsGroup" />
                     <xs:element type="xs:boolean" name="withRegister" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="transactionIndicatorType" name="transactionIndicator" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="scheduleType" name="startSchedule" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="addToCustomerProfileType" name="addToCustomerProfile" minOccurs="0" maxOccurs="1" />
                 </xs:sequence>
                 <!-- <xs:attribute type="updateType" name="update" use="optional" /> -->
             </xs:extension>
@@ -240,6 +293,8 @@
             <xs:extension base="baseTransactionType">
                 <xs:sequence>
                     <xs:group ref="offsiteGroup" />
+                    <xs:element type="scheduleType" name="startSchedule" minOccurs="0" maxOccurs="1" />
+                    <xs:element type="addToCustomerProfileType" name="addToCustomerProfile" minOccurs="0" maxOccurs="1" />
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -266,6 +321,8 @@
             <xs:extension base="baseTransactionWithReferenceType">
                 <xs:sequence>
                     <xs:group ref="amountableGroup" />
+                    <xs:element type="xs:string" name="description" minOccurs="0" maxOccurs="1"/>
+                    <xs:element type="xs:anyURI" name="callbackUrl" minOccurs="0" maxOccurs="1"/>
                     <xs:group ref="itemsGroup" />
                 </xs:sequence>
             </xs:extension>
@@ -279,10 +336,11 @@
 
     <xs:complexType name="payoutType">
         <xs:complexContent>
-            <xs:extension base="baseTransactionType">
+            <xs:extension base="baseTransactionWithReferenceType">
                 <xs:sequence>
                     <xs:group ref="amountableGroup" />
                     <xs:element type="xs:string" name="description" minOccurs="0" maxOccurs="1"/>
+                    <xs:element type="xs:anyURI" name="callbackUrl" minOccurs="0" maxOccurs="1"/>
                     <xs:group ref="itemsGroup" />
                 </xs:sequence>
             </xs:extension>
@@ -299,5 +357,12 @@
         </xs:sequence>
     </xs:complexType>
 
+    <!-- BEGIN HIDDEN --> <!-- This part is not public and hidden -->
+    <xs:complexType name="cardAdditionalDataType">
+        <xs:sequence>
+            <xs:element type="extraDataType" name="dataRow" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    <!-- END HIDDEN -->
 
 </xs:schema>

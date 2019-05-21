@@ -47,4 +47,44 @@
 			</annox:annotate>
 		</bindings>
 	</bindings>
+	<bindings schemaLocation="../schemas/schedule.xsd" node="/xs:schema">
+		<schemaBindings>
+			<package name="com.ixopay.client.model.schedule"/>
+		</schemaBindings>
+		<bindings node="//xs:complexType[@name='scheduleRequestType']">
+			<annox:annotate>
+				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="schedule"/>
+			</annox:annotate>
+		</bindings>
+	</bindings>
+	<bindings schemaLocation="../schemas/scheduleResult.xsd" node="/xs:schema">
+		<schemaBindings>
+			<package name="com.ixopay.client.model.schedule"/>
+		</schemaBindings>
+		<bindings node="//xs:complexType[@name='scheduleResultType']">
+			<annox:annotate>
+				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="schedule"/>
+			</annox:annotate>
+		</bindings>
+	</bindings>
+	<bindings schemaLocation="../schemas/status.xsd" node="/xs:schema">
+		<schemaBindings>
+			<package name="com.ixopay.client.model.status"/>
+		</schemaBindings>
+		<bindings node="//xs:complexType[@name='statusType']">
+			<annox:annotate>
+				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="status"/>
+			</annox:annotate>
+		</bindings>
+	</bindings>
+	<bindings schemaLocation="../schemas/statusResult.xsd" node="/xs:schema">
+		<schemaBindings>
+			<package name="com.ixopay.client.model.status"/>
+		</schemaBindings>
+		<bindings node="//xs:complexType[@name='statusResultType']">
+			<annox:annotate>
+				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="status"/>
+			</annox:annotate>
+		</bindings>
+	</bindings>
 </bindings>
