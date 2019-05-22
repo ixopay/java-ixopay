@@ -14,6 +14,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import com.ixopay.client.model.callback.CallbackType;
 import com.ixopay.client.model.options.OptionsType;
 import com.ixopay.client.model.result.ResultType;
+import com.ixopay.client.model.schedule.ScheduleRequestType;
+import com.ixopay.client.model.schedule.ScheduleResultType;
+import com.ixopay.client.model.status.StatusResultType;
+import com.ixopay.client.model.status.StatusType;
 import com.ixopay.client.model.transaction.TransactionType;
 
 public final class GatewayModelContext {
@@ -78,7 +82,11 @@ public final class GatewayModelContext {
 				com.ixopay.client.model.callback.ErrorType.class,
 				ResultType.class,
 				com.ixopay.client.model.result.ErrorType.class,
-				OptionsType.class
+				ScheduleRequestType.class,
+				ScheduleResultType.class,
+				OptionsType.class,
+				StatusType.class,
+				StatusResultType.class
 			);
 		} catch( JAXBException e ) {
 			throw new RuntimeException(e);
