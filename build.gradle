@@ -13,7 +13,7 @@ apply plugin: "java"
 apply plugin: "maven"
 apply plugin: "com.github.jacobono.jaxb"
 
-group = "com.github.ixolit"
+group = "com.ixopay"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

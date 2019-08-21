@@ -1,7 +1,7 @@
 
 # README
 
-[![Release](https://jitpack.io/v/Ixolit/java-ixopay.svg)](https://jitpack.io/#Ixolit/java-ixopay)
+[![Release](https://jitpack.io/v/IXOPAY/java-ixopay.svg)](https://jitpack.io/#IXOPAY/java-ixopay)
 
 ## Using the library
 
@@ -25,11 +25,11 @@ allprojects {
 }
 ```
 
-Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixolit/java-ixopay/releases)):
+Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixopay/java-ixopay/releases)):
 ```gradle
 dependencies {
 	...
-	compile 'com.github.ixolit:java-ixopay:VERSION'
+	compile 'com.ixopay:java-ixopay:VERSION'
 	...
 }
 ```
@@ -47,10 +47,10 @@ Add the [jitpack.io](https://jitpack.io) repository:
 </repositories>
 ```
 
-Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixolit/java-ixopay/releases)):
+Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixopay/java-ixopay/releases)):
  ```maven
 <dependency>
-    <groupId>com.github.ixolit</groupId>
+    <groupId>com.ixopay</groupId>
     <artifactId>java-ixopay</artifactId>
     <version>VERSION</version>
 </dependency>
