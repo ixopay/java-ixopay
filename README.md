@@ -1,7 +1,7 @@
 
 # README
 
-[![Release](https://jitpack.io/v/IXOPAY/java-ixopay.svg)](https://jitpack.io/#IXOPAY/java-ixopay)
+[![Release](https://jitpack.io/v/ixopay/java-ixopay.svg)](https://jitpack.io/#ixopay/java-ixopay)
 
 ## Using the library
 

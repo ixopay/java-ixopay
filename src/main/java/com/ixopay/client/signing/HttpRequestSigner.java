@@ -79,13 +79,22 @@ public final class HttpRequestSigner {
 		return new HttpRequestSignature(String.format("%s %s:%s", HTTP_AUTHENTICATION_SCHEME, apiKey, authorization), requestInfo.now);
 	}
 
-	/** Create request info for signing. */
+	/**
+	 * Create request info for signing.
+	 *
+	 * @return Request info builder.
+	 */
 	public static HttpRequestInfoBuilder requestInfo() {
 		return new HttpRequestInfoBuilder();
 	}
 
-	/** Utility for md5 hashing a request body. */
-	public static String md5DigestRequestBody(byte[] body) {
+	/**
+	 * Utility for md5 hashing a request body.
+	 *
+	 * @param body The requests body as byte array.
+	 * @return Signature string.
+	 */
+	public static String md5DigestRequestBody( byte[] body ) {
 		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("MD5");
@@ -97,8 +106,13 @@ public final class HttpRequestSigner {
 		return Hex.hex(digest);
 	}
 
-	/** Utility for getting the required parts of an URL of a request. */
-	public static String urlPath(URL url) {
+	/**
+	 * Utility for getting the required parts of an URL of a request.
+	 *
+	 * @param url URL to extract the path from.
+	 * @return Path part of the URL.
+	 */
+	public static String urlPath( URL url ) {
 		try {
 			return urlPath(url.toURI());
 		} catch( URISyntaxException e ) {
@@ -106,8 +120,13 @@ public final class HttpRequestSigner {
 		}
 	}
 
-	/** Utility for getting the required parts of an URI of a request. */
-	public static String urlPath(URI uri) {
+	/**
+	 * Utility for getting the required parts of an URI of a request.
+	 *
+	 * @param uri URI to extract the path part from.
+	 * @return Path part of the URI.
+	 */
+	public static String urlPath( URI uri ) {
 		if( uri == null )
 			return "/";
 		String rawPath = uri.getRawPath();
@@ -118,8 +137,13 @@ public final class HttpRequestSigner {
 
 	// pimpl
 
-	/** Create HMAC SHA512 mac hasher. */
-	private static Mac hmacSha512(String sharedSecret) {
+	/**
+	 * Create HMAC SHA512 mac hasher.
+	 *
+	 * @param sharedSecret Shared secret used for signature generation.
+	 * @return MAC object to calculate the signature.
+	 */
+	private static Mac hmacSha512( String sharedSecret ) {
 		final String HMAC_SHA512_ALGORITHM = "HmacSHA512";
 
 		Mac mac;
@@ -139,31 +163,40 @@ public final class HttpRequestSigner {
 		return mac;
 	}
 
-	/** Append a string to the HMAC. */
-	private static void hash(Mac mac, String s) {
+	/**
+	 * Append a string to the HMAC.
+	 *
+	 * @param mac MAC object used for signature calculation.
+	 * @param s   String to append to the MAC.
+	 */
+	private static void hash( Mac mac, String s ) {
 		byte[] s_ = s.getBytes(StandardCharsets.UTF_8);
 		mac.update(s_, 0, s_.length);
 	}
 
-	/** Append a newline to the HMAC. */
-	private static void hashln(Mac mac) {
+	/**
+	 * Append a newline to the HMAC.
+	 *
+	 * @param mac MAC objecte used for signature calculation.
+	 */
+	private static void hashln( Mac mac ) {
 		mac.update("\n".getBytes(StandardCharsets.UTF_8), 0, 1);
 	}
 
-	private static <T> T verifyNotNull(T v, String message, Object... args) {
+	private static <T> T verifyNotNull( T v, String message, Object... args ) {
 		if( v == null )
 			throw new VerifyError(String.format(message, args));
 		return v;
 	}
 
-	private static void verify(boolean c, String message, Object... args) {
+	private static void verify( boolean c, String message, Object... args ) {
 		if( !c )
 			throw new VerifyError(String.format(message, args));
 	}
 
 	// struct
 
-	/** contains information about the request you intend to make to the gateway */
+	/** Contains information about the request you intend to make to the gateway. */
 	public static class HttpRequestInfo {
 		private final String now;
 		private final String urlPath;
@@ -171,7 +204,7 @@ public final class HttpRequestSigner {
 		private final String contentTypeHeader;
 		private final String bodyMd5;
 
-		private HttpRequestInfo(String now, String urlPath, String method, String contentTypeHeader, String requestBodyMd5) {
+		private HttpRequestInfo( String now, String urlPath, String method, String contentTypeHeader, String requestBodyMd5 ) {
 			this.now = now;
 			this.urlPath = urlPath;
 			this.method = method;
@@ -179,13 +212,18 @@ public final class HttpRequestSigner {
 			this.bodyMd5 = requestBodyMd5;
 		}
 
+		/** @return Now timestamp of the request. */
 		public String getNow() { return now; }
+		/** @return Path part of the URL in the request. */
 		public String getUrlPath() { return urlPath; }
+		/** @return HTTP method of the request. */
 		public String getMethod() { return method; }
+		/** @return HTTP header {@code Content-Type} of the request. */
 		public String getContentTypeHeader() { return contentTypeHeader; }
+		/** @return MD5 hash of the request body. */
 		public String getBodyMd5() { return bodyMd5; }
 
-		@Override public boolean equals(Object o) {
+		@Override public boolean equals( Object o ) {
 			if( this == o ) return true;
 			if( o == null || getClass() != o.getClass() ) return false;
 			HttpRequestInfo that = (HttpRequestInfo)o;
@@ -201,22 +239,36 @@ public final class HttpRequestSigner {
 		}
 	}
 
-	/** these attributes must be set on the HTTP request sent to the gateway */
+	/** These attributes must be set on the HTTP request sent to the gateway. */
 	public static class HttpRequestSignature {
 		private final String authHeader;
 		private final String dateHeader;
 
-		public HttpRequestSignature(String authHeader, String dateHeader) {
+		/**
+		 * Construct a new {@code HttpRequestSignature}.
+		 *
+		 * @param authHeader Value the use should set for the HTTP header {@code Authentication} on gateway requests.
+		 * @param dateHeader Value the use should set for the HTTP header {@code Date} on gateway requests.
+		 */
+		public HttpRequestSignature( String authHeader, String dateHeader ) {
 			this.authHeader = authHeader;
 			this.dateHeader = dateHeader;
 		}
 
-		/** this must be set as HTTP "Authorization" header */
+		/**
+		 * This must be set as HTTP {@code Authorization} header.
+		 *
+		 * @return The value to be set on the HTTP header.
+		 */
 		public String getAuthHeader() { return authHeader; }
-		/** this must be set as HTTP "Date" header */
+		/**
+		 * This must be set as HTTP {@code Date} header.
+		 *
+		 * @return The value to be set on the HTTP header.
+		 */
 		public String getDateHeader() { return dateHeader; }
 
-		@Override public boolean equals(Object o) {
+		@Override public boolean equals( Object o ) {
 			if( this == o ) return true;
 			if( o == null || getClass() != o.getClass() ) return false;
 			HttpRequestSignature that = (HttpRequestSignature)o;
@@ -229,7 +281,7 @@ public final class HttpRequestSigner {
 		}
 	}
 
-	/** helper to correctly construct request info */
+	/** Helper to correctly construct {@code HttpRequestInfo} objects. */
 	public static class HttpRequestInfoBuilder {
 		private static final Pattern MD5_PATTERN = Pattern.compile("[\\da-f]{32}", Pattern.CASE_INSENSITIVE);
 
@@ -241,30 +293,48 @@ public final class HttpRequestSigner {
 
 		private HttpRequestInfoBuilder() {}
 
-		/** Set the time the request is sent. */
-		public HttpRequestInfoBuilder withNow(ZonedDateTime now) {
+		/**
+		 * Set the time the request is sent.
+		 *
+		 * @param now The time the request was sent.
+		 * @return {@code this} to chain calls.
+		 */
+		public HttpRequestInfoBuilder withNow( ZonedDateTime now ) {
 			verifyNotNull(now, "now cannot be null");
 
 			this.now = DATE_TIME_FORMATTER.format(now);
 			return this;
 		}
 
-		/** Set the time the request is sent. */
-		public HttpRequestInfoBuilder withNow(OffsetDateTime now) {
+		/**
+		 * Set the time the request is sent.
+		 *
+		 * @param now The time the request was sent.
+		 * @return {@code this} to chain calls.
+		 */
+		public HttpRequestInfoBuilder withNow( OffsetDateTime now ) {
 			return withNow(now.toZonedDateTime());
 		}
 
-		/** Set the time the request is sent. */
-		public HttpRequestInfoBuilder withNow(Instant now) {
+		/**
+		 * Set the time the request is sent.
+		 *
+		 * @param now The time the request was sent.
+		 * @return {@code this} to chain calls.
+		 */
+		public HttpRequestInfoBuilder withNow( Instant now ) {
 			return withNow(now.atZone(ZoneOffset.UTC));
 		}
 
 		/**
-		 * Path and query part of the url.
+		 * Path and query part of the URL.
 		 * <p>
 		 * i.e. if {@code http://host/path?query} then {@code /path?query}, if {@code http://host} or {@code null} then {@code /}
+		 *
+		 * @param urlPath Path and query part of the URL.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withUrlPath(String urlPath) {
+		public HttpRequestInfoBuilder withUrlPath( String urlPath ) {
 			if( urlPath == null )
 				this.urlPath = "/";
 			else
@@ -276,8 +346,11 @@ public final class HttpRequestSigner {
 		 * Set the urlPath part.
 		 * <p>
 		 * Delegates correct information to {@link #withUrlPath(String)}
+		 *
+		 * @param uri URI to extract path and query part from.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withUri(URI uri) {
+		public HttpRequestInfoBuilder withUri( URI uri ) {
 			StringBuilder urlPath = new StringBuilder();
 			if( uri.getRawPath() == null )
 				urlPath.append('/');
@@ -292,8 +365,11 @@ public final class HttpRequestSigner {
 		 * Set the urlPath part.
 		 * <p>
 		 * Delegates correct information to {@link #withUrlPath(String)}
+		 *
+		 * @param url URL to extract path and query part from.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withUrl(URL url) {
+		public HttpRequestInfoBuilder withUrl( URL url ) {
 			try {
 				return withUri(url.toURI());
 			} catch( URISyntaxException e ) {
@@ -305,26 +381,37 @@ public final class HttpRequestSigner {
 		 * Set the method of the request.
 		 * <p>
 		 * e.g. POST, GET, etc.
+		 *
+		 * @param requestMethod HTTP request method.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withMethod(String requestMethod) {
+		public HttpRequestInfoBuilder withMethod( String requestMethod ) {
 			this.method = requestMethod;
 			return this;
 		}
 
 		/**
-		 * HTTP Content-Type header that will be sent.
+		 * HTTP {@code Content-Type} header that will be sent.
 		 * <p>
 		 * e.g. {@code text/xml; charset=utf-8}
+		 *
+		 * @param contentTypeHeader HTTP {@code Content-Type} header.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withContentTypeHeader(String contentTypeHeader) {
+		public HttpRequestInfoBuilder withContentTypeHeader( String contentTypeHeader ) {
 			verifyNotNull(contentTypeHeader, "contentTypeHeader cannot be null");
 
 			this.contentTypeHeader = contentTypeHeader;
 			return this;
 		}
 
-		/** Lower-case MD5 hash of the request body content. */
-		public HttpRequestInfoBuilder withBodyMd5(String requestBodyMd5) {
+		/**
+		 * Lower-case MD5 hash of the request body content.
+		 *
+		 * @param requestBodyMd5 Lower-case MD5 hash of the request body content.
+		 * @return {@code this} to chain calls.
+		 */
+		public HttpRequestInfoBuilder withBodyMd5( String requestBodyMd5 ) {
 			if( requestBodyMd5 == null )
 				this.bodyMd5 = null;
 			else {
@@ -338,17 +425,23 @@ public final class HttpRequestSigner {
 		 * Set the MD5 hash of the request body content.
 		 * <p>
 		 * Delegates correct information to {@link #withBodyMd5(String)}
+		 *
+		 * @param body Body of the HTTP request.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withBody(byte[] body) {
+		public HttpRequestInfoBuilder withBody( byte[] body ) {
 			return withBodyMd5(md5DigestRequestBody(body));
 		}
 
 		/**
-		 * Set the MD5 hash of the request body content.
+		 * Set the MD5 hash of the request body content, assumes UTF-8 encoding.
 		 * <p>
 		 * Delegates correct information to {@link #withBodyMd5(String)}
+		 *
+		 * @param body Body of the HTTP request, assumes UTF-8 encoding.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withBody(String body) {
+		public HttpRequestInfoBuilder withBody( String body ) {
 			return withBody(body, StandardCharsets.UTF_8);
 		}
 
@@ -356,12 +449,20 @@ public final class HttpRequestSigner {
 		 * Set the MD5 hash of the request body content.
 		 * <p>
 		 * Delegates correct information to {@link #withBodyMd5(String)}
+		 *
+		 * @param body Body of the HTTP request.
+		 * @param charset Charset of the HTTP request body.
+		 * @return {@code this} to chain calls.
 		 */
-		public HttpRequestInfoBuilder withBody(String body, Charset charset) {
+		public HttpRequestInfoBuilder withBody( String body, Charset charset ) {
 			return withBody(body != null ? body.getBytes(charset) : null);
 		}
 
-		/** Build the {@link HttpRequestInfo} for signature generation. */
+		/**
+		 * Build the {@link HttpRequestInfo} for signature generation.
+		 *
+		 * @return The {@link HttpRequestInfo} for signature generation.
+		 */
 		public HttpRequestInfo build() {
 			return new HttpRequestInfo(
 				verifyNotNull(

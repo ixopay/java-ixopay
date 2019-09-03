@@ -4,12 +4,19 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/** Password utilities. */
 public final class Passwords {
 	private Passwords() {}
 
 	private static final int ROUNDS = 10;
 
-	public static String hash(String rawPassword) {
+	/**
+	 *  Hash password for use with the gateway.
+	 *
+	 * @param rawPassword Raw, unhashed password.
+	 * @return Hashed password.
+	 */
+	public static String hash( String rawPassword ) {
 		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("SHA-1");

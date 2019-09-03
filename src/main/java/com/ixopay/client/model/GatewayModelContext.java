@@ -1,6 +1,7 @@
 package com.ixopay.client.model;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,33 +12,31 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.ixopay.client.model.callback.CallbackType;
-import com.ixopay.client.model.options.OptionsType;
-import com.ixopay.client.model.result.ResultType;
-import com.ixopay.client.model.schedule.ScheduleRequestType;
-import com.ixopay.client.model.schedule.ScheduleResultType;
-import com.ixopay.client.model.status.StatusResultType;
-import com.ixopay.client.model.status.StatusType;
-import com.ixopay.client.model.transaction.TransactionType;
-
+/** Factory for creating a marshaller/unmarshaller. */
 public final class GatewayModelContext {
 
 	// defs
 
-	// lazily create context because JAXB context initialization is expensive and we want to avoid it if it's not used
-	// relies on the fact that static inner class is only loaded on first access
+	/**
+	 * lazily create context because JAXB context initialization is expensive and we want to avoid it if it's not used
+	 * relies on the fact that static inner class is only loaded on first access
+	 */
 	private static final class Holder {
 		private static final GatewayModelContext INSTANCE = new GatewayModelContext();
 	}
 
 	// deps
 
-	// jaxb context is thread-safe, marshaller and unmarshaller are not
+	/** jaxb context is thread-safe, marshaller and unmarshaller are not */
 	private final JAXBContext jaxbContext;
 
 	// impl
 
-	/** marshaller to marshall Gateway models */
+	/**
+	 * Marshaller to marshall gateway models.
+	 *
+	 * @return Marshaller for gateway models.
+	 */
 	public static Marshaller marshaller() {
 		Marshaller marshaller;
 		try {
@@ -50,7 +49,11 @@ public final class GatewayModelContext {
 		return marshaller;
 	}
 
-	/** unmarshaller to un-marshall Gateway models */
+	/**
+	 * Unmarshaller to un-marshall gateway models.
+	 *
+	 * @return Unmarshaller for gateway models.
+	 */
 	public static Unmarshaller unmarshaller() {
 		try {
 			return instance().jaxbContext.createUnmarshaller();
@@ -59,8 +62,13 @@ public final class GatewayModelContext {
 		}
 	}
 
-	/** helper to convert {@link LocalDate} to XMLGregorianCalendar */
-	public static XMLGregorianCalendar xmlGregorianCalendar(LocalDate date) {
+	/**
+	 * Helper to convert {@link LocalDate} to {@code XMLGregorianCalendar}.
+	 *
+	 * @param date Date to convert.
+	 * @return Converted date.
+	 */
+	public static XMLGregorianCalendar xmlGregorianCalendar( LocalDate date) {
 		try {
 			return DatatypeFactory.newInstance()
 				.newXMLGregorianCalendarDate(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), DatatypeConstants.FIELD_UNDEFINED);
@@ -76,18 +84,7 @@ public final class GatewayModelContext {
 	private GatewayModelContext() {
 		try {
 			// constructing jaxb context is expensive, try to re-use the constructed one when possible
-			jaxbContext = JAXBContext.newInstance(
-				TransactionType.class,
-				CallbackType.class,
-				com.ixopay.client.model.callback.ErrorType.class,
-				ResultType.class,
-				com.ixopay.client.model.result.ErrorType.class,
-				ScheduleRequestType.class,
-				ScheduleResultType.class,
-				OptionsType.class,
-				StatusType.class,
-				StatusResultType.class
-			);
+			jaxbContext = JAXBContext.newInstance(GatewayModelTypes.classes, Collections.emptyMap());
 		} catch( JAXBException e ) {
 			throw new RuntimeException(e);
 		}
