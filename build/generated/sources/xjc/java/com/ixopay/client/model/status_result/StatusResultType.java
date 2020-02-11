@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.status;
+package com.ixopay.client.model.status_result;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ import javax.xml.bind.annotation.XmlType;
     "returnData",
     "customerData"
 })
-@XmlRootElement(name = "status")
+@XmlRootElement(name = "statusResult")
 public class StatusResultType {
 
     protected boolean operationSuccess;

@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.status;
+package com.ixopay.client.model.status_result;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,21 +10,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for chargebackDataType complex type.
+ * <p>Java class for chargebackReversalDataType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="chargebackDataType"&gt;
+ * &lt;complexType name="chargebackReversalDataType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="originalReferenceId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="originalTransactionId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="chargebackReferenceId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="amount" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}amountType" minOccurs="0"/&gt;
  *         &lt;element name="currency" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}currencyType" minOccurs="0"/&gt;
  *         &lt;element name="reason" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="chargebackDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="reversalDateTime" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,29 +35,31 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "chargebackDataType", propOrder = {
+@XmlType(name = "chargebackReversalDataType", propOrder = {
     "originalReferenceId",
     "originalTransactionId",
+    "chargebackReferenceId",
     "amount",
     "currency",
     "reason",
-    "chargebackDateTime"
+    "reversalDateTime"
 })
-public class ChargebackDataType {
+public class ChargebackReversalDataType {
 
     protected String originalReferenceId;
     protected String originalTransactionId;
+    protected String chargebackReferenceId;
     protected BigDecimal amount;
     protected String currency;
     protected String reason;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar chargebackDateTime;
+    protected XMLGregorianCalendar reversalDateTime;
 
     /**
      * Default no-arg constructor
      * 
      */
-    public ChargebackDataType() {
+    public ChargebackReversalDataType() {
         super();
     }
 
@@ -64,13 +67,14 @@ public class ChargebackDataType {
      * Fully-initialising value constructor
      * 
      */
-    public ChargebackDataType(final String originalReferenceId, final String originalTransactionId, final BigDecimal amount, final String currency, final String reason, final XMLGregorianCalendar chargebackDateTime) {
+    public ChargebackReversalDataType(final String originalReferenceId, final String originalTransactionId, final String chargebackReferenceId, final BigDecimal amount, final String currency, final String reason, final XMLGregorianCalendar reversalDateTime) {
         this.originalReferenceId = originalReferenceId;
         this.originalTransactionId = originalTransactionId;
+        this.chargebackReferenceId = chargebackReferenceId;
         this.amount = amount;
         this.currency = currency;
         this.reason = reason;
-        this.chargebackDateTime = chargebackDateTime;
+        this.reversalDateTime = reversalDateTime;
     }
 
     /**
@@ -119,6 +123,30 @@ public class ChargebackDataType {
      */
     public void setOriginalTransactionId(String value) {
         this.originalTransactionId = value;
+    }
+
+    /**
+     * Gets the value of the chargebackReferenceId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getChargebackReferenceId() {
+        return chargebackReferenceId;
+    }
+
+    /**
+     * Sets the value of the chargebackReferenceId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setChargebackReferenceId(String value) {
+        this.chargebackReferenceId = value;
     }
 
     /**
@@ -194,27 +222,27 @@ public class ChargebackDataType {
     }
 
     /**
-     * Gets the value of the chargebackDateTime property.
+     * Gets the value of the reversalDateTime property.
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getChargebackDateTime() {
-        return chargebackDateTime;
+    public XMLGregorianCalendar getReversalDateTime() {
+        return reversalDateTime;
     }
 
     /**
-     * Sets the value of the chargebackDateTime property.
+     * Sets the value of the reversalDateTime property.
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setChargebackDateTime(XMLGregorianCalendar value) {
-        this.chargebackDateTime = value;
+    public void setReversalDateTime(XMLGregorianCalendar value) {
+        this.reversalDateTime = value;
     }
 
 }

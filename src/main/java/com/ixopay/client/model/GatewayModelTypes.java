@@ -12,7 +12,7 @@ final class GatewayModelTypes {
 		com.ixopay.client.model.result.ResultType.class,
 		com.ixopay.client.model.schedule.ScheduleRequestType.class,
 		com.ixopay.client.model.schedule.ScheduleResultType.class,
-		com.ixopay.client.model.status.StatusResultType.class,
+		com.ixopay.client.model.status_result.StatusResultType.class,
 		com.ixopay.client.model.status.StatusType.class,
 		com.ixopay.client.model.transaction.TransactionType.class
 	};

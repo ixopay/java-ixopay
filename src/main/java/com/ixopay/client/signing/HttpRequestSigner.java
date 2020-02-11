@@ -299,11 +299,15 @@ public final class HttpRequestSigner {
 		 * @param now The time the request was sent.
 		 * @return {@code this} to chain calls.
 		 */
+		public HttpRequestInfoBuilder withNow( String now ) {
+			verifyNotNull(now, "now cannot be null");
+			this.now = now;
+			return this;
+		}
+
 		public HttpRequestInfoBuilder withNow( ZonedDateTime now ) {
 			verifyNotNull(now, "now cannot be null");
-
-			this.now = DATE_TIME_FORMATTER.format(now);
-			return this;
+			return withNow(DATE_TIME_FORMATTER.format(now));
 		}
 
 		/**

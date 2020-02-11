@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.status;
+package com.ixopay.client.model.status_result;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

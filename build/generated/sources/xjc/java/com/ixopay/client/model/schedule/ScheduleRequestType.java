@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;choice&gt;
  *           &lt;element name="startSchedule" type="{http://gateway.ixopay.com/Schema/V2/Schedule}startScheduleType"/&gt;
+ *           &lt;element name="updateSchedule" type="{http://gateway.ixopay.com/Schema/V2/Schedule}updateScheduleType"/&gt;
  *           &lt;element name="showSchedule" type="{http://gateway.ixopay.com/Schema/V2/Schedule}showScheduleType"/&gt;
  *           &lt;element name="pauseSchedule" type="{http://gateway.ixopay.com/Schema/V2/Schedule}pauseScheduleType"/&gt;
  *           &lt;element name="continueSchedule" type="{http://gateway.ixopay.com/Schema/V2/Schedule}continueScheduleType"/&gt;
@@ -40,6 +41,7 @@ import javax.xml.bind.annotation.XmlType;
     "username",
     "password",
     "startSchedule",
+    "updateSchedule",
     "showSchedule",
     "pauseSchedule",
     "continueSchedule",
@@ -53,6 +55,7 @@ public class ScheduleRequestType {
     @XmlElement(required = true)
     protected String password;
     protected StartScheduleType startSchedule;
+    protected UpdateScheduleType updateSchedule;
     protected ShowScheduleType showSchedule;
     protected PauseScheduleType pauseSchedule;
     protected ContinueScheduleType continueSchedule;
@@ -70,10 +73,11 @@ public class ScheduleRequestType {
      * Fully-initialising value constructor
      * 
      */
-    public ScheduleRequestType(final String username, final String password, final StartScheduleType startSchedule, final ShowScheduleType showSchedule, final PauseScheduleType pauseSchedule, final ContinueScheduleType continueSchedule, final CancelScheduleType cancelSchedule) {
+    public ScheduleRequestType(final String username, final String password, final StartScheduleType startSchedule, final UpdateScheduleType updateSchedule, final ShowScheduleType showSchedule, final PauseScheduleType pauseSchedule, final ContinueScheduleType continueSchedule, final CancelScheduleType cancelSchedule) {
         this.username = username;
         this.password = password;
         this.startSchedule = startSchedule;
+        this.updateSchedule = updateSchedule;
         this.showSchedule = showSchedule;
         this.pauseSchedule = pauseSchedule;
         this.continueSchedule = continueSchedule;
@@ -150,6 +154,30 @@ public class ScheduleRequestType {
      */
     public void setStartSchedule(StartScheduleType value) {
         this.startSchedule = value;
+    }
+
+    /**
+     * Gets the value of the updateSchedule property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UpdateScheduleType }
+     *     
+     */
+    public UpdateScheduleType getUpdateSchedule() {
+        return updateSchedule;
+    }
+
+    /**
+     * Sets the value of the updateSchedule property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UpdateScheduleType }
+     *     
+     */
+    public void setUpdateSchedule(UpdateScheduleType value) {
+        this.updateSchedule = value;
     }
 
     /**

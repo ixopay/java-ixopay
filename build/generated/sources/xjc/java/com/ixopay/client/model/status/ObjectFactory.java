@@ -25,7 +25,6 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Status_QNAME = new QName("http://gateway.ixopay.com/Schema/V2/Status", "status");
-    private final static QName _StatusResult_QNAME = new QName("http://gateway.ixopay.com/Schema/V2/StatusResult", "statusResult");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ixopay.client.model.status
@@ -43,94 +42,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link StatusResultType }
-     * 
-     */
-    public StatusResultType createStatusResultType() {
-        return new StatusResultType();
-    }
-
-    /**
-     * Create an instance of {@link ExtraDataType }
-     * 
-     */
-    public ExtraDataType createExtraDataType() {
-        return new ExtraDataType();
-    }
-
-    /**
-     * Create an instance of {@link ErrorsType }
-     * 
-     */
-    public ErrorsType createErrorsType() {
-        return new ErrorsType();
-    }
-
-    /**
-     * Create an instance of {@link ErrorType }
-     * 
-     */
-    public ErrorType createErrorType() {
-        return new ErrorType();
-    }
-
-    /**
-     * Create an instance of {@link ChargebackDataType }
-     * 
-     */
-    public ChargebackDataType createChargebackDataType() {
-        return new ChargebackDataType();
-    }
-
-    /**
-     * Create an instance of {@link ChargebackReversalDataType }
-     * 
-     */
-    public ChargebackReversalDataType createChargebackReversalDataType() {
-        return new ChargebackReversalDataType();
-    }
-
-    /**
-     * Create an instance of {@link ReturnDataType }
-     * 
-     */
-    public ReturnDataType createReturnDataType() {
-        return new ReturnDataType();
-    }
-
-    /**
-     * Create an instance of {@link CreditcardDataType }
-     * 
-     */
-    public CreditcardDataType createCreditcardDataType() {
-        return new CreditcardDataType();
-    }
-
-    /**
-     * Create an instance of {@link PhoneDataType }
-     * 
-     */
-    public PhoneDataType createPhoneDataType() {
-        return new PhoneDataType();
-    }
-
-    /**
-     * Create an instance of {@link IbanDataType }
-     * 
-     */
-    public IbanDataType createIbanDataType() {
-        return new IbanDataType();
-    }
-
-    /**
-     * Create an instance of {@link CustomerDataType }
-     * 
-     */
-    public CustomerDataType createCustomerDataType() {
-        return new CustomerDataType();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link StatusType }{@code >}
      * 
      * @param value
@@ -141,19 +52,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://gateway.ixopay.com/Schema/V2/Status", name = "status")
     public JAXBElement<StatusType> createStatus(StatusType value) {
         return new JAXBElement<StatusType>(_Status_QNAME, StatusType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StatusResultType }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link StatusResultType }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://gateway.ixopay.com/Schema/V2/StatusResult", name = "statusResult")
-    public JAXBElement<StatusResultType> createStatusResult(StatusResultType value) {
-        return new JAXBElement<StatusResultType>(_StatusResult_QNAME, StatusResultType.class, null, value);
     }
 
 }

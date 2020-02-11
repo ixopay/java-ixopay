@@ -51,6 +51,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateScheduleType }
+     * 
+     */
+    public UpdateScheduleType createUpdateScheduleType() {
+        return new UpdateScheduleType();
+    }
+
+    /**
      * Create an instance of {@link ShowScheduleType }
      * 
      */
