@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="currency" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}currencyType" minOccurs="0"/&gt;
  *         &lt;element name="scheduleId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="scheduleStatus" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}scheduleStatusType" minOccurs="0"/&gt;
+ *         &lt;element name="scheduleMerchantMetaData" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="errors" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}errorsType" minOccurs="0"/&gt;
  *         &lt;element name="chargebackData" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}chargebackDataType" minOccurs="0"/&gt;
  *         &lt;element name="chargebackReversalData" type="{http://gateway.ixopay.com/Schema/V2/StatusResult}chargebackReversalDataType" minOccurs="0"/&gt;
@@ -60,6 +61,7 @@ import javax.xml.bind.annotation.XmlType;
     "currency",
     "scheduleId",
     "scheduleStatus",
+    "scheduleMerchantMetaData",
     "errors",
     "chargebackData",
     "chargebackReversalData",
@@ -85,6 +87,7 @@ public class StatusResultType {
     protected String scheduleId;
     @XmlSchemaType(name = "string")
     protected ScheduleStatusType scheduleStatus;
+    protected String scheduleMerchantMetaData;
     protected ErrorsType errors;
     protected ChargebackDataType chargebackData;
     protected ChargebackReversalDataType chargebackReversalData;
@@ -105,7 +108,7 @@ public class StatusResultType {
      * Fully-initialising value constructor
      * 
      */
-    public StatusResultType(final boolean operationSuccess, final TransactionStatusType transactionStatus, final String transactionUuid, final String merchantTransactionId, final String purchaseId, final TransactionMethodType transactionType, final String paymentMethod, final BigDecimal amount, final String currency, final String scheduleId, final ScheduleStatusType scheduleStatus, final ErrorsType errors, final ChargebackDataType chargebackData, final ChargebackReversalDataType chargebackReversalData, final List<ExtraDataType> extraData, final String merchantMetaData, final ReturnDataType returnData, final CustomerDataType customerData) {
+    public StatusResultType(final boolean operationSuccess, final TransactionStatusType transactionStatus, final String transactionUuid, final String merchantTransactionId, final String purchaseId, final TransactionMethodType transactionType, final String paymentMethod, final BigDecimal amount, final String currency, final String scheduleId, final ScheduleStatusType scheduleStatus, final String scheduleMerchantMetaData, final ErrorsType errors, final ChargebackDataType chargebackData, final ChargebackReversalDataType chargebackReversalData, final List<ExtraDataType> extraData, final String merchantMetaData, final ReturnDataType returnData, final CustomerDataType customerData) {
         this.operationSuccess = operationSuccess;
         this.transactionStatus = transactionStatus;
         this.transactionUuid = transactionUuid;
@@ -117,6 +120,7 @@ public class StatusResultType {
         this.currency = currency;
         this.scheduleId = scheduleId;
         this.scheduleStatus = scheduleStatus;
+        this.scheduleMerchantMetaData = scheduleMerchantMetaData;
         this.errors = errors;
         this.chargebackData = chargebackData;
         this.chargebackReversalData = chargebackReversalData;
@@ -380,6 +384,30 @@ public class StatusResultType {
      */
     public void setScheduleStatus(ScheduleStatusType value) {
         this.scheduleStatus = value;
+    }
+
+    /**
+     * Gets the value of the scheduleMerchantMetaData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getScheduleMerchantMetaData() {
+        return scheduleMerchantMetaData;
+    }
+
+    /**
+     * Sets the value of the scheduleMerchantMetaData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScheduleMerchantMetaData(String value) {
+        this.scheduleMerchantMetaData = value;
     }
 
     /**

@@ -105,6 +105,7 @@
             <xs:element type="xs:unsignedInt" name="periodLength" minOccurs="1" maxOccurs="1" />
             <xs:element type="periodUnitType" name="periodUnit" minOccurs="1" maxOccurs="1" />
             <xs:element type="scheduleDateTime" name="startDateTime" minOccurs="0" maxOccurs="1" /> <!-- date for first scheduled payment -->
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="addToCustomerProfileType">

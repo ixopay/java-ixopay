@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="currency" type="{http://gateway.ixopay.com/Schema/V2/Callback}currencyType" minOccurs="0"/&gt;
  *         &lt;element name="scheduleId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="scheduleStatus" type="{http://gateway.ixopay.com/Schema/V2/Callback}scheduleStatusType" minOccurs="0"/&gt;
+ *         &lt;element name="scheduleMerchantMetaData" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="customerProfile" type="{http://gateway.ixopay.com/Schema/V2/Callback}customerProfileDataType" minOccurs="0"/&gt;
  *         &lt;element name="errors" type="{http://gateway.ixopay.com/Schema/V2/Callback}errorsType" minOccurs="0"/&gt;
  *         &lt;element name="chargebackData" type="{http://gateway.ixopay.com/Schema/V2/Callback}chargebackDataType" minOccurs="0"/&gt;
@@ -60,6 +61,7 @@ import javax.xml.bind.annotation.XmlType;
     "currency",
     "scheduleId",
     "scheduleStatus",
+    "scheduleMerchantMetaData",
     "customerProfile",
     "errors",
     "chargebackData",
@@ -86,6 +88,7 @@ public class CallbackType {
     protected String scheduleId;
     @XmlSchemaType(name = "string")
     protected ScheduleStatusType scheduleStatus;
+    protected String scheduleMerchantMetaData;
     protected CustomerProfileDataType customerProfile;
     protected ErrorsType errors;
     protected ChargebackDataType chargebackData;
@@ -107,7 +110,7 @@ public class CallbackType {
      * Fully-initialising value constructor
      * 
      */
-    public CallbackType(final ResultType result, final String referenceId, final String transactionId, final String purchaseId, final TransactionMethodType transactionType, final String paymentMethod, final BigDecimal amount, final String currency, final String scheduleId, final ScheduleStatusType scheduleStatus, final CustomerProfileDataType customerProfile, final ErrorsType errors, final ChargebackDataType chargebackData, final ChargebackReversalDataType chargebackReversalData, final List<ExtraDataType> extraData, final String merchantMetaData, final ReturnDataType returnData, final CustomerDataType customerData) {
+    public CallbackType(final ResultType result, final String referenceId, final String transactionId, final String purchaseId, final TransactionMethodType transactionType, final String paymentMethod, final BigDecimal amount, final String currency, final String scheduleId, final ScheduleStatusType scheduleStatus, final String scheduleMerchantMetaData, final CustomerProfileDataType customerProfile, final ErrorsType errors, final ChargebackDataType chargebackData, final ChargebackReversalDataType chargebackReversalData, final List<ExtraDataType> extraData, final String merchantMetaData, final ReturnDataType returnData, final CustomerDataType customerData) {
         this.result = result;
         this.referenceId = referenceId;
         this.transactionId = transactionId;
@@ -118,6 +121,7 @@ public class CallbackType {
         this.currency = currency;
         this.scheduleId = scheduleId;
         this.scheduleStatus = scheduleStatus;
+        this.scheduleMerchantMetaData = scheduleMerchantMetaData;
         this.customerProfile = customerProfile;
         this.errors = errors;
         this.chargebackData = chargebackData;
@@ -366,6 +370,30 @@ public class CallbackType {
      */
     public void setScheduleStatus(ScheduleStatusType value) {
         this.scheduleStatus = value;
+    }
+
+    /**
+     * Gets the value of the scheduleMerchantMetaData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getScheduleMerchantMetaData() {
+        return scheduleMerchantMetaData;
+    }
+
+    /**
+     * Sets the value of the scheduleMerchantMetaData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScheduleMerchantMetaData(String value) {
+        this.scheduleMerchantMetaData = value;
     }
 
     /**

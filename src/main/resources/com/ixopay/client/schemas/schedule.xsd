@@ -45,6 +45,11 @@
             <xs:pattern value="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [A-Z]{1,5}" /> <!-- YYYY-MM-DD HH:mm:ss T, eg. "2019-12-30 23:59:59 UTC" -->
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="merchantMetaDataType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255" />
+        </xs:restriction>
+    </xs:simpleType>
     <xs:complexType name="startScheduleType">
         <xs:sequence>
             <xs:element type="xs:string" name="registrationId" minOccurs="1" maxOccurs="1" /> <!-- UUID of a transaction with register -->
@@ -53,6 +58,7 @@
             <xs:element type="xs:unsignedInt" name="periodLength" minOccurs="1" maxOccurs="1" />
             <xs:element type="periodUnitType" name="periodUnit" minOccurs="1" maxOccurs="1" />
             <xs:element type="scheduleDateTime" name="startDateTime" minOccurs="1" maxOccurs="1" />
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="updateScheduleType">
@@ -64,6 +70,7 @@
             <xs:element type="xs:unsignedInt" name="periodLength" minOccurs="0" maxOccurs="1" />
             <xs:element type="periodUnitType" name="periodUnit" minOccurs="0" maxOccurs="1" />
             <xs:element type="scheduleDateTime" name="startDateTime" minOccurs="0" maxOccurs="1" />
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="showScheduleType">

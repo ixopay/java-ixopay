@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="periodLength" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
  *         &lt;element name="periodUnit" type="{http://gateway.ixopay.com/Schema/V2/Transaction}periodUnitType"/&gt;
  *         &lt;element name="startDateTime" type="{http://gateway.ixopay.com/Schema/V2/Transaction}scheduleDateTime" minOccurs="0"/&gt;
+ *         &lt;element name="merchantMetaData" type="{http://gateway.ixopay.com/Schema/V2/Transaction}merchantMetaDataType" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,7 +39,8 @@ import javax.xml.bind.annotation.XmlType;
     "currency",
     "periodLength",
     "periodUnit",
-    "startDateTime"
+    "startDateTime",
+    "merchantMetaData"
 })
 public class ScheduleType {
 
@@ -52,6 +54,7 @@ public class ScheduleType {
     @XmlSchemaType(name = "string")
     protected PeriodUnitType periodUnit;
     protected String startDateTime;
+    protected String merchantMetaData;
 
     /**
      * Default no-arg constructor
@@ -65,12 +68,13 @@ public class ScheduleType {
      * Fully-initialising value constructor
      * 
      */
-    public ScheduleType(final BigDecimal amount, final String currency, final long periodLength, final PeriodUnitType periodUnit, final String startDateTime) {
+    public ScheduleType(final BigDecimal amount, final String currency, final long periodLength, final PeriodUnitType periodUnit, final String startDateTime, final String merchantMetaData) {
         this.amount = amount;
         this.currency = currency;
         this.periodLength = periodLength;
         this.periodUnit = periodUnit;
         this.startDateTime = startDateTime;
+        this.merchantMetaData = merchantMetaData;
     }
 
     /**
@@ -183,6 +187,30 @@ public class ScheduleType {
      */
     public void setStartDateTime(String value) {
         this.startDateTime = value;
+    }
+
+    /**
+     * Gets the value of the merchantMetaData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMerchantMetaData() {
+        return merchantMetaData;
+    }
+
+    /**
+     * Sets the value of the merchantMetaData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMerchantMetaData(String value) {
+        this.merchantMetaData = value;
     }
 
 }

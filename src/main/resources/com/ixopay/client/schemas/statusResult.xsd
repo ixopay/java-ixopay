@@ -20,6 +20,7 @@
             <xs:element type="currencyType" name="currency" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:string" name="scheduleId" minOccurs="0" maxOccurs="1" />
             <xs:element type="scheduleStatusType" name="scheduleStatus" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="scheduleMerchantMetaData" minOccurs="0" maxOccurs="1" />
             <xs:element type="errorsType" name="errors" minOccurs="0" maxOccurs="1" />
             <xs:element type="chargebackDataType" name="chargebackData" minOccurs="0" maxOccurs="1" />
             <xs:element type="chargebackReversalDataType" name="chargebackReversalData" minOccurs="0" maxOccurs="1" />
