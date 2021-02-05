@@ -16,6 +16,7 @@
             <xs:element type="scheduleStatusType" name="newStatus" minOccurs="0" maxOccurs="1" />
             <xs:element type="scheduleDateTime" name="scheduledAt" minOccurs="0" maxOccurs="1" />
             <xs:element type="errorsType" name="errors" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
 

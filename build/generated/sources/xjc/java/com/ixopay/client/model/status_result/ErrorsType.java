@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.status;
+package com.ixopay.client.model.status_result;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://gateway.ixopay.com/Schema/V2/Transaction}baseTransactionType"&gt;
  *       &lt;sequence&gt;
  *         &lt;group ref="{http://gateway.ixopay.com/Schema/V2/Transaction}offsiteGroup"/&gt;
+ *         &lt;element name="transactionIndicator" type="{http://gateway.ixopay.com/Schema/V2/Transaction}transactionIndicatorType" minOccurs="0"/&gt;
  *         &lt;element name="startSchedule" type="{http://gateway.ixopay.com/Schema/V2/Transaction}scheduleType" minOccurs="0"/&gt;
  *         &lt;element name="addToCustomerProfile" type="{http://gateway.ixopay.com/Schema/V2/Transaction}addToCustomerProfileType" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
     "cancelUrl",
     "errorUrl",
     "callbackUrl",
+    "transactionIndicator",
     "startSchedule",
     "addToCustomerProfile"
 })
@@ -52,6 +54,8 @@ public class RegisterType
     protected String errorUrl;
     @XmlSchemaType(name = "anyURI")
     protected String callbackUrl;
+    @XmlSchemaType(name = "string")
+    protected TransactionIndicatorType transactionIndicator;
     protected ScheduleType startSchedule;
     protected AddToCustomerProfileType addToCustomerProfile;
 
@@ -67,13 +71,14 @@ public class RegisterType
      * Fully-initialising value constructor
      * 
      */
-    public RegisterType(final String transactionToken, final String transactionId, final String additionalId1, final String additionalId2, final CustomerType customer, final CreditCardCustomerType creditCardCustomer, final IbanCustomerType ibanCustomer, final List<ExtraDataType> extraData, final String merchantMetaData, final RequestType request, final String description, final String successUrl, final String cancelUrl, final String errorUrl, final String callbackUrl, final ScheduleType startSchedule, final AddToCustomerProfileType addToCustomerProfile) {
+    public RegisterType(final String transactionToken, final String transactionId, final String additionalId1, final String additionalId2, final CustomerType customer, final CreditCardCustomerType creditCardCustomer, final IbanCustomerType ibanCustomer, final List<ExtraDataType> extraData, final String merchantMetaData, final RequestType request, final String description, final String successUrl, final String cancelUrl, final String errorUrl, final String callbackUrl, final TransactionIndicatorType transactionIndicator, final ScheduleType startSchedule, final AddToCustomerProfileType addToCustomerProfile) {
         super(transactionToken, transactionId, additionalId1, additionalId2, customer, creditCardCustomer, ibanCustomer, extraData, merchantMetaData, request);
         this.description = description;
         this.successUrl = successUrl;
         this.cancelUrl = cancelUrl;
         this.errorUrl = errorUrl;
         this.callbackUrl = callbackUrl;
+        this.transactionIndicator = transactionIndicator;
         this.startSchedule = startSchedule;
         this.addToCustomerProfile = addToCustomerProfile;
     }
@@ -196,6 +201,30 @@ public class RegisterType
      */
     public void setCallbackUrl(String value) {
         this.callbackUrl = value;
+    }
+
+    /**
+     * Gets the value of the transactionIndicator property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TransactionIndicatorType }
+     *     
+     */
+    public TransactionIndicatorType getTransactionIndicator() {
+        return transactionIndicator;
+    }
+
+    /**
+     * Sets the value of the transactionIndicator property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TransactionIndicatorType }
+     *     
+     */
+    public void setTransactionIndicator(TransactionIndicatorType value) {
+        this.transactionIndicator = value;
     }
 
     /**

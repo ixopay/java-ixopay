@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="newStatus" type="{http://gateway.ixopay.com/Schema/V2/ScheduleResult}scheduleStatusType" minOccurs="0"/&gt;
  *         &lt;element name="scheduledAt" type="{http://gateway.ixopay.com/Schema/V2/ScheduleResult}scheduleDateTime" minOccurs="0"/&gt;
  *         &lt;element name="errors" type="{http://gateway.ixopay.com/Schema/V2/ScheduleResult}errorsType" minOccurs="0"/&gt;
+ *         &lt;element name="merchantMetaData" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -41,7 +42,8 @@ import javax.xml.bind.annotation.XmlType;
     "oldStatus",
     "newStatus",
     "scheduledAt",
-    "errors"
+    "errors",
+    "merchantMetaData"
 })
 @XmlRootElement(name = "schedule")
 public class ScheduleResultType {
@@ -55,6 +57,7 @@ public class ScheduleResultType {
     protected ScheduleStatusType newStatus;
     protected String scheduledAt;
     protected ErrorsType errors;
+    protected String merchantMetaData;
 
     /**
      * Default no-arg constructor
@@ -68,7 +71,7 @@ public class ScheduleResultType {
      * Fully-initialising value constructor
      * 
      */
-    public ScheduleResultType(final boolean operationSuccess, final String scheduleId, final String registrationId, final ScheduleStatusType oldStatus, final ScheduleStatusType newStatus, final String scheduledAt, final ErrorsType errors) {
+    public ScheduleResultType(final boolean operationSuccess, final String scheduleId, final String registrationId, final ScheduleStatusType oldStatus, final ScheduleStatusType newStatus, final String scheduledAt, final ErrorsType errors, final String merchantMetaData) {
         this.operationSuccess = operationSuccess;
         this.scheduleId = scheduleId;
         this.registrationId = registrationId;
@@ -76,6 +79,7 @@ public class ScheduleResultType {
         this.newStatus = newStatus;
         this.scheduledAt = scheduledAt;
         this.errors = errors;
+        this.merchantMetaData = merchantMetaData;
     }
 
     /**
@@ -236,6 +240,30 @@ public class ScheduleResultType {
      */
     public void setErrors(ErrorsType value) {
         this.errors = value;
+    }
+
+    /**
+     * Gets the value of the merchantMetaData property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMerchantMetaData() {
+        return merchantMetaData;
+    }
+
+    /**
+     * Sets the value of the merchantMetaData property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMerchantMetaData(String value) {
+        this.merchantMetaData = value;
     }
 
 }

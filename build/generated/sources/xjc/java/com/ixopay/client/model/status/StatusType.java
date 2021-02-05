@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "statusType", namespace = "http://gateway.ixopay.com/Schema/V2/Status", propOrder = {
+@XmlType(name = "statusType", propOrder = {
     "username",
     "password",
     "transactionUuid",

@@ -1,6 +1,8 @@
 
 package com.ixopay.client.model.callback;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -45,6 +47,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="emailVerified" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
  *         &lt;element name="ipAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nationalId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="extraData" type="{http://gateway.ixopay.com/Schema/V2/Callback}extraDataType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -81,7 +84,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "email",
     "emailVerified",
     "ipAddress",
-    "nationalId"
+    "nationalId",
+    "extraData"
 })
 public class CustomerDataType {
 
@@ -114,6 +118,7 @@ public class CustomerDataType {
     protected Boolean emailVerified;
     protected String ipAddress;
     protected String nationalId;
+    protected List<ExtraDataType> extraData;
 
     /**
      * Default no-arg constructor
@@ -127,7 +132,7 @@ public class CustomerDataType {
      * Fully-initialising value constructor
      * 
      */
-    public CustomerDataType(final String identification, final String firstName, final String lastName, final XMLGregorianCalendar birthDate, final GenderType gender, final String billingAddress1, final String billingAddress2, final String billingCity, final String billingPostcode, final String billingState, final String billingCountry, final String billingPhone, final String shippingFirstName, final String shippingLastName, final String shippingCompany, final String shippingAddress1, final String shippingAddress2, final String shippingCity, final String shippingPostcode, final String shippingState, final String shippingCountry, final String shippingPhone, final String company, final String email, final Boolean emailVerified, final String ipAddress, final String nationalId) {
+    public CustomerDataType(final String identification, final String firstName, final String lastName, final XMLGregorianCalendar birthDate, final GenderType gender, final String billingAddress1, final String billingAddress2, final String billingCity, final String billingPostcode, final String billingState, final String billingCountry, final String billingPhone, final String shippingFirstName, final String shippingLastName, final String shippingCompany, final String shippingAddress1, final String shippingAddress2, final String shippingCity, final String shippingPostcode, final String shippingState, final String shippingCountry, final String shippingPhone, final String company, final String email, final Boolean emailVerified, final String ipAddress, final String nationalId, final List<ExtraDataType> extraData) {
         this.identification = identification;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -155,6 +160,7 @@ public class CustomerDataType {
         this.emailVerified = emailVerified;
         this.ipAddress = ipAddress;
         this.nationalId = nationalId;
+        this.extraData = extraData;
     }
 
     /**
@@ -803,6 +809,35 @@ public class CustomerDataType {
      */
     public void setNationalId(String value) {
         this.nationalId = value;
+    }
+
+    /**
+     * Gets the value of the extraData property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the extraData property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExtraData().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ExtraDataType }
+     * 
+     * 
+     */
+    public List<ExtraDataType> getExtraData() {
+        if (extraData == null) {
+            extraData = new ArrayList<ExtraDataType>();
+        }
+        return this.extraData;
     }
 
 }

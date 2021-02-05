@@ -28,6 +28,9 @@
     <bindings scd="~tns:startScheduleType">
       <class ref="com.ixopay.client.model.schedule.StartScheduleType"/>
     </bindings>
+    <bindings scd="~tns:updateScheduleType">
+      <class ref="com.ixopay.client.model.schedule.UpdateScheduleType"/>
+    </bindings>
     <bindings scd="~tns:showScheduleType">
       <class ref="com.ixopay.client.model.schedule.ShowScheduleType"/>
     </bindings>
@@ -116,58 +119,58 @@
   </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://gateway.ixopay.com/Schema/V2/StatusResult">
     <schemaBindings map="false">
-      <package name="com.ixopay.client.model.status"/>
+      <package name="com.ixopay.client.model.status_result"/>
     </schemaBindings>
     <bindings scd="~tns:statusResultType">
-      <class ref="com.ixopay.client.model.status.StatusResultType"/>
+      <class ref="com.ixopay.client.model.status_result.StatusResultType"/>
     </bindings>
     <bindings scd="~tns:extraDataType">
-      <class ref="com.ixopay.client.model.status.ExtraDataType"/>
+      <class ref="com.ixopay.client.model.status_result.ExtraDataType"/>
     </bindings>
     <bindings scd="~tns:errorsType">
-      <class ref="com.ixopay.client.model.status.ErrorsType"/>
+      <class ref="com.ixopay.client.model.status_result.ErrorsType"/>
     </bindings>
     <bindings scd="~tns:errorType">
-      <class ref="com.ixopay.client.model.status.ErrorType"/>
+      <class ref="com.ixopay.client.model.status_result.ErrorType"/>
     </bindings>
     <bindings scd="~tns:chargebackDataType">
-      <class ref="com.ixopay.client.model.status.ChargebackDataType"/>
+      <class ref="com.ixopay.client.model.status_result.ChargebackDataType"/>
     </bindings>
     <bindings scd="~tns:chargebackReversalDataType">
-      <class ref="com.ixopay.client.model.status.ChargebackReversalDataType"/>
+      <class ref="com.ixopay.client.model.status_result.ChargebackReversalDataType"/>
     </bindings>
     <bindings scd="~tns:returnDataType">
-      <class ref="com.ixopay.client.model.status.ReturnDataType"/>
+      <class ref="com.ixopay.client.model.status_result.ReturnDataType"/>
     </bindings>
     <bindings scd="~tns:creditcardDataType">
-      <class ref="com.ixopay.client.model.status.CreditcardDataType"/>
+      <class ref="com.ixopay.client.model.status_result.CreditcardDataType"/>
     </bindings>
     <bindings scd="~tns:phoneDataType">
-      <class ref="com.ixopay.client.model.status.PhoneDataType"/>
+      <class ref="com.ixopay.client.model.status_result.PhoneDataType"/>
     </bindings>
     <bindings scd="~tns:ibanDataType">
-      <class ref="com.ixopay.client.model.status.IbanDataType"/>
+      <class ref="com.ixopay.client.model.status_result.IbanDataType"/>
     </bindings>
     <bindings scd="~tns:customerDataType">
-      <class ref="com.ixopay.client.model.status.CustomerDataType"/>
+      <class ref="com.ixopay.client.model.status_result.CustomerDataType"/>
     </bindings>
     <bindings scd="~tns:scheduleStatusType">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.ScheduleStatusType"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.ScheduleStatusType"/>
     </bindings>
     <bindings scd="~tns:transactionMethodType">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.TransactionMethodType"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.TransactionMethodType"/>
     </bindings>
     <bindings scd="~tns:transactionStatusType">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.TransactionStatusType"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.TransactionStatusType"/>
     </bindings>
     <bindings scd="~tns:threeDSecureType">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.ThreeDSecureType"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.ThreeDSecureType"/>
     </bindings>
     <bindings scd="~tns:returnDataTypeEnum">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.ReturnDataTypeEnum"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.ReturnDataTypeEnum"/>
     </bindings>
     <bindings scd="~tns:genderType">
-      <typesafeEnumClass ref="com.ixopay.client.model.status.GenderType"/>
+      <typesafeEnumClass ref="com.ixopay.client.model.status_result.GenderType"/>
     </bindings>
   </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://gateway.ixopay.com/Schema/V2/ScheduleResult">

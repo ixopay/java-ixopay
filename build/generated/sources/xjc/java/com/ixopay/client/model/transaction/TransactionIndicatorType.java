@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="RECURRING"/&gt;
  *     &lt;enumeration value="CARDONFILE"/&gt;
  *     &lt;enumeration value="CARDONFILE-MERCHANT-INITIATED"/&gt;
+ *     &lt;enumeration value="MOTO"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -33,7 +34,8 @@ public enum TransactionIndicatorType {
     RECURRING("RECURRING"),
     CARDONFILE("CARDONFILE"),
     @XmlEnumValue("CARDONFILE-MERCHANT-INITIATED")
-    CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED");
+    CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
+    MOTO("MOTO");
     private final String value;
 
     TransactionIndicatorType(String v) {

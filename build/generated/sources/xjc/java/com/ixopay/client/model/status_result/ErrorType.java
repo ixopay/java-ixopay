@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.status;
+package com.ixopay.client.model.status_result;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

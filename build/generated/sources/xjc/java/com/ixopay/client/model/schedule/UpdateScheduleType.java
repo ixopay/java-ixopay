@@ -1,5 +1,5 @@
 
-package com.ixopay.client.model.transaction;
+package com.ixopay.client.model.schedule;
 
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,21 +10,23 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for scheduleType complex type.
+ * <p>Java class for updateScheduleType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="scheduleType"&gt;
+ * &lt;complexType name="updateScheduleType"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="amount" type="{http://gateway.ixopay.com/Schema/V2/Transaction}amountType"/&gt;
- *         &lt;element name="currency" type="{http://gateway.ixopay.com/Schema/V2/Transaction}currencyType"/&gt;
- *         &lt;element name="periodLength" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
- *         &lt;element name="periodUnit" type="{http://gateway.ixopay.com/Schema/V2/Transaction}periodUnitType"/&gt;
- *         &lt;element name="startDateTime" type="{http://gateway.ixopay.com/Schema/V2/Transaction}scheduleDateTime" minOccurs="0"/&gt;
- *         &lt;element name="merchantMetaData" type="{http://gateway.ixopay.com/Schema/V2/Transaction}merchantMetaDataType" minOccurs="0"/&gt;
+ *         &lt;element name="scheduleId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="registrationId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="amount" type="{http://gateway.ixopay.com/Schema/V2/Schedule}amountType" minOccurs="0"/&gt;
+ *         &lt;element name="currency" type="{http://gateway.ixopay.com/Schema/V2/Schedule}currencyType" minOccurs="0"/&gt;
+ *         &lt;element name="periodLength" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" minOccurs="0"/&gt;
+ *         &lt;element name="periodUnit" type="{http://gateway.ixopay.com/Schema/V2/Schedule}periodUnitType" minOccurs="0"/&gt;
+ *         &lt;element name="startDateTime" type="{http://gateway.ixopay.com/Schema/V2/Schedule}scheduleDateTime" minOccurs="0"/&gt;
+ *         &lt;element name="merchantMetaData" type="{http://gateway.ixopay.com/Schema/V2/Schedule}merchantMetaDataType" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "scheduleType", propOrder = {
+@XmlType(name = "updateScheduleType", propOrder = {
+    "scheduleId",
+    "registrationId",
     "amount",
     "currency",
     "periodLength",
@@ -42,15 +46,15 @@ import javax.xml.bind.annotation.XmlType;
     "startDateTime",
     "merchantMetaData"
 })
-public class ScheduleType {
+public class UpdateScheduleType {
 
     @XmlElement(required = true)
+    protected String scheduleId;
+    protected String registrationId;
     protected BigDecimal amount;
-    @XmlElement(required = true)
     protected String currency;
     @XmlSchemaType(name = "unsignedInt")
-    protected long periodLength;
-    @XmlElement(required = true)
+    protected Long periodLength;
     @XmlSchemaType(name = "string")
     protected PeriodUnitType periodUnit;
     protected String startDateTime;
@@ -60,7 +64,7 @@ public class ScheduleType {
      * Default no-arg constructor
      * 
      */
-    public ScheduleType() {
+    public UpdateScheduleType() {
         super();
     }
 
@@ -68,13 +72,63 @@ public class ScheduleType {
      * Fully-initialising value constructor
      * 
      */
-    public ScheduleType(final BigDecimal amount, final String currency, final long periodLength, final PeriodUnitType periodUnit, final String startDateTime, final String merchantMetaData) {
+    public UpdateScheduleType(final String scheduleId, final String registrationId, final BigDecimal amount, final String currency, final Long periodLength, final PeriodUnitType periodUnit, final String startDateTime, final String merchantMetaData) {
+        this.scheduleId = scheduleId;
+        this.registrationId = registrationId;
         this.amount = amount;
         this.currency = currency;
         this.periodLength = periodLength;
         this.periodUnit = periodUnit;
         this.startDateTime = startDateTime;
         this.merchantMetaData = merchantMetaData;
+    }
+
+    /**
+     * Gets the value of the scheduleId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getScheduleId() {
+        return scheduleId;
+    }
+
+    /**
+     * Sets the value of the scheduleId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setScheduleId(String value) {
+        this.scheduleId = value;
+    }
+
+    /**
+     * Gets the value of the registrationId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRegistrationId() {
+        return registrationId;
+    }
+
+    /**
+     * Sets the value of the registrationId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRegistrationId(String value) {
+        this.registrationId = value;
     }
 
     /**
@@ -128,16 +182,24 @@ public class ScheduleType {
     /**
      * Gets the value of the periodLength property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getPeriodLength() {
+    public Long getPeriodLength() {
         return periodLength;
     }
 
     /**
      * Sets the value of the periodLength property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setPeriodLength(long value) {
+    public void setPeriodLength(Long value) {
         this.periodLength = value;
     }
 

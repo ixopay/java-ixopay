@@ -57,7 +57,7 @@
     </xs:simpleType>
     <xs:simpleType name="amountType">
         <xs:restriction base="xs:decimal">
-            <xs:fractionDigits value="2" fixed="true" />
+            <xs:fractionDigits value="3" fixed="true" />
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="mandatatoryIdType">
@@ -78,6 +78,7 @@
             <xs:enumeration value="RECURRING" /> <!-- recurring transaction after a inital one -->
             <xs:enumeration value="CARDONFILE" /> <!-- card on file transaction -->
             <xs:enumeration value="CARDONFILE-MERCHANT-INITIATED" /> <!-- card on file transaction initiated by merchant -->
+            <xs:enumeration value="MOTO" /> <!-- moto transaction-->
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="merchantMetaDataType">
@@ -105,6 +106,7 @@
             <xs:element type="xs:unsignedInt" name="periodLength" minOccurs="1" maxOccurs="1" />
             <xs:element type="periodUnitType" name="periodUnit" minOccurs="1" maxOccurs="1" />
             <xs:element type="scheduleDateTime" name="startDateTime" minOccurs="0" maxOccurs="1" /> <!-- date for first scheduled payment -->
+            <xs:element type="merchantMetaDataType" name="merchantMetaData" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="addToCustomerProfileType">
@@ -291,6 +293,7 @@
             <xs:extension base="baseTransactionType">
                 <xs:sequence>
                     <xs:group ref="offsiteGroup" />
+                    <xs:element type="transactionIndicatorType" name="transactionIndicator" minOccurs="0" maxOccurs="1" />
                     <xs:element type="scheduleType" name="startSchedule" minOccurs="0" maxOccurs="1" />
                     <xs:element type="addToCustomerProfileType" name="addToCustomerProfile" minOccurs="0" maxOccurs="1" />
                 </xs:sequence>
@@ -337,8 +340,7 @@
             <xs:extension base="baseTransactionWithReferenceType">
                 <xs:sequence>
                     <xs:group ref="amountableGroup" />
-                    <xs:element type="xs:string" name="description" minOccurs="0" maxOccurs="1"/>
-                    <xs:element type="xs:anyURI" name="callbackUrl" minOccurs="0" maxOccurs="1"/>
+                    <xs:group ref="offsiteGroup" />
                     <xs:group ref="itemsGroup" />
                 </xs:sequence>
             </xs:extension>

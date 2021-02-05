@@ -19,6 +19,7 @@
             <xs:element type="currencyType" name="currency" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:string" name="scheduleId" minOccurs="0" maxOccurs="1" />
             <xs:element type="scheduleStatusType" name="scheduleStatus" minOccurs="0" maxOccurs="1" />
+            <xs:element type="xs:string" name="scheduleMerchantMetaData" minOccurs="0" maxOccurs="1" />
             <xs:element type="customerProfileDataType" name="customerProfile" minOccurs="0" maxOccurs="1" />
             <xs:element type="errorsType" name="errors" minOccurs="0" maxOccurs="1" />
             <xs:element type="chargebackDataType" name="chargebackData" minOccurs="0" maxOccurs="1" />
@@ -260,6 +261,7 @@
             <xs:element type="xs:boolean" name="emailVerified" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:string" name="ipAddress" minOccurs="0" maxOccurs="1" />
             <xs:element type="xs:string" name="nationalId" minOccurs="0" maxOccurs="1" />
+            <xs:element type="extraDataType" name="extraData" minOccurs="0" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

@@ -78,11 +78,11 @@
 	</bindings>
 	<bindings schemaLocation="../schemas/statusResult.xsd" node="/xs:schema">
 		<schemaBindings>
-			<package name="com.ixopay.client.model.status"/>
+			<package name="com.ixopay.client.model.status_result"/>
 		</schemaBindings>
 		<bindings node="//xs:complexType[@name='statusResultType']">
 			<annox:annotate>
-				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="status"/>
+				<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="statusResult"/>
 			</annox:annotate>
 		</bindings>
 	</bindings>
