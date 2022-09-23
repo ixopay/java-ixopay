@@ -1,48 +1,72 @@
 
 # README
 
-[![Release](https://jitpack.io/v/ixopay/java-ixopay.svg)](https://jitpack.io/#ixopay/java-ixopay)
+[![Release](https://jitpack.io/v/com.ixopay/java-ixopay.svg)](https://jitpack.io/#com.ixopay/java-ixopay)
 
 ## Using the library
 
-See [`src/example/java`](src/example/java) for examples on how to integrate the library.
-
-There is no HTTP client library included to keep the library small and you can use any Java HTTP client of your choosing. 
-
 The library consists of two parts.
-First `com.ixopay.client.model` which contains JAXB models for all payment gateway operations.
-Second `com.ixopay.client.signing` which contains helpers to correctly sign an HTTP request and to hash transmitted passwords.
+First `ixopay-api-core` which contains an API client generated from the OpenAPI spec of ixopay.
+Second `ixopay-signing` which contains helpers to correctly sign outgoing HTTP requests and verify incoming HTTP requests.
 
 ### Gradle
 
+<details>
+<summary>build.gradle</summary>
+
 Add the [jitpack.io](https://jitpack.io) repository:
 ```gradle
-allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+repositories {
+	// ...
+	maven { url 'https://jitpack.io' }
 }
 ```
 
 Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixopay/java-ixopay/releases)):
 ```gradle
 dependencies {
-	...
-	compile 'com.ixopay:java-ixopay:VERSION'
-	...
+	// ...
+	implementation 'com.ixopay.java-ixopay:ixopay-api:VERSION'
+	// ...
 }
 ```
 
+</details>
+
+<details open>
+<summary>build.gradle.kts</summary>
+
+Add the [jitpack.io](https://jitpack.io) repository:
+```kotlin
+repositories {
+	// ...
+	maven("https://jitpack.io")
+}
+```
+
+Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixopay/java-ixopay/releases)):
+```kotlin
+dependencies {
+	// ...
+	implementation("com.ixopay.java-ixopay:ixopay-api:VERSION")
+	// ...
+}
+```
+
+</details>
+
 ### Maven
+
+<details open>
+<summary>pom.xml</summary>
 
 Add the [jitpack.io](https://jitpack.io) repository:
 
 ```maven
 <repositories>
 	<repository>
-	    <id>jitpack.io</id>
-	    <url>https://jitpack.io</url>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
 	</repository>
 </repositories>
 ```
@@ -50,8 +74,10 @@ Add the [jitpack.io](https://jitpack.io) repository:
 Add the dependency (replace `VERSION` with the [GitHub release name](https://github.com/ixopay/java-ixopay/releases)):
  ```maven
 <dependency>
-    <groupId>com.ixopay</groupId>
-    <artifactId>java-ixopay</artifactId>
-    <version>VERSION</version>
+	<groupId>com.ixopay.java-ixopay</groupId>
+	<artifactId>ixopay-api</artifactId>
+	<version>VERSION</version>
 </dependency>
 ```
+
+</details>

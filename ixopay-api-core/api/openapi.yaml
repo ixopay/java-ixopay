@@ -1,0 +1,4480 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@ixopay.com
+  description: IXOPAY Payment Platform
+  license:
+    name: MIT
+  termsOfService: https://www.ixolit.com/en/legal/terms-of-use
+  title: IXOPAY Payment Platform
+  version: 3.0.0
+externalDocs:
+  description: IXOPAY Payment Platform Documentation
+  url: https://gateway.ixopay.com/documentation/gateway
+servers:
+- url: https://gateway.ixopay.com/api/v3
+security:
+- basicAuth: []
+tags:
+- description: Retrieve a list of options
+  externalDocs:
+    description: Find out more about the options API
+    url: https://gateway.ixopay.com/documentation/apiv3#options-request
+  name: options
+- description: Set and manage transaction schedules
+  externalDocs:
+    description: Find out more about the scheduler API
+    url: https://gateway.ixopay.com/documentation/gateway#scheduler
+  name: schedule
+- description: Retrieve the status of transactions
+  externalDocs:
+    description: Find out more about the status API
+    url: https://gateway.ixopay.com/documentation/apiv3#status-request
+  name: status
+- description: Process transactions
+  externalDocs:
+    description: Find out more about the transaction API
+    url: https://gateway.ixopay.com/documentation/apiv3
+  name: transaction
+paths:
+  /transaction/{apiKey}/prepare-debit:
+    post:
+      operationId: processPrepareDebit
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrepareDebitRequest'
+        description: Data which is required to process a Debit
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    data:
+                      data1: data1
+                      data2: data2
+                error:
+                  value:
+                    success: false
+                    errorMessage: Given identifier 'someIdentifier' is invalid.
+              schema:
+                $ref: '#/components/schemas/PrepareDebitResponse'
+          description: Prepare Debit response
+      summary: Process a prepare Debit
+      tags:
+      - prepare-transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/debit:
+    post:
+      operationId: processDebit
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0001
+              additionalId1: x0001
+              additionalId2: y0001
+              extraData:
+                someKey: someValue
+                otherKey: otherValue
+              merchantMetaData: merchantRelevantData
+              amount: "9.99"
+              currency: EUR
+              successUrl: http://example.com/success
+              cancelUrl: http://example.com/cancel
+              errorUrl: http://example.com/error
+              callbackUrl: http://example.com/callback
+              transactionToken: ix::tRaNsAcT1OnToK3N
+              description: Example Product
+              customer:
+                identification: c0001
+                firstName: John
+                lastName: Doe
+              threeDSecureData:
+                "3dsecure": MANDATORY
+              language: en
+            schema:
+              $ref: '#/components/schemas/Debit'
+        description: Data which is required to process a debit
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: Process a debit
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/prepare-preauthorize:
+    post:
+      operationId: processPreparePreauthorize
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreparePreauthorizeRequest'
+        description: Data which is required to process a Preauthorize
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    data:
+                      data1: data1
+                      data2: data2
+                error:
+                  value:
+                    success: false
+                    errorMessage: Given identifier 'someIdentifier' is invalid.
+              schema:
+                $ref: '#/components/schemas/PreparePreauthorizeResponse'
+          description: Preauthorize Debit response
+      summary: Process a prepare Preauthorize
+      tags:
+      - prepare-transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/preauthorize:
+    post:
+      operationId: processPreauthorize
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0002
+              extraData:
+                someKey: someValue
+                otherKey: otherValue
+              merchantMetaData: merchantRelevantData
+              amount: "9.99"
+              currency: EUR
+              successUrl: http://example.com/success
+              cancelUrl: http://example.com/cancel
+              errorUrl: http://example.com/error
+              callbackUrl: http://example.com/callback
+              description: Example Product
+              customer:
+                identification: c0001
+                firstName: John
+                lastName: Doe
+              threeDSecureData:
+                "3dsecure": MANDATORY
+              language: en
+            schema:
+              $ref: '#/components/schemas/Preauthorize'
+        description: Data which is required to process a preauthorize
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: "Process a preauthorize: reserves the payment amount on the customer's\
+        \ payment instrument"
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/incrementalAuthorization:
+    post:
+      operationId: processIncrementalAuthorization
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0002
+              referenceUuid: uuid_of_preauth
+              extraData:
+                someKey: someValue
+                otherKey: otherValue
+              merchantMetaData: merchantRelevantData
+              amount: "9.99"
+              currency: EUR
+              successUrl: http://example.com/success
+              cancelUrl: http://example.com/cancel
+              errorUrl: http://example.com/error
+              callbackUrl: http://example.com/callback
+              description: Example Product
+              language: en
+            schema:
+              $ref: '#/components/schemas/IncrementalAuthorization'
+        description: Data which is required to process a incremental auth
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: Increases or prolongs the authorization on a customer's payment instrument
+        (made with Preauthorize before)
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/capture:
+    post:
+      operationId: processCapture
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0003
+              referenceUuid: bcdef23456bcdef23456
+              amount: "9.99"
+              currency: EUR
+            schema:
+              $ref: '#/components/schemas/Capture'
+        description: Data which is required to process a capture
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: "Process a capture: completes a payment previously authorized through\
+        \ Preauthorize"
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/void:
+    post:
+      operationId: processVoid
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0004
+              referenceUuid: bcdef23456bcdef23456
+            schema:
+              $ref: '#/components/schemas/Void'
+        description: Data which is required to process a void
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'referenceUuid' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: "Process a void: cancels a previously authorized Preauthorize"
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/register:
+    post:
+      operationId: processRegister
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0005
+              merchantMetaData: merchantRelevantData
+              successUrl: http://example.com/success
+              cancelUrl: http://example.com/cancel
+              errorUrl: http://example.com/error
+              callbackUrl: http://example.com/callback
+              customer:
+                identification: 1234
+                firstName: John
+                lastName: Doe
+                paymentData:
+                  ibanData:
+                    iban: AT11111111111111111111
+                    bic: ABC
+              description: This is a register
+              language: en
+            schema:
+              $ref: '#/components/schemas/Register'
+        description: Data which is required to process a register
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                redirect:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: REDIRECT
+                    redirectUrl: http://redirectComesUrlHere.com
+                    redirectQRCode: "data:image/png;base64,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: "Process a register: registers a customer's payment instrument for\
+        \ future use (Debit or Preauthorize)"
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/deregister:
+    post:
+      operationId: processDeregister
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0006
+              merchantMetaData: merchantRelevantData
+              referenceUuid: bcdef23456bcdef23456
+            schema:
+              $ref: '#/components/schemas/Deregister'
+        description: Data which is required to process a deregister
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'referenceUuid' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: "Process a deregister: deletes a previously registered payment instrument"
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/refund:
+    post:
+      operationId: processRefund
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0007
+              referenceUuid: bcdef23456bcdef23456
+              amount: "9.99"
+              currency: EUR
+              callbackUrl: http://example.com/callback
+              description: Refund money
+            schema:
+              $ref: '#/components/schemas/Refund'
+        description: Data which is required to process a refund
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: Process a refund
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /transaction/{apiKey}/payout:
+    post:
+      operationId: processPayout
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              merchantTransactionId: 2019-09-02-0008
+              amount: "9.99"
+              currency: EUR
+              callbackUrl: http://example.com/callback
+              transactionToken: ix::a1A2B3b4c5C6D7d
+              description: Payout
+            schema:
+              $ref: '#/components/schemas/Payout'
+        description: Data which is required to process a payout
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                finished:
+                  value:
+                    success: true
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20190927-abcde12345abcde12345
+                    returnType: FINISHED
+                    paymentMethod: Creditcard
+                processing error:
+                  value:
+                    success: false
+                    uuid: abcde12345abcde12345
+                    purchaseId: 20200924-abcde12345abcde12345
+                    returnType: ERROR
+                    paymentMethod: Dummy
+                    errors:
+                    - errorMessage: Dummy error
+                      errorCode: 1003
+                      adapterMessage: Dummy adapter error
+                general error, e.g. duplicate:
+                  value:
+                    success: false
+                    errorMessage: The transaction ID '20190823062178' already exists!
+                    errorCode: 3004
+                general error, e.g. validation:
+                  value:
+                    success: false
+                    errorMessage: "root: 'amount' is required"
+                    errorCode: 1002
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: Process a payout
+      tags:
+      - transaction
+      x-content-type: application/json
+      x-accepts: application/json
+  /schedule/{apiKey}/start:
+    post:
+      operationId: startSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              registrationUuid: abcde01234abcde01234
+              amount: "9.99"
+              currency: EUR
+              periodLength: 6
+              periodUnit: MONTH
+              startDateTime: 2019-09-30T01:00:00+00:00
+            schema:
+              $ref: '#/components/schemas/StartSchedule'
+        description: Start a schedule on the given registration transaction
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    registrationUuid: abcde01234abcde01234
+                    oldStatus: NON-EXISTING
+                    newStatus: ACTIVE
+                    scheduledAt: 2019-09-30T12:00:00+00:00
+                error:
+                  value:
+                    success: false
+                    errorMessage: The scheduleId is not valid or does not match to
+                      the connector
+                    errorCode: 7040
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Start a schedule. Requires the registrationId of an existing transaction
+        of type Register / Debit-with-register / Preauthorize-with-register
+      tags:
+      - schedule
+      x-content-type: application/json
+      x-accepts: application/json
+  /schedule/{apiKey}/{scheduleId}/update:
+    post:
+      operationId: updateSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              amount: "9.99"
+            schema:
+              $ref: '#/components/schemas/UpdateSchedule'
+        description: Update a schedule with given parameters
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    registrationUuid: abcde01234abcde01234
+                    oldStatus: NON-EXISTING
+                    newStatus: ACTIVE
+                    scheduledAt: 2019-09-30T12:00:00+00:00
+                error:
+                  value:
+                    success: false
+                    errorMessage: The scheduleId is not valid or does not match to
+                      the connector
+                    errorCode: 7040
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Update a schedule. Requires the registrationId of an existing transaction
+        of type Register / Debit-with-register / Preauthorize-with-register
+      tags:
+      - schedule
+      x-content-type: application/json
+      x-accepts: application/json
+  /schedule/{apiKey}/{scheduleId}/get:
+    get:
+      operationId: getSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    registrationUuid: abcde01234abcde01234
+                    oldStatus: ACTIVE
+                    newStatus: ACTIVE
+                    scheduledAt: 2019-09-30T12:00:00+00:00
+                error:
+                  value:
+                    success: false
+                    errorMessage: The scheduleId is not valid or does not match to
+                      the connector
+                    errorCode: 7040
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Retrieve a schedule. Requires the UUID of an existing transaction of
+        type Register / Debit-with-register / Preuathorize-with-register
+      tags:
+      - schedule
+      x-accepts: application/json
+  /schedule/{apiKey}/{scheduleId}/pause:
+    post:
+      operationId: pauseSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PauseSchedule'
+        description: Pause a schedule
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: ACTIVE
+                    newStatus: PAUSED
+                error:
+                  value:
+                    success: false
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: PAUSED
+                    newStatus: PAUSED
+                    errorMessage: The status of the schedule is not valid for the
+                      requested operation
+                    errorCode: 7070
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Pause a schedule. Requires the registrationId of an existing transaction
+        of type Register / Debit-with-register / Preuathorize-with-register
+      tags:
+      - schedule
+      x-content-type: application/json
+      x-accepts: application/json
+  /schedule/{apiKey}/{scheduleId}/continue:
+    post:
+      operationId: continueSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              continueDateTime: 2019-09-30T01:00:00+00:00
+            schema:
+              $ref: '#/components/schemas/ContinueSchedule'
+        description: Continue a given schedule on given date and time
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: PAUSED
+                    newStatus: ACTIVE
+                    scheduledAt: 2019-10-05T14:26:11+00:00
+                error:
+                  value:
+                    success: false
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: ACTIVE
+                    newStatus: ACTIVE
+                    errorMessage: The status of the schedule is not valid for the
+                      requested operation
+                    errorCode: 7070
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Continue a schedule which has been paused. Requires the registrationId
+        of an existing transaction of type Register / Debit-with-register / Preuathorize-with-register
+      tags:
+      - schedule
+      x-content-type: application/json
+      x-accepts: application/json
+  /schedule/{apiKey}/{scheduleId}/cancel:
+    post:
+      operationId: cancelSchedule
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of the schedule
+        explode: false
+        in: path
+        name: scheduleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelSchedule'
+        description: Cancel a schedule
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: ACTIVE
+                    newStatus: CANCELLED
+                error:
+                  value:
+                    success: false
+                    scheduleId: SC-1234-1234-1234-1234-1234-1234
+                    oldStatus: CANCELLED
+                    newStatus: CANCELLED
+                    errorMessage: The status of the schedule is not valid for the
+                      requested operation
+                    errorCode: 7070
+              schema:
+                $ref: '#/components/schemas/MaybeScheduleResponse'
+          description: Schedule response
+      summary: Cancel a schedule. Requires the registrationId of an existing transaction
+        of type Register / Debit-with-register / Preuathorize-with-register
+      tags:
+      - schedule
+      x-content-type: application/json
+      x-accepts: application/json
+  /status/{apiKey}/getByUuid/{uuid}:
+    get:
+      operationId: transactionStatusByUuid
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: UUID of transaction
+        explode: false
+        in: path
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    transactionStatus: SUCCESS
+                    uuid: abcde12345abcde12345
+                    merchantTransactionId: 2019-09-02-0001
+                    purchaseId: 20190902-abcde12345abcde12345
+                    transactionType: debit
+                    paymentMethod: Creditcard
+                    amount: "9.99"
+                    currency: EUR
+                    customer:
+                      firstName: John
+                      lastName: Doe
+                      company: ACME Corp.
+                      emailVerified: true
+                    extraData:
+                      someKey: someValue
+                      otherKey: otherValue
+                    returnData:
+                      _TYPE: cardData
+                      type: visa
+                      cardHolder: John Doe
+                      expiryMonth: 12
+                      expiryYear: 2030
+                      firstSixDigits: "123456"
+                      lastFourDigits: "4321"
+                      threeDSecure: "OFF"
+                      binBrand: VISA
+                      binBank: SOME BIG BANK
+                      binCountry: US
+                error:
+                  value:
+                    success: false
+                    errorMessage: Transaction not found
+                    errorCode: 8001
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: Status response
+      summary: Retrieve status of a transaction
+      tags:
+      - status
+      x-accepts: application/json
+  /status/{apiKey}/getByMerchantTransactionId/{merchantTransactionId}:
+    get:
+      operationId: transactionStatusByMerchantTransactionId
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ID of merchant transaction
+        explode: false
+        in: path
+        name: merchantTransactionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    transactionStatus: SUCCESS
+                    uuid: abcde12345abcde12345
+                    merchantTransactionId: 2019-09-02-0001
+                    purchaseId: 20190902-abcde12345abcde12345
+                    transactionType: debit
+                    paymentMethod: Creditcard
+                    amount: "9.99"
+                    currency: EUR
+                    customer:
+                      firstName: John
+                      lastName: Doe
+                      company: ACME Corp.
+                      emailVerified: true
+                    extraData:
+                      someKey: someValue
+                      otherKey: otherValue
+                    returnData:
+                      _TYPE: cardData
+                      type: visa
+                      cardHolder: John Doe
+                      expiryMonth: 12
+                      expiryYear: 2030
+                      firstSixDigits: "123456"
+                      lastFourDigits: "4321"
+                      threeDSecure: "OFF"
+                      binBrand: VISA
+                      binBank: SOME BIG BANK
+                      binCountry: US
+                error:
+                  value:
+                    success: false
+                    errorMessage: Transaction not found
+                    errorCode: 8001
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: Status response
+      summary: Retrieve status of a transaction
+      tags:
+      - status
+      x-accepts: application/json
+  /options/{apiKey}/{optionsName}:
+    post:
+      operationId: options
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Options identifier of the appropriate adapter
+        explode: false
+        in: path
+        name: optionsName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              parameters:
+                firstParam: firstValue
+                secondParam: secondValue
+            schema:
+              $ref: '#/components/schemas/OptionsRequest'
+        description: Parameters may be required dependent on the adapter
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    success: true
+                    options:
+                      bank1: Bank One
+                      bank2: Bank Two
+                      bank3: Bank Three
+                      bank4: Bank Four
+                error:
+                  value:
+                    success: false
+                    errorMessage: Given identifier 'someIdentifier' is invalid.
+              schema:
+                $ref: '#/components/schemas/OptionsResponse'
+          description: Options response
+      security: []
+      summary: Retrieve an options list based on given option name
+      tags:
+      - options
+      x-content-type: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    PrepareDebitRequest:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        extraData:
+          key: extraData
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        threeDSecureData:
+          homePhoneNumber: homePhoneNumber
+          giftCardAmount: 3.616076749251911
+          cardholderAccountDate: null
+          billingAddressLine3: billingAddressLine3
+          channel: "01"
+          cardholderAccountType: "01"
+          "3dsecure": null
+          mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+          cardholderAuthenticationDateTime: null
+          paymentAccountAgeIndicator: "01"
+          browserAcceptHeader: browserAcceptHeader
+          transactionActivityYear: 5.637376656633329
+          priorAuthenticationDateTime: null
+          sdkReferenceNumber: sdkReferenceNumber
+          workPhoneNumber: workPhoneNumber
+          sdkAppID: sdkAppID
+          shippingAddressLine3: shippingAddressLine3
+          browserChallengeWindowSize: "01"
+          transactionActivityDay: 5.962133916683182
+          sdkUiType: sdkUiType
+          browserLanguage: browserLanguage
+          sdkInterface: "01"
+          billingShippingAddressMatch: "Y"
+          preOrderDate: null
+          sdkEncData: sdkEncData
+          cardholderAccountLastChange: null
+          browserTimezone: -7949.913528851714
+          shippingNameEqualIndicator: "01"
+          cardholderAccountChangeIndicator: "01"
+          transType: "01"
+          challengeIndicator: "01"
+          priorAuthenticationMethod: "01"
+          workPhoneCountryPrefix: workPhoneCountryPrefix
+          shippingAddressFirstUsage: null
+          browserIpAddress: browserIpAddress
+          giftCardCurrency: giftCardCurrency
+          threeRIIndicator: "01"
+          priorAuthenticationData: priorAuthenticationData
+          purchaseDate: null
+          recurringFrequency: 4145.193469080948
+          shipIndicator: "01"
+          paymentAccountAgeDate: null
+          browserColorDepth: "1"
+          priorReference: priorReference
+          browserJavaEnabled: true
+          preOrderPurchaseIndicator: "01"
+          giftCardCount: 20.865805625422755
+          sdkEphemPubKey: sdkEphemPubKey
+          deliveryTimeframe: "01"
+          recurringExpiry: null
+          deliveryEmailAddress: deliveryEmailAddress
+          cardHolderAuthenticationData: cardHolderAuthenticationData
+          cardholderAuthenticationMethod: "01"
+          browserScreenHeight: 7.386281948385884
+          homePhoneCountryPrefix: homePhoneCountryPrefix
+          addCardAttemptsDay: 2.3021358869347655
+          purchaseCountSixMonths: 7.061401241503109
+          sdkTransID: sdkTransID
+          mobilePhoneNumber: mobilePhoneNumber
+          cardholderAccountAgeIndicator: "01"
+          exemptionIndicator: "01"
+          sdkMaxTimeout: 5.148941590985417
+          purchaseInstalData: 929.2841355444712
+          cardholderAccountPasswordChangeIndicator: "01"
+          browserUserAgent: browserUserAgent
+          authenticationIndicator: "01"
+          cardholderAccountLastPasswordChange: null
+          reorderItemsIndicator: "01"
+          shippingAddressUsageIndicator: "01"
+          browserScreenWidth: 1.2315135367772556
+          suspiciousAccountActivityIndicator: "01"
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        withRegister:
+          type: boolean
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        threeDSecureData:
+          $ref: '#/components/schemas/ThreeDSecureData'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      type: object
+    PrepareDebitResponse:
+      additionalProperties: true
+      example:
+        success: true
+        error: error
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+      type: object
+    Debit:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        splits:
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        extraData:
+          key: extraData
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        threeDSecureData:
+          homePhoneNumber: homePhoneNumber
+          giftCardAmount: 3.616076749251911
+          cardholderAccountDate: null
+          billingAddressLine3: billingAddressLine3
+          channel: "01"
+          cardholderAccountType: "01"
+          "3dsecure": null
+          mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+          cardholderAuthenticationDateTime: null
+          paymentAccountAgeIndicator: "01"
+          browserAcceptHeader: browserAcceptHeader
+          transactionActivityYear: 5.637376656633329
+          priorAuthenticationDateTime: null
+          sdkReferenceNumber: sdkReferenceNumber
+          workPhoneNumber: workPhoneNumber
+          sdkAppID: sdkAppID
+          shippingAddressLine3: shippingAddressLine3
+          browserChallengeWindowSize: "01"
+          transactionActivityDay: 5.962133916683182
+          sdkUiType: sdkUiType
+          browserLanguage: browserLanguage
+          sdkInterface: "01"
+          billingShippingAddressMatch: "Y"
+          preOrderDate: null
+          sdkEncData: sdkEncData
+          cardholderAccountLastChange: null
+          browserTimezone: -7949.913528851714
+          shippingNameEqualIndicator: "01"
+          cardholderAccountChangeIndicator: "01"
+          transType: "01"
+          challengeIndicator: "01"
+          priorAuthenticationMethod: "01"
+          workPhoneCountryPrefix: workPhoneCountryPrefix
+          shippingAddressFirstUsage: null
+          browserIpAddress: browserIpAddress
+          giftCardCurrency: giftCardCurrency
+          threeRIIndicator: "01"
+          priorAuthenticationData: priorAuthenticationData
+          purchaseDate: null
+          recurringFrequency: 4145.193469080948
+          shipIndicator: "01"
+          paymentAccountAgeDate: null
+          browserColorDepth: "1"
+          priorReference: priorReference
+          browserJavaEnabled: true
+          preOrderPurchaseIndicator: "01"
+          giftCardCount: 20.865805625422755
+          sdkEphemPubKey: sdkEphemPubKey
+          deliveryTimeframe: "01"
+          recurringExpiry: null
+          deliveryEmailAddress: deliveryEmailAddress
+          cardHolderAuthenticationData: cardHolderAuthenticationData
+          cardholderAuthenticationMethod: "01"
+          browserScreenHeight: 7.386281948385884
+          homePhoneCountryPrefix: homePhoneCountryPrefix
+          addCardAttemptsDay: 2.3021358869347655
+          purchaseCountSixMonths: 7.061401241503109
+          sdkTransID: sdkTransID
+          mobilePhoneNumber: mobilePhoneNumber
+          cardholderAccountAgeIndicator: "01"
+          exemptionIndicator: "01"
+          sdkMaxTimeout: 5.148941590985417
+          purchaseInstalData: 929.2841355444712
+          cardholderAccountPasswordChangeIndicator: "01"
+          browserUserAgent: browserUserAgent
+          authenticationIndicator: "01"
+          cardholderAccountLastPasswordChange: null
+          reorderItemsIndicator: "01"
+          shippingAddressUsageIndicator: "01"
+          browserScreenWidth: 1.2315135367772556
+          suspiciousAccountActivityIndicator: "01"
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        splits:
+          items:
+            $ref: '#/components/schemas/Split'
+          type: array
+        withRegister:
+          type: boolean
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          - MOTO
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        threeDSecureData:
+          $ref: '#/components/schemas/ThreeDSecureData'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      type: object
+    PreparePreauthorizeRequest:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        extraData:
+          key: extraData
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        threeDSecureData:
+          homePhoneNumber: homePhoneNumber
+          giftCardAmount: 3.616076749251911
+          cardholderAccountDate: null
+          billingAddressLine3: billingAddressLine3
+          channel: "01"
+          cardholderAccountType: "01"
+          "3dsecure": null
+          mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+          cardholderAuthenticationDateTime: null
+          paymentAccountAgeIndicator: "01"
+          browserAcceptHeader: browserAcceptHeader
+          transactionActivityYear: 5.637376656633329
+          priorAuthenticationDateTime: null
+          sdkReferenceNumber: sdkReferenceNumber
+          workPhoneNumber: workPhoneNumber
+          sdkAppID: sdkAppID
+          shippingAddressLine3: shippingAddressLine3
+          browserChallengeWindowSize: "01"
+          transactionActivityDay: 5.962133916683182
+          sdkUiType: sdkUiType
+          browserLanguage: browserLanguage
+          sdkInterface: "01"
+          billingShippingAddressMatch: "Y"
+          preOrderDate: null
+          sdkEncData: sdkEncData
+          cardholderAccountLastChange: null
+          browserTimezone: -7949.913528851714
+          shippingNameEqualIndicator: "01"
+          cardholderAccountChangeIndicator: "01"
+          transType: "01"
+          challengeIndicator: "01"
+          priorAuthenticationMethod: "01"
+          workPhoneCountryPrefix: workPhoneCountryPrefix
+          shippingAddressFirstUsage: null
+          browserIpAddress: browserIpAddress
+          giftCardCurrency: giftCardCurrency
+          threeRIIndicator: "01"
+          priorAuthenticationData: priorAuthenticationData
+          purchaseDate: null
+          recurringFrequency: 4145.193469080948
+          shipIndicator: "01"
+          paymentAccountAgeDate: null
+          browserColorDepth: "1"
+          priorReference: priorReference
+          browserJavaEnabled: true
+          preOrderPurchaseIndicator: "01"
+          giftCardCount: 20.865805625422755
+          sdkEphemPubKey: sdkEphemPubKey
+          deliveryTimeframe: "01"
+          recurringExpiry: null
+          deliveryEmailAddress: deliveryEmailAddress
+          cardHolderAuthenticationData: cardHolderAuthenticationData
+          cardholderAuthenticationMethod: "01"
+          browserScreenHeight: 7.386281948385884
+          homePhoneCountryPrefix: homePhoneCountryPrefix
+          addCardAttemptsDay: 2.3021358869347655
+          purchaseCountSixMonths: 7.061401241503109
+          sdkTransID: sdkTransID
+          mobilePhoneNumber: mobilePhoneNumber
+          cardholderAccountAgeIndicator: "01"
+          exemptionIndicator: "01"
+          sdkMaxTimeout: 5.148941590985417
+          purchaseInstalData: 929.2841355444712
+          cardholderAccountPasswordChangeIndicator: "01"
+          browserUserAgent: browserUserAgent
+          authenticationIndicator: "01"
+          cardholderAccountLastPasswordChange: null
+          reorderItemsIndicator: "01"
+          shippingAddressUsageIndicator: "01"
+          browserScreenWidth: 1.2315135367772556
+          suspiciousAccountActivityIndicator: "01"
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        withRegister:
+          type: boolean
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        threeDSecureData:
+          $ref: '#/components/schemas/ThreeDSecureData'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      type: object
+    PreparePreauthorizeResponse:
+      additionalProperties: true
+      example:
+        success: true
+        error: error
+      properties:
+        success:
+          type: boolean
+        error:
+          type: string
+      type: object
+    Preauthorize:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        splits:
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        extraData:
+          key: extraData
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        threeDSecureData:
+          homePhoneNumber: homePhoneNumber
+          giftCardAmount: 3.616076749251911
+          cardholderAccountDate: null
+          billingAddressLine3: billingAddressLine3
+          channel: "01"
+          cardholderAccountType: "01"
+          "3dsecure": null
+          mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+          cardholderAuthenticationDateTime: null
+          paymentAccountAgeIndicator: "01"
+          browserAcceptHeader: browserAcceptHeader
+          transactionActivityYear: 5.637376656633329
+          priorAuthenticationDateTime: null
+          sdkReferenceNumber: sdkReferenceNumber
+          workPhoneNumber: workPhoneNumber
+          sdkAppID: sdkAppID
+          shippingAddressLine3: shippingAddressLine3
+          browserChallengeWindowSize: "01"
+          transactionActivityDay: 5.962133916683182
+          sdkUiType: sdkUiType
+          browserLanguage: browserLanguage
+          sdkInterface: "01"
+          billingShippingAddressMatch: "Y"
+          preOrderDate: null
+          sdkEncData: sdkEncData
+          cardholderAccountLastChange: null
+          browserTimezone: -7949.913528851714
+          shippingNameEqualIndicator: "01"
+          cardholderAccountChangeIndicator: "01"
+          transType: "01"
+          challengeIndicator: "01"
+          priorAuthenticationMethod: "01"
+          workPhoneCountryPrefix: workPhoneCountryPrefix
+          shippingAddressFirstUsage: null
+          browserIpAddress: browserIpAddress
+          giftCardCurrency: giftCardCurrency
+          threeRIIndicator: "01"
+          priorAuthenticationData: priorAuthenticationData
+          purchaseDate: null
+          recurringFrequency: 4145.193469080948
+          shipIndicator: "01"
+          paymentAccountAgeDate: null
+          browserColorDepth: "1"
+          priorReference: priorReference
+          browserJavaEnabled: true
+          preOrderPurchaseIndicator: "01"
+          giftCardCount: 20.865805625422755
+          sdkEphemPubKey: sdkEphemPubKey
+          deliveryTimeframe: "01"
+          recurringExpiry: null
+          deliveryEmailAddress: deliveryEmailAddress
+          cardHolderAuthenticationData: cardHolderAuthenticationData
+          cardholderAuthenticationMethod: "01"
+          browserScreenHeight: 7.386281948385884
+          homePhoneCountryPrefix: homePhoneCountryPrefix
+          addCardAttemptsDay: 2.3021358869347655
+          purchaseCountSixMonths: 7.061401241503109
+          sdkTransID: sdkTransID
+          mobilePhoneNumber: mobilePhoneNumber
+          cardholderAccountAgeIndicator: "01"
+          exemptionIndicator: "01"
+          sdkMaxTimeout: 5.148941590985417
+          purchaseInstalData: 929.2841355444712
+          cardholderAccountPasswordChangeIndicator: "01"
+          browserUserAgent: browserUserAgent
+          authenticationIndicator: "01"
+          cardholderAccountLastPasswordChange: null
+          reorderItemsIndicator: "01"
+          shippingAddressUsageIndicator: "01"
+          browserScreenWidth: 1.2315135367772556
+          suspiciousAccountActivityIndicator: "01"
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        splits:
+          items:
+            $ref: '#/components/schemas/Split'
+          type: array
+        withRegister:
+          type: boolean
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          - MOTO
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        threeDSecureData:
+          $ref: '#/components/schemas/ThreeDSecureData'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      type: object
+    IncrementalAuthorization:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        amount: amount
+        extraData:
+          key: extraData
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          - MOTO
+          type: string
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      - referenceUuid
+      type: object
+    Capture:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        amount: amount
+        splits:
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        extraData:
+          key: extraData
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        referenceUuid: referenceUuid
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        merchantMetaData: merchantMetaData
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        splits:
+          items:
+            $ref: '#/components/schemas/Split'
+          type: array
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      - referenceUuid
+      type: object
+    Void:
+      additionalProperties: false
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - merchantTransactionId
+      - referenceUuid
+      type: object
+    Register:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        extraData:
+          key: extraData
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        callbackUrl: https://openapi-generator.tech
+        threeDSecureData:
+          homePhoneNumber: homePhoneNumber
+          giftCardAmount: 3.616076749251911
+          cardholderAccountDate: null
+          billingAddressLine3: billingAddressLine3
+          channel: "01"
+          cardholderAccountType: "01"
+          "3dsecure": null
+          mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+          cardholderAuthenticationDateTime: null
+          paymentAccountAgeIndicator: "01"
+          browserAcceptHeader: browserAcceptHeader
+          transactionActivityYear: 5.637376656633329
+          priorAuthenticationDateTime: null
+          sdkReferenceNumber: sdkReferenceNumber
+          workPhoneNumber: workPhoneNumber
+          sdkAppID: sdkAppID
+          shippingAddressLine3: shippingAddressLine3
+          browserChallengeWindowSize: "01"
+          transactionActivityDay: 5.962133916683182
+          sdkUiType: sdkUiType
+          browserLanguage: browserLanguage
+          sdkInterface: "01"
+          billingShippingAddressMatch: "Y"
+          preOrderDate: null
+          sdkEncData: sdkEncData
+          cardholderAccountLastChange: null
+          browserTimezone: -7949.913528851714
+          shippingNameEqualIndicator: "01"
+          cardholderAccountChangeIndicator: "01"
+          transType: "01"
+          challengeIndicator: "01"
+          priorAuthenticationMethod: "01"
+          workPhoneCountryPrefix: workPhoneCountryPrefix
+          shippingAddressFirstUsage: null
+          browserIpAddress: browserIpAddress
+          giftCardCurrency: giftCardCurrency
+          threeRIIndicator: "01"
+          priorAuthenticationData: priorAuthenticationData
+          purchaseDate: null
+          recurringFrequency: 4145.193469080948
+          shipIndicator: "01"
+          paymentAccountAgeDate: null
+          browserColorDepth: "1"
+          priorReference: priorReference
+          browserJavaEnabled: true
+          preOrderPurchaseIndicator: "01"
+          giftCardCount: 20.865805625422755
+          sdkEphemPubKey: sdkEphemPubKey
+          deliveryTimeframe: "01"
+          recurringExpiry: null
+          deliveryEmailAddress: deliveryEmailAddress
+          cardHolderAuthenticationData: cardHolderAuthenticationData
+          cardholderAuthenticationMethod: "01"
+          browserScreenHeight: 7.386281948385884
+          homePhoneCountryPrefix: homePhoneCountryPrefix
+          addCardAttemptsDay: 2.3021358869347655
+          purchaseCountSixMonths: 7.061401241503109
+          sdkTransID: sdkTransID
+          mobilePhoneNumber: mobilePhoneNumber
+          cardholderAccountAgeIndicator: "01"
+          exemptionIndicator: "01"
+          sdkMaxTimeout: 5.148941590985417
+          purchaseInstalData: 929.2841355444712
+          cardholderAccountPasswordChangeIndicator: "01"
+          browserUserAgent: browserUserAgent
+          authenticationIndicator: "01"
+          cardholderAccountLastPasswordChange: null
+          reorderItemsIndicator: "01"
+          shippingAddressUsageIndicator: "01"
+          browserScreenWidth: 1.2315135367772556
+          suspiciousAccountActivityIndicator: "01"
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        customer:
+          $ref: '#/components/schemas/Customer'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        threeDSecureData:
+          $ref: '#/components/schemas/ThreeDSecureData'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - merchantTransactionId
+      type: object
+    Deregister:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        extraData:
+          key: extraData
+        merchantTransactionId: merchantTransactionId
+        referenceUuid: referenceUuid
+        additionalId2: additionalId2
+        merchantMetaData: merchantMetaData
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - merchantTransactionId
+      - referenceUuid
+      type: object
+    Refund:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        splits:
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        extraData:
+          key: extraData
+        description: description
+        referenceUuid: referenceUuid
+        merchantMetaData: merchantMetaData
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: callbackUrl
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        callbackUrl:
+          maxLength: 255
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        splits:
+          items:
+            $ref: '#/components/schemas/Split'
+          type: array
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      - referenceUuid
+      type: object
+    Payout:
+      additionalProperties: false
+      example:
+        additionalId1: additionalId1
+        transactionToken: transactionToken
+        amount: amount
+        splits:
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        - amount: 0.8008281904610115
+          identification: identification
+          sellerMerchantGuid: sellerMerchantGuid
+          sellerMerchantExternalId: sellerMerchantExternalId
+          currency: currency
+          commisionFee:
+            amount: 6.027456183070403
+            currency: currency
+        extraData:
+          key: extraData
+        successUrl: https://openapi-generator.tech
+        description: description
+        language: language
+        referenceUuid: referenceUuid
+        merchantMetaData: merchantMetaData
+        errorUrl: https://openapi-generator.tech
+        cancelUrl: https://openapi-generator.tech
+        merchantTransactionId: merchantTransactionId
+        currency: currency
+        callbackUrl: https://openapi-generator.tech
+        items:
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        - identification: identification
+          quantity: 0.8008281904610115
+          extraData:
+            key: extraData
+          price: 6.027456183070403
+          name: name
+          description: description
+          currency: currency
+        additionalId2: additionalId2
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId1:
+          maxLength: 50
+          minLength: 1
+          type: string
+        additionalId2:
+          maxLength: 50
+          minLength: 1
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          maxLength: 255
+          type: string
+        referenceUuid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        successUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        cancelUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        errorUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        callbackUrl:
+          format: uri
+          maxLength: 512
+          type: string
+        transactionToken:
+          type: string
+        description:
+          maxLength: 255
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/Items_inner'
+          type: array
+        splits:
+          items:
+            $ref: '#/components/schemas/Split'
+          type: array
+        customer:
+          $ref: '#/components/schemas/Customer'
+        language:
+          maxLength: 2
+          minLength: 2
+          type: string
+      required:
+      - amount
+      - currency
+      - merchantTransactionId
+      type: object
+    StartSchedule:
+      additionalProperties: false
+      example:
+        amount: amount
+        registrationUuid: registrationUuid
+        startDateTime: null
+        currency: currency
+        periodLength: 0
+        periodUnit: null
+        merchantMetaData: merchantMetaData
+      properties:
+        registrationUuid:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        periodLength:
+          minimum: 0
+          type: integer
+        periodUnit:
+          $ref: '#/components/schemas/PeriodUnit'
+        startDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+        merchantMetaData:
+          type: string
+      required:
+      - registrationUuid
+      type: object
+    UpdateSchedule:
+      additionalProperties: false
+      example:
+        amount: amount
+        registrationUuid: registrationUuid
+        startDateTime: null
+        currency: currency
+        periodLength: 0
+        periodUnit: null
+        merchantMetaData: merchantMetaData
+      properties:
+        registrationUuid:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        periodLength:
+          minimum: 0
+          type: integer
+        periodUnit:
+          $ref: '#/components/schemas/PeriodUnit'
+        startDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+        merchantMetaData:
+          type: string
+      type: object
+    PauseSchedule:
+      maxProperties: 0
+      type: object
+      x-is-free-form: false
+    ContinueSchedule:
+      additionalProperties: false
+      example:
+        continueDateTime: null
+      properties:
+        continueDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+      required:
+      - continueDateTime
+      type: object
+    CancelSchedule:
+      maxProperties: 0
+      type: object
+      x-is-free-form: false
+    OptionsRequest:
+      additionalProperties: false
+      example:
+        parameters: "{}"
+      properties:
+        parameters:
+          type: object
+      type: object
+    Amount:
+      pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+      type: string
+    Currency:
+      pattern: "^[A-Z]{3}$"
+      type: string
+    Country:
+      pattern: "^[A-Z]{2}$"
+      type: string
+    DateTimeZone:
+      format: date-time
+      pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))\\T(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])\\\
+        +[0-9]{2}\\:[0-9]{2}$"
+      type: string
+    DateTime:
+      format: local-date-time
+      pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1])) (([0-1][0-9])|([2][0-3])):([0-5][0-9])$"
+      type: string
+    Date:
+      format: date
+      pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))$"
+      type: string
+    ExtraData:
+      additionalProperties:
+        type: string
+      type: object
+    Items:
+      items:
+        $ref: '#/components/schemas/Items_inner'
+      type: array
+    Splits:
+      items:
+        $ref: '#/components/schemas/Split'
+      type: array
+    Split:
+      additionalProperties: false
+      example:
+        amount: 0.8008281904610115
+        identification: identification
+        sellerMerchantGuid: sellerMerchantGuid
+        sellerMerchantExternalId: sellerMerchantExternalId
+        currency: currency
+        commisionFee:
+          amount: 6.027456183070403
+          currency: currency
+      properties:
+        identification:
+          type: string
+        amount:
+          type: number
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        sellerMerchantGuid:
+          type: string
+        sellerMerchantExternalId:
+          type: string
+        commisionFee:
+          $ref: '#/components/schemas/Split_commisionFee'
+      type: object
+    PaymentData:
+      oneOf:
+      - $ref: '#/components/schemas/IbanData'
+      - $ref: '#/components/schemas/WalletData'
+    IbanData:
+      additionalProperties: false
+      properties:
+        ibanData:
+          $ref: '#/components/schemas/IbanData_ibanData'
+      type: object
+    WalletData:
+      additionalProperties: false
+      properties:
+        walletData:
+          $ref: '#/components/schemas/WalletData_walletData'
+      type: object
+    ThreeDSecureType:
+      enum:
+      - "OFF"
+      - OPTIONAL
+      - MANDATORY
+      type: string
+    ThreeDSecureData:
+      additionalProperties: false
+      example:
+        homePhoneNumber: homePhoneNumber
+        giftCardAmount: 3.616076749251911
+        cardholderAccountDate: null
+        billingAddressLine3: billingAddressLine3
+        channel: "01"
+        cardholderAccountType: "01"
+        "3dsecure": null
+        mobilePhoneCountryPrefix: mobilePhoneCountryPrefix
+        cardholderAuthenticationDateTime: null
+        paymentAccountAgeIndicator: "01"
+        browserAcceptHeader: browserAcceptHeader
+        transactionActivityYear: 5.637376656633329
+        priorAuthenticationDateTime: null
+        sdkReferenceNumber: sdkReferenceNumber
+        workPhoneNumber: workPhoneNumber
+        sdkAppID: sdkAppID
+        shippingAddressLine3: shippingAddressLine3
+        browserChallengeWindowSize: "01"
+        transactionActivityDay: 5.962133916683182
+        sdkUiType: sdkUiType
+        browserLanguage: browserLanguage
+        sdkInterface: "01"
+        billingShippingAddressMatch: "Y"
+        preOrderDate: null
+        sdkEncData: sdkEncData
+        cardholderAccountLastChange: null
+        browserTimezone: -7949.913528851714
+        shippingNameEqualIndicator: "01"
+        cardholderAccountChangeIndicator: "01"
+        transType: "01"
+        challengeIndicator: "01"
+        priorAuthenticationMethod: "01"
+        workPhoneCountryPrefix: workPhoneCountryPrefix
+        shippingAddressFirstUsage: null
+        browserIpAddress: browserIpAddress
+        giftCardCurrency: giftCardCurrency
+        threeRIIndicator: "01"
+        priorAuthenticationData: priorAuthenticationData
+        purchaseDate: null
+        recurringFrequency: 4145.193469080948
+        shipIndicator: "01"
+        paymentAccountAgeDate: null
+        browserColorDepth: "1"
+        priorReference: priorReference
+        browserJavaEnabled: true
+        preOrderPurchaseIndicator: "01"
+        giftCardCount: 20.865805625422755
+        sdkEphemPubKey: sdkEphemPubKey
+        deliveryTimeframe: "01"
+        recurringExpiry: null
+        deliveryEmailAddress: deliveryEmailAddress
+        cardHolderAuthenticationData: cardHolderAuthenticationData
+        cardholderAuthenticationMethod: "01"
+        browserScreenHeight: 7.386281948385884
+        homePhoneCountryPrefix: homePhoneCountryPrefix
+        addCardAttemptsDay: 2.3021358869347655
+        purchaseCountSixMonths: 7.061401241503109
+        sdkTransID: sdkTransID
+        mobilePhoneNumber: mobilePhoneNumber
+        cardholderAccountAgeIndicator: "01"
+        exemptionIndicator: "01"
+        sdkMaxTimeout: 5.148941590985417
+        purchaseInstalData: 929.2841355444712
+        cardholderAccountPasswordChangeIndicator: "01"
+        browserUserAgent: browserUserAgent
+        authenticationIndicator: "01"
+        cardholderAccountLastPasswordChange: null
+        reorderItemsIndicator: "01"
+        shippingAddressUsageIndicator: "01"
+        browserScreenWidth: 1.2315135367772556
+        suspiciousAccountActivityIndicator: "01"
+      properties:
+        "3dsecure":
+          $ref: '#/components/schemas/ThreeDSecureType'
+        channel:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          type: string
+        authenticationIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          type: string
+        cardholderAuthenticationMethod:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          type: string
+        cardholderAuthenticationDateTime:
+          $ref: '#/components/schemas/DateTime'
+        cardHolderAuthenticationData:
+          type: string
+        challengeIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        priorReference:
+          type: string
+        priorAuthenticationMethod:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        priorAuthenticationDateTime:
+          $ref: '#/components/schemas/DateTime'
+        priorAuthenticationData:
+          type: string
+        cardholderAccountType:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        cardholderAccountAgeIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          type: string
+        cardholderAccountDate:
+          $ref: '#/components/schemas/Date'
+        cardholderAccountChangeIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        cardholderAccountLastChange:
+          $ref: '#/components/schemas/Date'
+        cardholderAccountPasswordChangeIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          type: string
+        cardholderAccountLastPasswordChange:
+          $ref: '#/components/schemas/Date'
+        shippingAddressUsageIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        shippingAddressFirstUsage:
+          $ref: '#/components/schemas/Date'
+        transactionActivityDay:
+          type: number
+        transactionActivityYear:
+          type: number
+        addCardAttemptsDay:
+          type: number
+        purchaseCountSixMonths:
+          type: number
+        suspiciousAccountActivityIndicator:
+          enum:
+          - "01"
+          - "02"
+          type: string
+        shippingNameEqualIndicator:
+          enum:
+          - "01"
+          - "02"
+          type: string
+        paymentAccountAgeIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          type: string
+        paymentAccountAgeDate:
+          $ref: '#/components/schemas/Date'
+        billingAddressLine3:
+          type: string
+        shippingAddressLine3:
+          type: string
+        billingShippingAddressMatch:
+          enum:
+          - "Y"
+          - "N"
+          type: string
+        homePhoneCountryPrefix:
+          maxLength: 3
+          minLength: 1
+          type: string
+        homePhoneNumber:
+          maxLength: 15
+          type: string
+        mobilePhoneCountryPrefix:
+          maxLength: 3
+          minLength: 1
+          type: string
+        mobilePhoneNumber:
+          maxLength: 15
+          type: string
+        workPhoneCountryPrefix:
+          maxLength: 3
+          minLength: 1
+          type: string
+        workPhoneNumber:
+          maxLength: 15
+          type: string
+        purchaseInstalData:
+          maximum: 999
+          minimum: 1
+          type: number
+        shipIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          - "07"
+          type: string
+        deliveryTimeframe:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          type: string
+        deliveryEmailAddress:
+          type: string
+        reorderItemsIndicator:
+          enum:
+          - "01"
+          - "02"
+          type: string
+        preOrderPurchaseIndicator:
+          enum:
+          - "01"
+          - "02"
+          type: string
+        preOrderDate:
+          $ref: '#/components/schemas/Date'
+        giftCardAmount:
+          type: number
+        giftCardCurrency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        giftCardCount:
+          maximum: 99
+          minimum: 1
+          type: number
+        purchaseDate:
+          $ref: '#/components/schemas/DateTime'
+        recurringExpiry:
+          $ref: '#/components/schemas/Date'
+        recurringFrequency:
+          maximum: 9999
+          minimum: 0
+          type: number
+        transType:
+          enum:
+          - "01"
+          - "03"
+          - "10"
+          - "11"
+          - "28"
+          type: string
+        exemptionIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          - "07"
+          type: string
+        threeRIIndicator:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          - "06"
+          - "07"
+          - "08"
+          - "09"
+          - "10"
+          - "11"
+          - "12"
+          type: string
+        browserChallengeWindowSize:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          - "04"
+          - "05"
+          type: string
+        browserAcceptHeader:
+          type: string
+        browserIpAddress:
+          type: string
+        browserJavaEnabled:
+          type: boolean
+        browserLanguage:
+          maxLength: 8
+          minLength: 1
+          type: string
+        browserColorDepth:
+          enum:
+          - "1"
+          - "4"
+          - "8"
+          - "15"
+          - "16"
+          - "24"
+          - "30"
+          - "32"
+          - "48"
+          type: string
+        browserScreenHeight:
+          type: number
+        browserScreenWidth:
+          type: number
+        browserTimezone:
+          maximum: 9999
+          minimum: -9999
+          type: number
+        browserUserAgent:
+          maxLength: 2048
+          type: string
+        sdkInterface:
+          enum:
+          - "01"
+          - "02"
+          - "03"
+          type: string
+        sdkUiType:
+          pattern: "^(0[1-5]( *, *0[0-5])*)?$"
+          type: string
+        sdkAppID:
+          type: string
+        sdkEncData:
+          type: string
+        sdkEphemPubKey:
+          type: string
+        sdkMaxTimeout:
+          minimum: 5
+          type: number
+        sdkReferenceNumber:
+          type: string
+        sdkTransID:
+          type: string
+      type: object
+    ChargebackData:
+      additionalProperties: false
+      example:
+        reason: reason
+        amount: amount
+        chargebackDateTime: null
+        originalUuid: originalUuid
+        originalMerchantTransactionId: originalMerchantTransactionId
+        currency: currency
+      properties:
+        originalUuid:
+          type: string
+        originalMerchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        reason:
+          type: string
+        chargebackDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+      type: object
+    ChargebackReversalData:
+      additionalProperties: false
+      example:
+        reason: reason
+        amount: amount
+        originalUuid: originalUuid
+        originalMerchantTransactionId: originalMerchantTransactionId
+        chargebackUuid: chargebackUuid
+        currency: currency
+        reversalDateTime: null
+      properties:
+        originalUuid:
+          type: string
+        originalMerchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        chargebackUuid:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        reason:
+          type: string
+        reversalDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+      type: object
+    Schedule:
+      additionalProperties: false
+      example:
+        amount: amount
+        startDateTime: null
+        currency: currency
+        periodLength: 0
+        periodUnit: null
+        merchantMetaData: merchantMetaData
+      properties:
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        periodLength:
+          minimum: 0
+          type: integer
+        periodUnit:
+          $ref: '#/components/schemas/PeriodUnit'
+        startDateTime:
+          $ref: '#/components/schemas/DateTimeZone'
+        merchantMetaData:
+          type: string
+      required:
+      - amount
+      - currency
+      - periodLength
+      - periodUnit
+      type: object
+    ScheduleData:
+      additionalProperties: false
+      example:
+        scheduleStatus: null
+        scheduleId: scheduleId
+        scheduledAt: null
+        scheduleMerchantMetaData: scheduleMerchantMetaData
+      properties:
+        scheduleId:
+          type: string
+        scheduleStatus:
+          $ref: '#/components/schemas/ScheduleStatus'
+        scheduledAt:
+          $ref: '#/components/schemas/DateTimeZone'
+        scheduleMerchantMetaData:
+          type: string
+      type: object
+    ScheduleStatus:
+      enum:
+      - ACTIVE
+      - PAUSED
+      - CANCELLED
+      - ERROR
+      - CREATE-PENDING
+      - NON-EXISTING
+      type: string
+    Customer:
+      additionalProperties: false
+      example:
+        lastName: lastName
+        shippingCompany: shippingCompany
+        shippingCity: shippingCity
+        gender: M
+        extraData:
+          key: extraData
+        shippingPostcode: shippingPostcode
+        shippingAddress2: shippingAddress2
+        shippingAddress1: shippingAddress1
+        billingAddress2: billingAddress2
+        billingAddress1: billingAddress1
+        identification: identification
+        shippingCountry: shippingCountry
+        billingCountry: billingCountry
+        company: company
+        email: email
+        shippingLastName: shippingLastName
+        ipAddress: ipAddress
+        shippingPhone: shippingPhone
+        billingState: billingState
+        birthDate: null
+        firstName: firstName
+        emailVerified: true
+        nationalId: nationalId
+        shippingFirstName: shippingFirstName
+        paymentData: null
+        shippingState: shippingState
+        billingPostcode: billingPostcode
+        billingCity: billingCity
+        billingPhone: billingPhone
+      properties:
+        identification:
+          maxLength: 36
+          type: string
+        firstName:
+          maxLength: 50
+          type: string
+        lastName:
+          maxLength: 50
+          type: string
+        birthDate:
+          $ref: '#/components/schemas/Date'
+        gender:
+          enum:
+          - M
+          - F
+          type: string
+        billingAddress1:
+          maxLength: 50
+          type: string
+        billingAddress2:
+          maxLength: 50
+          type: string
+        billingCity:
+          maxLength: 30
+          type: string
+        billingPostcode:
+          maxLength: 8
+          type: string
+        billingState:
+          maxLength: 30
+          type: string
+        billingCountry:
+          pattern: "^[A-Z]{2}$"
+          type: string
+        billingPhone:
+          maxLength: 20
+          type: string
+        shippingFirstName:
+          maxLength: 50
+          type: string
+        shippingLastName:
+          maxLength: 50
+          type: string
+        shippingCompany:
+          maxLength: 50
+          type: string
+        shippingAddress1:
+          maxLength: 50
+          type: string
+        shippingAddress2:
+          maxLength: 50
+          type: string
+        shippingCity:
+          maxLength: 30
+          type: string
+        shippingPostcode:
+          maxLength: 8
+          type: string
+        shippingState:
+          maxLength: 30
+          type: string
+        shippingCountry:
+          pattern: "^[A-Z]{2}$"
+          type: string
+        shippingPhone:
+          maxLength: 20
+          type: string
+        company:
+          maxLength: 50
+          type: string
+        email:
+          maxLength: 255
+          type: string
+        emailVerified:
+          type: boolean
+        ipAddress:
+          maxLength: 50
+          type: string
+        nationalId:
+          maxLength: 20
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        paymentData:
+          $ref: '#/components/schemas/PaymentData'
+      type: object
+    CustomerProfileData:
+      additionalProperties: false
+      example:
+        profileGuid: profileGuid
+        customerIdentification: customerIdentification
+        markAsPreferred: true
+      properties:
+        profileGuid:
+          type: string
+        customerIdentification:
+          maxLength: 36
+          type: string
+        markAsPreferred:
+          type: boolean
+      type: object
+    MaybeTransactionResponse:
+      discriminator:
+        mapping:
+          "false": '#/components/schemas/TransactionErrorResponse'
+          "true": '#/components/schemas/TransactionResponse'
+        propertyName: success
+      example:
+        success: true
+      properties:
+        success:
+          nullable: false
+          type: boolean
+      required:
+      - boolean
+      type: object
+    TransactionErrorResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeTransactionResponse'
+      - $ref: '#/components/schemas/ErrorType'
+      - $ref: '#/components/schemas/TransactionErrorResponse_allOf'
+    TransactionResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeTransactionResponse'
+      - $ref: '#/components/schemas/TransactionResponse_allOf'
+    ErrorType:
+      additionalProperties: false
+      properties:
+        errorMessage:
+          type: string
+        errorCode:
+          format: int32
+          type: integer
+        adapterMessage:
+          type: string
+        adapterCode:
+          type: string
+      type: object
+    MaybeScheduleResponse:
+      discriminator:
+        mapping:
+          "false": '#/components/schemas/ScheduleErrorResponse'
+          "true": '#/components/schemas/ScheduleResponse'
+        propertyName: success
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
+      required:
+      - boolean
+      type: object
+    ScheduleErrorResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeScheduleResponse'
+      - $ref: '#/components/schemas/ErrorType'
+    ScheduleResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeScheduleResponse'
+      - $ref: '#/components/schemas/ScheduleResponse_allOf'
+    StatusResponse:
+      additionalProperties: false
+      example:
+        amount: amount
+        transactionStatus: null
+        extraData:
+          key: extraData
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        purchaseId: purchaseId
+        uuid: uuid
+        merchantMetaData: merchantMetaData
+        transactionType: null
+        chargebackData:
+          reason: reason
+          amount: amount
+          chargebackDateTime: null
+          originalUuid: originalUuid
+          originalMerchantTransactionId: originalMerchantTransactionId
+          currency: currency
+        success: true
+        returnData:
+          _TYPE: ""
+        schedules:
+        - scheduleStatus: null
+          scheduleId: scheduleId
+          scheduledAt: null
+          scheduleMerchantMetaData: scheduleMerchantMetaData
+        - scheduleStatus: null
+          scheduleId: scheduleId
+          scheduledAt: null
+          scheduleMerchantMetaData: scheduleMerchantMetaData
+        merchantTransactionId: merchantTransactionId
+        paymentMethod: paymentMethod
+        currency: currency
+        errors:
+        - adapterCode: adapterCode
+          code: 0
+          message: message
+          adapterMessage: adapterMessage
+        - adapterCode: adapterCode
+          code: 0
+          message: message
+          adapterMessage: adapterMessage
+        chargebackReversalData:
+          reason: reason
+          amount: amount
+          originalUuid: originalUuid
+          originalMerchantTransactionId: originalMerchantTransactionId
+          chargebackUuid: chargebackUuid
+          currency: currency
+          reversalDateTime: null
+        customer:
+          lastName: lastName
+          shippingCompany: shippingCompany
+          shippingCity: shippingCity
+          gender: M
+          extraData:
+            key: extraData
+          shippingPostcode: shippingPostcode
+          shippingAddress2: shippingAddress2
+          shippingAddress1: shippingAddress1
+          billingAddress2: billingAddress2
+          billingAddress1: billingAddress1
+          identification: identification
+          shippingCountry: shippingCountry
+          billingCountry: billingCountry
+          company: company
+          email: email
+          shippingLastName: shippingLastName
+          ipAddress: ipAddress
+          shippingPhone: shippingPhone
+          billingState: billingState
+          birthDate: null
+          firstName: firstName
+          emailVerified: true
+          nationalId: nationalId
+          shippingFirstName: shippingFirstName
+          paymentData: null
+          shippingState: shippingState
+          billingPostcode: billingPostcode
+          billingCity: billingCity
+          billingPhone: billingPhone
+      properties:
+        success:
+          type: boolean
+        transactionStatus:
+          $ref: '#/components/schemas/TransactionStatus'
+        uuid:
+          type: string
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        purchaseId:
+          type: string
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        paymentMethod:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        schedules:
+          items:
+            $ref: '#/components/schemas/ScheduleData'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/TransactionError'
+          type: array
+        chargebackData:
+          $ref: '#/components/schemas/ChargebackData'
+        chargebackReversalData:
+          $ref: '#/components/schemas/ChargebackReversalData'
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          type: string
+        returnData:
+          $ref: '#/components/schemas/ReturnData'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+      type: object
+    OptionsResponse:
+      additionalProperties: false
+      example:
+        success: true
+        options:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        error: error
+      properties:
+        success:
+          type: boolean
+        options:
+          items:
+            $ref: '#/components/schemas/OptionsResponse_options_inner'
+          type: array
+        error:
+          type: string
+      type: object
+    PeriodUnit:
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      type: string
+    ReturnData:
+      discriminator:
+        mapping:
+          cardData: '#/components/schemas/cardData'
+          phoneData: '#/components/schemas/phoneData'
+          ibanData: '#/components/schemas/ibanData'
+          walletData: '#/components/schemas/walletData'
+        propertyName: _TYPE
+      example:
+        _TYPE: ""
+      properties:
+        _TYPE:
+          allOf:
+          - $ref: '#/components/schemas/ReturnDataType'
+          nullable: false
+      required:
+      - _TYPE
+      type: object
+    ReturnDataType:
+      enum:
+      - cardData
+      - phoneData
+      - ibanData
+      - walletData
+      type: string
+    cardData:
+      allOf:
+      - $ref: '#/components/schemas/ReturnData'
+      - $ref: '#/components/schemas/cardData_allOf'
+      type: object
+    phoneData:
+      allOf:
+      - $ref: '#/components/schemas/ReturnData'
+      - $ref: '#/components/schemas/phoneData_allOf'
+      type: object
+    ibanData:
+      allOf:
+      - $ref: '#/components/schemas/ReturnData'
+      - $ref: '#/components/schemas/ibanData_allOf'
+      type: object
+    walletData:
+      allOf:
+      - $ref: '#/components/schemas/ReturnData'
+      - $ref: '#/components/schemas/walletData_allOf'
+      type: object
+    TransactionErrors:
+      items:
+        $ref: '#/components/schemas/TransactionError'
+      type: array
+    TransactionError:
+      additionalProperties: false
+      example:
+        adapterCode: adapterCode
+        code: 0
+        message: message
+        adapterMessage: adapterMessage
+      properties:
+        message:
+          type: string
+        code:
+          format: int32
+          type: integer
+        adapterMessage:
+          type: string
+        adapterCode:
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    TransactionStatus:
+      enum:
+      - SUCCESS
+      - PENDING
+      - REDIRECT
+      - CANCELLED
+      - ERROR
+      type: string
+    TransactionType:
+      enum:
+      - DEBIT
+      - CAPTURE
+      - DEREGISTER
+      - PREAUTHORIZE
+      - REFUND
+      - REGISTER
+      - VOID
+      - CHARGEBACK
+      - CHARGEBACK-REVERSAL
+      - PAYOUT
+      - INCREMENTAL-AUTHORIZATION
+      type: string
+    Callback:
+      additionalProperties: false
+      properties:
+        result:
+          enum:
+          - OK
+          - PENDING
+          - ERROR
+          type: string
+        uuid:
+          type: string
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        purchaseId:
+          maxLength: 50
+          type: string
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        paymentMethod:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        scheduleData:
+          $ref: '#/components/schemas/ScheduleData'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        errorMessage:
+          type: string
+        errorCode:
+          format: int32
+          type: integer
+        adapterMessage:
+          type: string
+        adapterCode:
+          type: string
+        chargebackData:
+          $ref: '#/components/schemas/ChargebackData'
+        chargebackReversalData:
+          $ref: '#/components/schemas/ChargebackReversalData'
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          type: string
+        returnData:
+          $ref: '#/components/schemas/ReturnData'
+        customer:
+          $ref: '#/components/schemas/Customer'
+      type: object
+    Items_inner:
+      additionalProperties: false
+      example:
+        identification: identification
+        quantity: 0.8008281904610115
+        extraData:
+          key: extraData
+        price: 6.027456183070403
+        name: name
+        description: description
+        currency: currency
+      properties:
+        identification:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    Split_commisionFee:
+      example:
+        amount: 6.027456183070403
+        currency: currency
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+      type: object
+    IbanData_ibanData:
+      additionalProperties: false
+      properties:
+        iban:
+          maxLength: 34
+          type: string
+        bic:
+          maxLength: 11
+          type: string
+        mandateId:
+          maxLength: 50
+          type: string
+        mandateDate:
+          $ref: '#/components/schemas/Date'
+      type: object
+    WalletData_walletData:
+      additionalProperties: false
+      properties:
+        walletReferenceId:
+          maxLength: 255
+          type: string
+        walletOwner:
+          maxLength: 255
+          type: string
+        walletType:
+          maxLength: 255
+          type: string
+      type: object
+    TransactionErrorResponse_allOf:
+      properties:
+        returnType:
+          enum:
+          - ERROR
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorType'
+          type: array
+      type: object
+      example: null
+    TransactionResponse_allOf_riskCheckData:
+      properties:
+        riskCheckResult:
+          enum:
+          - APPROVED
+          - DECLINED
+          - REVIEW
+          type: string
+        riskScore:
+          type: number
+        threeDSecureRequired:
+          type: boolean
+      type: object
+      example: null
+    TransactionResponse_allOf:
+      properties:
+        uuid:
+          type: string
+        purchaseId:
+          type: string
+        returnType:
+          enum:
+          - FINISHED
+          - REDIRECT
+          - HTML
+          - PENDING
+          - ERROR
+          type: string
+        redirectType:
+          enum:
+          - iframe
+          - fullpage
+          - 3ds
+          type: string
+        redirectUrl:
+          format: uri
+          maxLength: 255
+          type: string
+        redirectQRCode:
+          description: DataUrl
+          type: string
+        htmlContent:
+          type: string
+        paymentDescriptor:
+          type: string
+        paymentMethod:
+          type: string
+        returnData:
+          $ref: '#/components/schemas/ReturnData'
+        scheduleData:
+          $ref: '#/components/schemas/ScheduleData'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
+        riskCheckData:
+          $ref: '#/components/schemas/TransactionResponse_allOf_riskCheckData'
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorType'
+          type: array
+        adapterMessage:
+          type: string
+        adapterCode:
+          type: string
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+      example: null
+    ScheduleResponse_allOf:
+      properties:
+        scheduleId:
+          type: string
+        registrationUuid:
+          type: string
+        merchantMetaData:
+          type: string
+        oldStatus:
+          $ref: '#/components/schemas/ScheduleStatus'
+        newStatus:
+          $ref: '#/components/schemas/ScheduleStatus'
+        scheduledAt:
+          $ref: '#/components/schemas/DateTimeZone'
+      type: object
+      example: null
+    OptionsResponse_options_inner:
+      additionalProperties: false
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    cardData_allOf:
+      properties:
+        type:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        country:
+          pattern: "^[A-Z]{2}$"
+          type: string
+        cardHolder:
+          type: string
+        expiryMonth:
+          pattern: "^((0[1-9])|(1[0-2]))$"
+          type: string
+        expiryYear:
+          pattern: "^[0-9]{4}$"
+          type: string
+        firstSixDigits:
+          pattern: "^[0-9]{6}$"
+          type: string
+        lastFourDigits:
+          pattern: "^[0-9]{4}$"
+          type: string
+        fingerprint:
+          type: string
+        binBrand:
+          type: string
+        binBank:
+          type: string
+        binType:
+          type: string
+        binLevel:
+          type: string
+        binCountry:
+          type: string
+        threeDSecure:
+          $ref: '#/components/schemas/ThreeDSecureType'
+        eci:
+          type: string
+      type: object
+      example: null
+    phoneData_allOf:
+      properties:
+        phoneNumber:
+          type: string
+        country:
+          pattern: "^[A-Z]{2}$"
+          type: string
+        operator:
+          type: string
+      type: object
+      example: null
+    ibanData_allOf:
+      properties:
+        accountOwner:
+          type: string
+        iban:
+          type: string
+        bic:
+          type: string
+        mandateId:
+          type: string
+        mandateDate:
+          $ref: '#/components/schemas/Date'
+        bankName:
+          type: string
+        bankBranchName:
+          type: string
+        country:
+          pattern: "^[A-Z]{2}$"
+          type: string
+      type: object
+      example: null
+    walletData_allOf:
+      properties:
+        walletReferenceId:
+          type: string
+        walletOwner:
+          type: string
+        walletType:
+          type: string
+      type: object
+      example: null
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+
