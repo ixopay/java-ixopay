@@ -1,6 +1,6 @@
 
 
-# WalletDataWalletData
+# PaymentWalletDataWalletData
 
 
 ## Properties

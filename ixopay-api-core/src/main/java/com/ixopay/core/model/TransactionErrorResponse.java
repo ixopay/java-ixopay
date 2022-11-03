@@ -45,6 +45,7 @@ import com.ixopay.core.client.JSON;
   TransactionErrorResponse.JSON_PROPERTY_ERROR_CODE,
   TransactionErrorResponse.JSON_PROPERTY_ADAPTER_MESSAGE,
   TransactionErrorResponse.JSON_PROPERTY_ADAPTER_CODE,
+  TransactionErrorResponse.JSON_PROPERTY_SUCCESS,
   TransactionErrorResponse.JSON_PROPERTY_RETURN_TYPE,
   TransactionErrorResponse.JSON_PROPERTY_ERRORS
 })
@@ -71,6 +72,9 @@ public class TransactionErrorResponse extends MaybeTransactionResponse {
 
   public static final String JSON_PROPERTY_ADAPTER_CODE = "adapterCode";
   private String adapterCode;
+
+  public static final String JSON_PROPERTY_SUCCESS = "success";
+  private Boolean success;
 
   /**
    * Gets or Sets returnType
@@ -218,6 +222,32 @@ public class TransactionErrorResponse extends MaybeTransactionResponse {
   }
 
 
+  public TransactionErrorResponse success(Boolean success) {
+    this.success = success;
+    return this;
+  }
+
+   /**
+   * Get success
+   * @return success
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getSuccess() {
+    return success;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
+
   public TransactionErrorResponse returnType(ReturnTypeEnum returnType) {
     this.returnType = returnType;
     return this;
@@ -294,6 +324,7 @@ public class TransactionErrorResponse extends MaybeTransactionResponse {
         Objects.equals(this.errorCode, transactionErrorResponse.errorCode) &&
         Objects.equals(this.adapterMessage, transactionErrorResponse.adapterMessage) &&
         Objects.equals(this.adapterCode, transactionErrorResponse.adapterCode) &&
+        Objects.equals(this.success, transactionErrorResponse.success) &&
         Objects.equals(this.returnType, transactionErrorResponse.returnType) &&
         Objects.equals(this.errors, transactionErrorResponse.errors) &&
         super.equals(o);
@@ -301,7 +332,7 @@ public class TransactionErrorResponse extends MaybeTransactionResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorMessage, errorCode, adapterMessage, adapterCode, returnType, errors, super.hashCode());
+    return Objects.hash(errorMessage, errorCode, adapterMessage, adapterCode, success, returnType, errors, super.hashCode());
   }
 
   @Override
@@ -313,6 +344,7 @@ public class TransactionErrorResponse extends MaybeTransactionResponse {
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    adapterMessage: ").append(toIndentedString(adapterMessage)).append("\n");
     sb.append("    adapterCode: ").append(toIndentedString(adapterCode)).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");

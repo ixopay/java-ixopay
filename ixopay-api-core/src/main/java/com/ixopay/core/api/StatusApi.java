@@ -185,6 +185,7 @@ public class StatusApi {
       localVarRequestBuilder.header("Content-Type", "application/json");
     }
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("User-Agent", "ixopay-java-sdk 3.0.0");
 
     byte[] localVarSignatureBody = new byte[0];
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
@@ -309,6 +310,7 @@ public class StatusApi {
       localVarRequestBuilder.header("Content-Type", "application/json");
     }
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("User-Agent", "ixopay-java-sdk 3.0.0");
 
     byte[] localVarSignatureBody = new byte[0];
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());

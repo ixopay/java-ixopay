@@ -1,6 +1,6 @@
 
 allprojects {
-	version = "3.0.0-SNAPSHOT"
+	version = "3.0.0"
 	group = "com.ixopay.java-ixopay"
 
 	repositories {
@@ -11,6 +11,15 @@ allprojects {
 plugins {
 	`java-library`
 	`maven-publish`
+}
+
+java {
+	toolchain {
+		languageVersion.set(JavaLanguageVersion.of(11))
+	}
+
+	withSourcesJar()
+	withJavadocJar()
 }
 
 dependencies {

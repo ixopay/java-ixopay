@@ -48,6 +48,7 @@ import com.ixopay.core.client.JSON;
  * TransactionResponse
  */
 @JsonPropertyOrder({
+  TransactionResponse.JSON_PROPERTY_SUCCESS,
   TransactionResponse.JSON_PROPERTY_UUID,
   TransactionResponse.JSON_PROPERTY_PURCHASE_ID,
   TransactionResponse.JSON_PROPERTY_RETURN_TYPE,
@@ -78,6 +79,9 @@ import com.ixopay.core.client.JSON;
 })
 
 public class TransactionResponse extends MaybeTransactionResponse {
+  public static final String JSON_PROPERTY_SUCCESS = "success";
+  private Boolean success;
+
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
 
@@ -209,6 +213,32 @@ public class TransactionResponse extends MaybeTransactionResponse {
 
   public TransactionResponse() { 
   }
+
+  public TransactionResponse success(Boolean success) {
+    this.success = success;
+    return this;
+  }
+
+   /**
+   * Get success
+   * @return success
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getSuccess() {
+    return success;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
 
   public TransactionResponse uuid(String uuid) {
     this.uuid = uuid;
@@ -680,7 +710,8 @@ public class TransactionResponse extends MaybeTransactionResponse {
       return false;
     }
     TransactionResponse transactionResponse = (TransactionResponse) o;
-    return Objects.equals(this.uuid, transactionResponse.uuid) &&
+    return Objects.equals(this.success, transactionResponse.success) &&
+        Objects.equals(this.uuid, transactionResponse.uuid) &&
         Objects.equals(this.purchaseId, transactionResponse.purchaseId) &&
         Objects.equals(this.returnType, transactionResponse.returnType) &&
         Objects.equals(this.redirectType, transactionResponse.redirectType) &&
@@ -702,7 +733,7 @@ public class TransactionResponse extends MaybeTransactionResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData, super.hashCode());
+    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData, super.hashCode());
   }
 
   @Override
@@ -710,6 +741,7 @@ public class TransactionResponse extends MaybeTransactionResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionResponse {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");

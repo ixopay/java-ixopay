@@ -29,16 +29,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * IbanDataIbanData
+ * PaymentIbanDataIbanData
  */
 @JsonPropertyOrder({
-  IbanDataIbanData.JSON_PROPERTY_IBAN,
-  IbanDataIbanData.JSON_PROPERTY_BIC,
-  IbanDataIbanData.JSON_PROPERTY_MANDATE_ID,
-  IbanDataIbanData.JSON_PROPERTY_MANDATE_DATE
+  PaymentIbanDataIbanData.JSON_PROPERTY_IBAN,
+  PaymentIbanDataIbanData.JSON_PROPERTY_BIC,
+  PaymentIbanDataIbanData.JSON_PROPERTY_MANDATE_ID,
+  PaymentIbanDataIbanData.JSON_PROPERTY_MANDATE_DATE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class IbanDataIbanData {
+public class PaymentIbanDataIbanData {
   public static final String JSON_PROPERTY_IBAN = "iban";
   private String iban;
 
@@ -51,10 +51,10 @@ public class IbanDataIbanData {
   public static final String JSON_PROPERTY_MANDATE_DATE = "mandateDate";
   private LocalDate mandateDate;
 
-  public IbanDataIbanData() { 
+  public PaymentIbanDataIbanData() { 
   }
 
-  public IbanDataIbanData iban(String iban) {
+  public PaymentIbanDataIbanData iban(String iban) {
     this.iban = iban;
     return this;
   }
@@ -80,7 +80,7 @@ public class IbanDataIbanData {
   }
 
 
-  public IbanDataIbanData bic(String bic) {
+  public PaymentIbanDataIbanData bic(String bic) {
     this.bic = bic;
     return this;
   }
@@ -106,7 +106,7 @@ public class IbanDataIbanData {
   }
 
 
-  public IbanDataIbanData mandateId(String mandateId) {
+  public PaymentIbanDataIbanData mandateId(String mandateId) {
     this.mandateId = mandateId;
     return this;
   }
@@ -132,7 +132,7 @@ public class IbanDataIbanData {
   }
 
 
-  public IbanDataIbanData mandateDate(LocalDate mandateDate) {
+  public PaymentIbanDataIbanData mandateDate(LocalDate mandateDate) {
     this.mandateDate = mandateDate;
     return this;
   }
@@ -159,7 +159,7 @@ public class IbanDataIbanData {
 
 
   /**
-   * Return true if this IbanData_ibanData object is equal to o.
+   * Return true if this PaymentIbanData_ibanData object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -169,11 +169,11 @@ public class IbanDataIbanData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IbanDataIbanData ibanDataIbanData = (IbanDataIbanData) o;
-    return Objects.equals(this.iban, ibanDataIbanData.iban) &&
-        Objects.equals(this.bic, ibanDataIbanData.bic) &&
-        Objects.equals(this.mandateId, ibanDataIbanData.mandateId) &&
-        Objects.equals(this.mandateDate, ibanDataIbanData.mandateDate);
+    PaymentIbanDataIbanData paymentIbanDataIbanData = (PaymentIbanDataIbanData) o;
+    return Objects.equals(this.iban, paymentIbanDataIbanData.iban) &&
+        Objects.equals(this.bic, paymentIbanDataIbanData.bic) &&
+        Objects.equals(this.mandateId, paymentIbanDataIbanData.mandateId) &&
+        Objects.equals(this.mandateDate, paymentIbanDataIbanData.mandateDate);
   }
 
   @Override
@@ -184,7 +184,7 @@ public class IbanDataIbanData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IbanDataIbanData {\n");
+    sb.append("class PaymentIbanDataIbanData {\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
     sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
     sb.append("    mandateId: ").append(toIndentedString(mandateId)).append("\n");

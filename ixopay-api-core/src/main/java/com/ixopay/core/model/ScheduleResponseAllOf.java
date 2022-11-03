@@ -34,22 +34,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({
   ScheduleResponseAllOf.JSON_PROPERTY_SCHEDULE_ID,
-  ScheduleResponseAllOf.JSON_PROPERTY_REGISTRATION_UUID,
-  ScheduleResponseAllOf.JSON_PROPERTY_MERCHANT_META_DATA,
   ScheduleResponseAllOf.JSON_PROPERTY_OLD_STATUS,
   ScheduleResponseAllOf.JSON_PROPERTY_NEW_STATUS,
-  ScheduleResponseAllOf.JSON_PROPERTY_SCHEDULED_AT
+  ScheduleResponseAllOf.JSON_PROPERTY_SCHEDULED_AT,
+  ScheduleResponseAllOf.JSON_PROPERTY_REGISTRATION_UUID,
+  ScheduleResponseAllOf.JSON_PROPERTY_MERCHANT_META_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ScheduleResponseAllOf {
   public static final String JSON_PROPERTY_SCHEDULE_ID = "scheduleId";
   private String scheduleId;
-
-  public static final String JSON_PROPERTY_REGISTRATION_UUID = "registrationUuid";
-  private String registrationUuid;
-
-  public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
-  private String merchantMetaData;
 
   public static final String JSON_PROPERTY_OLD_STATUS = "oldStatus";
   private ScheduleStatus oldStatus;
@@ -59,6 +53,12 @@ public class ScheduleResponseAllOf {
 
   public static final String JSON_PROPERTY_SCHEDULED_AT = "scheduledAt";
   private OffsetDateTime scheduledAt;
+
+  public static final String JSON_PROPERTY_REGISTRATION_UUID = "registrationUuid";
+  private String registrationUuid;
+
+  public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
+  private String merchantMetaData;
 
   public ScheduleResponseAllOf() { 
   }
@@ -86,58 +86,6 @@ public class ScheduleResponseAllOf {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScheduleId(String scheduleId) {
     this.scheduleId = scheduleId;
-  }
-
-
-  public ScheduleResponseAllOf registrationUuid(String registrationUuid) {
-    this.registrationUuid = registrationUuid;
-    return this;
-  }
-
-   /**
-   * Get registrationUuid
-   * @return registrationUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRegistrationUuid() {
-    return registrationUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistrationUuid(String registrationUuid) {
-    this.registrationUuid = registrationUuid;
-  }
-
-
-  public ScheduleResponseAllOf merchantMetaData(String merchantMetaData) {
-    this.merchantMetaData = merchantMetaData;
-    return this;
-  }
-
-   /**
-   * Get merchantMetaData
-   * @return merchantMetaData
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMerchantMetaData() {
-    return merchantMetaData;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMerchantMetaData(String merchantMetaData) {
-    this.merchantMetaData = merchantMetaData;
   }
 
 
@@ -219,6 +167,58 @@ public class ScheduleResponseAllOf {
   }
 
 
+  public ScheduleResponseAllOf registrationUuid(String registrationUuid) {
+    this.registrationUuid = registrationUuid;
+    return this;
+  }
+
+   /**
+   * Get registrationUuid
+   * @return registrationUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRegistrationUuid() {
+    return registrationUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationUuid(String registrationUuid) {
+    this.registrationUuid = registrationUuid;
+  }
+
+
+  public ScheduleResponseAllOf merchantMetaData(String merchantMetaData) {
+    this.merchantMetaData = merchantMetaData;
+    return this;
+  }
+
+   /**
+   * Get merchantMetaData
+   * @return merchantMetaData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getMerchantMetaData() {
+    return merchantMetaData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMerchantMetaData(String merchantMetaData) {
+    this.merchantMetaData = merchantMetaData;
+  }
+
+
   /**
    * Return true if this ScheduleResponse_allOf object is equal to o.
    */
@@ -232,16 +232,16 @@ public class ScheduleResponseAllOf {
     }
     ScheduleResponseAllOf scheduleResponseAllOf = (ScheduleResponseAllOf) o;
     return Objects.equals(this.scheduleId, scheduleResponseAllOf.scheduleId) &&
-        Objects.equals(this.registrationUuid, scheduleResponseAllOf.registrationUuid) &&
-        Objects.equals(this.merchantMetaData, scheduleResponseAllOf.merchantMetaData) &&
         Objects.equals(this.oldStatus, scheduleResponseAllOf.oldStatus) &&
         Objects.equals(this.newStatus, scheduleResponseAllOf.newStatus) &&
-        Objects.equals(this.scheduledAt, scheduleResponseAllOf.scheduledAt);
+        Objects.equals(this.scheduledAt, scheduleResponseAllOf.scheduledAt) &&
+        Objects.equals(this.registrationUuid, scheduleResponseAllOf.registrationUuid) &&
+        Objects.equals(this.merchantMetaData, scheduleResponseAllOf.merchantMetaData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scheduleId, registrationUuid, merchantMetaData, oldStatus, newStatus, scheduledAt);
+    return Objects.hash(scheduleId, oldStatus, newStatus, scheduledAt, registrationUuid, merchantMetaData);
   }
 
   @Override
@@ -249,11 +249,11 @@ public class ScheduleResponseAllOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class ScheduleResponseAllOf {\n");
     sb.append("    scheduleId: ").append(toIndentedString(scheduleId)).append("\n");
-    sb.append("    registrationUuid: ").append(toIndentedString(registrationUuid)).append("\n");
-    sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    oldStatus: ").append(toIndentedString(oldStatus)).append("\n");
     sb.append("    newStatus: ").append(toIndentedString(newStatus)).append("\n");
     sb.append("    scheduledAt: ").append(toIndentedString(scheduledAt)).append("\n");
+    sb.append("    registrationUuid: ").append(toIndentedString(registrationUuid)).append("\n");
+    sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

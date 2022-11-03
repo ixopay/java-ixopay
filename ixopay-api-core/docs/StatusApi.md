@@ -38,6 +38,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         StatusApi apiInstance = new StatusApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String merchantTransactionId = "merchantTransactionId_example"; // String | ID of merchant transaction
@@ -70,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -110,6 +111,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         StatusApi apiInstance = new StatusApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String merchantTransactionId = "merchantTransactionId_example"; // String | ID of merchant transaction
@@ -144,7 +146,7 @@ ApiResponse<[**StatusResponse**](StatusResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -184,6 +186,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         StatusApi apiInstance = new StatusApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String uuid = "uuid_example"; // String | UUID of transaction
@@ -216,7 +219,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -256,6 +259,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         StatusApi apiInstance = new StatusApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String uuid = "uuid_example"; // String | UUID of transaction
@@ -290,7 +294,7 @@ ApiResponse<[**StatusResponse**](StatusResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 

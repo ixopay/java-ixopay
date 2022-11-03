@@ -193,9 +193,4 @@ gradle-app.setting
 # for example, "\!important!.txt".
 
 # ignore directory build but not the generated xjc sources
-build/*
-!build/generated/
-build/generated/*
-!build/generated/sources/
-build/generated/sources/*
-!build/generated/sources/xjc
+build/

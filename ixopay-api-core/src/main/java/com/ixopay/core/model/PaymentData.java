@@ -22,10 +22,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ixopay.core.model.IbanData;
-import com.ixopay.core.model.IbanDataIbanData;
-import com.ixopay.core.model.WalletData;
-import com.ixopay.core.model.WalletDataWalletData;
+import com.ixopay.core.model.PaymentIbanData;
+import com.ixopay.core.model.PaymentIbanDataIbanData;
+import com.ixopay.core.model.PaymentWalletData;
+import com.ixopay.core.model.PaymentWalletDataWalletData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -91,56 +91,56 @@ public class PaymentData extends AbstractOpenApiSchema {
             boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
             int match = 0;
             JsonToken token = tree.traverse(jp.getCodec()).nextToken();
-            // deserialize IbanData
+            // deserialize PaymentIbanData
             try {
                 boolean attemptParsing = true;
                 // ensure that we respect type coercion as set on the client ObjectMapper
-                if (IbanData.class.equals(Integer.class) || IbanData.class.equals(Long.class) || IbanData.class.equals(Float.class) || IbanData.class.equals(Double.class) || IbanData.class.equals(Boolean.class) || IbanData.class.equals(String.class)) {
+                if (PaymentIbanData.class.equals(Integer.class) || PaymentIbanData.class.equals(Long.class) || PaymentIbanData.class.equals(Float.class) || PaymentIbanData.class.equals(Double.class) || PaymentIbanData.class.equals(Boolean.class) || PaymentIbanData.class.equals(String.class)) {
                     attemptParsing = typeCoercion;
                     if (!attemptParsing) {
-                        attemptParsing |= ((IbanData.class.equals(Integer.class) || IbanData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((IbanData.class.equals(Float.class) || IbanData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (IbanData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
-                        attemptParsing |= (IbanData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                        attemptParsing |= ((PaymentIbanData.class.equals(Integer.class) || PaymentIbanData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((PaymentIbanData.class.equals(Float.class) || PaymentIbanData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (PaymentIbanData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (PaymentIbanData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
                     }
                 }
                 if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(IbanData.class);
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PaymentIbanData.class);
                     // TODO: there is no validation against JSON schema constraints
                     // (min, max, enum, pattern...), this does not perform a strict JSON
                     // validation, which means the 'match' count may be higher than it should be.
                     match++;
-                    log.log(Level.FINER, "Input data matches schema 'IbanData'");
+                    log.log(Level.FINER, "Input data matches schema 'PaymentIbanData'");
                 }
             } catch (Exception e) {
                 // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'IbanData'", e);
+                log.log(Level.FINER, "Input data does not match schema 'PaymentIbanData'", e);
             }
 
-            // deserialize WalletData
+            // deserialize PaymentWalletData
             try {
                 boolean attemptParsing = true;
                 // ensure that we respect type coercion as set on the client ObjectMapper
-                if (WalletData.class.equals(Integer.class) || WalletData.class.equals(Long.class) || WalletData.class.equals(Float.class) || WalletData.class.equals(Double.class) || WalletData.class.equals(Boolean.class) || WalletData.class.equals(String.class)) {
+                if (PaymentWalletData.class.equals(Integer.class) || PaymentWalletData.class.equals(Long.class) || PaymentWalletData.class.equals(Float.class) || PaymentWalletData.class.equals(Double.class) || PaymentWalletData.class.equals(Boolean.class) || PaymentWalletData.class.equals(String.class)) {
                     attemptParsing = typeCoercion;
                     if (!attemptParsing) {
-                        attemptParsing |= ((WalletData.class.equals(Integer.class) || WalletData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
-                        attemptParsing |= ((WalletData.class.equals(Float.class) || WalletData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
-                        attemptParsing |= (WalletData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
-                        attemptParsing |= (WalletData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                        attemptParsing |= ((PaymentWalletData.class.equals(Integer.class) || PaymentWalletData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((PaymentWalletData.class.equals(Float.class) || PaymentWalletData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (PaymentWalletData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (PaymentWalletData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
                     }
                 }
                 if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(WalletData.class);
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PaymentWalletData.class);
                     // TODO: there is no validation against JSON schema constraints
                     // (min, max, enum, pattern...), this does not perform a strict JSON
                     // validation, which means the 'match' count may be higher than it should be.
                     match++;
-                    log.log(Level.FINER, "Input data matches schema 'WalletData'");
+                    log.log(Level.FINER, "Input data matches schema 'PaymentWalletData'");
                 }
             } catch (Exception e) {
                 // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'WalletData'", e);
+                log.log(Level.FINER, "Input data does not match schema 'PaymentWalletData'", e);
             }
 
             if (match == 1) {
@@ -167,19 +167,19 @@ public class PaymentData extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public PaymentData(IbanData o) {
+    public PaymentData(PaymentIbanData o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
-    public PaymentData(WalletData o) {
+    public PaymentData(PaymentWalletData o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     static {
-        schemas.put("IbanData", IbanData.class);
-        schemas.put("WalletData", WalletData.class);
+        schemas.put("PaymentIbanData", PaymentIbanData.class);
+        schemas.put("PaymentWalletData", PaymentWalletData.class);
         JSON.registerDescendants(PaymentData.class, Collections.unmodifiableMap(schemas));
     }
 
@@ -191,31 +191,31 @@ public class PaymentData extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * IbanData, WalletData
+     * PaymentIbanData, PaymentWalletData
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (JSON.isInstanceOf(IbanData.class, instance, new HashSet<Class<?>>())) {
+        if (JSON.isInstanceOf(PaymentIbanData.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (JSON.isInstanceOf(WalletData.class, instance, new HashSet<Class<?>>())) {
+        if (JSON.isInstanceOf(PaymentWalletData.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be IbanData, WalletData");
+        throw new RuntimeException("Invalid instance type. Must be PaymentIbanData, PaymentWalletData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * IbanData, WalletData
+     * PaymentIbanData, PaymentWalletData
      *
-     * @return The actual instance (IbanData, WalletData)
+     * @return The actual instance (PaymentIbanData, PaymentWalletData)
      */
     @Override
     public Object getActualInstance() {
@@ -223,25 +223,25 @@ public class PaymentData extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `IbanData`. If the actual instance is not `IbanData`,
+     * Get the actual instance of `PaymentIbanData`. If the actual instance is not `PaymentIbanData`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `IbanData`
-     * @throws ClassCastException if the instance is not `IbanData`
+     * @return The actual instance of `PaymentIbanData`
+     * @throws ClassCastException if the instance is not `PaymentIbanData`
      */
-    public IbanData getIbanData() throws ClassCastException {
-        return (IbanData)super.getActualInstance();
+    public PaymentIbanData getPaymentIbanData() throws ClassCastException {
+        return (PaymentIbanData)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `WalletData`. If the actual instance is not `WalletData`,
+     * Get the actual instance of `PaymentWalletData`. If the actual instance is not `PaymentWalletData`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `WalletData`
-     * @throws ClassCastException if the instance is not `WalletData`
+     * @return The actual instance of `PaymentWalletData`
+     * @throws ClassCastException if the instance is not `PaymentWalletData`
      */
-    public WalletData getWalletData() throws ClassCastException {
-        return (WalletData)super.getActualInstance();
+    public PaymentWalletData getPaymentWalletData() throws ClassCastException {
+        return (PaymentWalletData)super.getActualInstance();
     }
 
 }

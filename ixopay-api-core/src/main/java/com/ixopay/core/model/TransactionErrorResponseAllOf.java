@@ -34,11 +34,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * TransactionErrorResponseAllOf
  */
 @JsonPropertyOrder({
+  TransactionErrorResponseAllOf.JSON_PROPERTY_SUCCESS,
   TransactionErrorResponseAllOf.JSON_PROPERTY_RETURN_TYPE,
   TransactionErrorResponseAllOf.JSON_PROPERTY_ERRORS
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransactionErrorResponseAllOf {
+  public static final String JSON_PROPERTY_SUCCESS = "success";
+  private Boolean success;
+
   /**
    * Gets or Sets returnType
    */
@@ -80,6 +84,32 @@ public class TransactionErrorResponseAllOf {
 
   public TransactionErrorResponseAllOf() { 
   }
+
+  public TransactionErrorResponseAllOf success(Boolean success) {
+    this.success = success;
+    return this;
+  }
+
+   /**
+   * Get success
+   * @return success
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getSuccess() {
+    return success;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
 
   public TransactionErrorResponseAllOf returnType(ReturnTypeEnum returnType) {
     this.returnType = returnType;
@@ -153,19 +183,21 @@ public class TransactionErrorResponseAllOf {
       return false;
     }
     TransactionErrorResponseAllOf transactionErrorResponseAllOf = (TransactionErrorResponseAllOf) o;
-    return Objects.equals(this.returnType, transactionErrorResponseAllOf.returnType) &&
+    return Objects.equals(this.success, transactionErrorResponseAllOf.success) &&
+        Objects.equals(this.returnType, transactionErrorResponseAllOf.returnType) &&
         Objects.equals(this.errors, transactionErrorResponseAllOf.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(returnType, errors);
+    return Objects.hash(success, returnType, errors);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionErrorResponseAllOf {\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");

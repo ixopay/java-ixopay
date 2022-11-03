@@ -192,6 +192,7 @@ public class OptionsApi {
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
+    localVarRequestBuilder.header("User-Agent", "ixopay-java-sdk 3.0.0");
 
     byte[] localVarSignatureBody;
     try {

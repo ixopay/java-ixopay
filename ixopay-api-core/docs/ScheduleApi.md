@@ -46,6 +46,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -80,7 +81,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -120,6 +121,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -156,7 +158,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -196,6 +198,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -230,7 +233,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -270,6 +273,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -306,7 +310,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -346,6 +350,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -378,7 +383,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -418,6 +423,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -452,7 +458,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -492,6 +498,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -526,7 +533,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -566,6 +573,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -602,7 +610,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -642,6 +650,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         StartSchedule startSchedule = new StartSchedule(); // StartSchedule | Start a schedule on the given registration transaction
@@ -674,7 +683,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -714,6 +723,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         StartSchedule startSchedule = new StartSchedule(); // StartSchedule | Start a schedule on the given registration transaction
@@ -748,7 +758,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -788,6 +798,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -822,7 +833,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -862,6 +873,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         ScheduleApi apiInstance = new ScheduleApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String scheduleId = "scheduleId_example"; // String | ID of the schedule
@@ -898,7 +910,7 @@ ApiResponse<[**MaybeScheduleResponse**](MaybeScheduleResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 

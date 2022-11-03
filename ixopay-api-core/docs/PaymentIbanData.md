@@ -1,13 +1,13 @@
 
 
-# MaybeTransactionResponse
+# PaymentIbanData
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**success** | **Boolean** |  |  |
+|**ibanData** | [**PaymentIbanDataIbanData**](PaymentIbanDataIbanData.md) |  |  [optional] |
 
 
 

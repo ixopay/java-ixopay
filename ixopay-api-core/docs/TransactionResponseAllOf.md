@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**success** | **Boolean** |  |  [optional] |
 |**uuid** | **String** |  |  [optional] |
 |**purchaseId** | **String** |  |  [optional] |
 |**returnType** | [**ReturnTypeEnum**](#ReturnTypeEnum) |  |  [optional] |

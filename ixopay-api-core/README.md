@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.ixopay.java-ixopay</groupId>
   <artifactId>ixopay-api-core</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
+  <version>3.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.ixopay.java-ixopay:ixopay-api-core:3.0.0-SNAPSHOT"
+compile "com.ixopay.java-ixopay:ixopay-api-core:3.0.0"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/ixopay-api-core-3.0.0-SNAPSHOT.jar`
+- `target/ixopay-api-core-3.0.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -166,7 +166,6 @@ Class | Method | HTTP request | Description
  - [ErrorType](docs/ErrorType.md)
  - [IbanData](docs/IbanData.md)
  - [IbanDataAllOf](docs/IbanDataAllOf.md)
- - [IbanDataIbanData](docs/IbanDataIbanData.md)
  - [IncrementalAuthorization](docs/IncrementalAuthorization.md)
  - [ItemsInner](docs/ItemsInner.md)
  - [MaybeScheduleResponse](docs/MaybeScheduleResponse.md)
@@ -177,6 +176,10 @@ Class | Method | HTTP request | Description
  - [OptionsResponseOptionsInner](docs/OptionsResponseOptionsInner.md)
  - [PauseSchedule](docs/PauseSchedule.md)
  - [PaymentData](docs/PaymentData.md)
+ - [PaymentIbanData](docs/PaymentIbanData.md)
+ - [PaymentIbanDataIbanData](docs/PaymentIbanDataIbanData.md)
+ - [PaymentWalletData](docs/PaymentWalletData.md)
+ - [PaymentWalletDataWalletData](docs/PaymentWalletDataWalletData.md)
  - [Payout](docs/Payout.md)
  - [PeriodUnit](docs/PeriodUnit.md)
  - [PhoneData](docs/PhoneData.md)
@@ -213,13 +216,17 @@ Class | Method | HTTP request | Description
  - [UpdateSchedule](docs/UpdateSchedule.md)
  - [WalletData](docs/WalletData.md)
  - [WalletDataAllOf](docs/WalletDataAllOf.md)
- - [WalletDataWalletData](docs/WalletDataWalletData.md)
 
 
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
 ### basicAuth
+
+
+- **Type**: HTTP basic authentication
+
+### signature
 
 
 - **Type**: HTTP basic authentication

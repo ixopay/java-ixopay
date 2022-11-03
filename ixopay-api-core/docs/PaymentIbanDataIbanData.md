@@ -1,6 +1,6 @@
 
 
-# IbanDataIbanData
+# PaymentIbanDataIbanData
 
 
 ## Properties

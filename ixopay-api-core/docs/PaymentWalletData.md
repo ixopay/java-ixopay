@@ -1,13 +1,13 @@
 
 
-# MaybeTransactionResponse
+# PaymentWalletData
 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**success** | **Boolean** |  |  |
+|**walletData** | [**PaymentWalletDataWalletData**](PaymentWalletDataWalletData.md) |  |  [optional] |
 
 
 

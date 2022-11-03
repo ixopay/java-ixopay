@@ -21,7 +21,6 @@ docs/Deregister.md
 docs/ErrorType.md
 docs/IbanData.md
 docs/IbanDataAllOf.md
-docs/IbanDataIbanData.md
 docs/IncrementalAuthorization.md
 docs/ItemsInner.md
 docs/MaybeScheduleResponse.md
@@ -33,6 +32,10 @@ docs/OptionsResponse.md
 docs/OptionsResponseOptionsInner.md
 docs/PauseSchedule.md
 docs/PaymentData.md
+docs/PaymentIbanData.md
+docs/PaymentIbanDataIbanData.md
+docs/PaymentWalletData.md
+docs/PaymentWalletDataWalletData.md
 docs/Payout.md
 docs/PeriodUnit.md
 docs/PhoneData.md
@@ -73,7 +76,6 @@ docs/TransactionType.md
 docs/UpdateSchedule.md
 docs/WalletData.md
 docs/WalletDataAllOf.md
-docs/WalletDataWalletData.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -113,7 +115,6 @@ src/main/java/com/ixopay/core/model/Deregister.java
 src/main/java/com/ixopay/core/model/ErrorType.java
 src/main/java/com/ixopay/core/model/IbanData.java
 src/main/java/com/ixopay/core/model/IbanDataAllOf.java
-src/main/java/com/ixopay/core/model/IbanDataIbanData.java
 src/main/java/com/ixopay/core/model/IncrementalAuthorization.java
 src/main/java/com/ixopay/core/model/ItemsInner.java
 src/main/java/com/ixopay/core/model/MaybeScheduleResponse.java
@@ -124,6 +125,10 @@ src/main/java/com/ixopay/core/model/OptionsResponse.java
 src/main/java/com/ixopay/core/model/OptionsResponseOptionsInner.java
 src/main/java/com/ixopay/core/model/PauseSchedule.java
 src/main/java/com/ixopay/core/model/PaymentData.java
+src/main/java/com/ixopay/core/model/PaymentIbanData.java
+src/main/java/com/ixopay/core/model/PaymentIbanDataIbanData.java
+src/main/java/com/ixopay/core/model/PaymentWalletData.java
+src/main/java/com/ixopay/core/model/PaymentWalletDataWalletData.java
 src/main/java/com/ixopay/core/model/Payout.java
 src/main/java/com/ixopay/core/model/PeriodUnit.java
 src/main/java/com/ixopay/core/model/PhoneData.java
@@ -160,4 +165,3 @@ src/main/java/com/ixopay/core/model/TransactionType.java
 src/main/java/com/ixopay/core/model/UpdateSchedule.java
 src/main/java/com/ixopay/core/model/WalletData.java
 src/main/java/com/ixopay/core/model/WalletDataAllOf.java
-src/main/java/com/ixopay/core/model/WalletDataWalletData.java

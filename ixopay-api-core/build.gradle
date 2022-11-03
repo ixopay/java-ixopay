@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'com.ixopay.java-ixopay'
-version = '3.0.0-SNAPSHOT'
+version = '3.0.0'
 
 buildscript {
     repositories {

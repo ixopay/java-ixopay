@@ -52,6 +52,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Capture capture = new Capture(); // Capture | Data which is required to process a capture
@@ -84,7 +85,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -124,6 +125,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Capture capture = new Capture(); // Capture | Data which is required to process a capture
@@ -158,7 +160,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -198,6 +200,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Debit debit = new Debit(); // Debit | Data which is required to process a debit
@@ -230,7 +233,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -270,6 +273,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Debit debit = new Debit(); // Debit | Data which is required to process a debit
@@ -304,7 +308,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -344,6 +348,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Deregister deregister = new Deregister(); // Deregister | Data which is required to process a deregister
@@ -376,7 +381,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -416,6 +421,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Deregister deregister = new Deregister(); // Deregister | Data which is required to process a deregister
@@ -450,7 +456,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -490,6 +496,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         IncrementalAuthorization incrementalAuthorization = new IncrementalAuthorization(); // IncrementalAuthorization | Data which is required to process a incremental auth
@@ -522,7 +529,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -562,6 +569,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         IncrementalAuthorization incrementalAuthorization = new IncrementalAuthorization(); // IncrementalAuthorization | Data which is required to process a incremental auth
@@ -596,7 +604,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -636,6 +644,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Payout payout = new Payout(); // Payout | Data which is required to process a payout
@@ -668,7 +677,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -708,6 +717,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Payout payout = new Payout(); // Payout | Data which is required to process a payout
@@ -742,7 +752,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -782,6 +792,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Preauthorize preauthorize = new Preauthorize(); // Preauthorize | Data which is required to process a preauthorize
@@ -814,7 +825,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -854,6 +865,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Preauthorize preauthorize = new Preauthorize(); // Preauthorize | Data which is required to process a preauthorize
@@ -888,7 +900,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -928,6 +940,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Refund refund = new Refund(); // Refund | Data which is required to process a refund
@@ -960,7 +973,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -1000,6 +1013,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Refund refund = new Refund(); // Refund | Data which is required to process a refund
@@ -1034,7 +1048,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -1074,6 +1088,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Register register = new Register(); // Register | Data which is required to process a register
@@ -1106,7 +1121,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -1146,6 +1161,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         Register register = new Register(); // Register | Data which is required to process a register
@@ -1180,7 +1196,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -1220,6 +1236,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         ModelVoid modelVoid = new ModelVoid(); // ModelVoid | Data which is required to process a void
@@ -1252,7 +1269,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -1292,6 +1309,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         TransactionApi apiInstance = new TransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         ModelVoid modelVoid = new ModelVoid(); // ModelVoid | Data which is required to process a void
@@ -1326,7 +1344,7 @@ ApiResponse<[**MaybeTransactionResponse**](MaybeTransactionResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 

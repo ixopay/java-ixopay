@@ -3,33 +3,33 @@
 # PaymentData
 
 ## oneOf schemas
-* [IbanData](IbanData.md)
-* [WalletData](WalletData.md)
+* [PaymentIbanData](PaymentIbanData.md)
+* [PaymentWalletData](PaymentWalletData.md)
 
 ## Example
 ```java
 // Import classes:
 import com.ixopay.core.model.PaymentData;
-import com.ixopay.core.model.IbanData;
-import com.ixopay.core.model.WalletData;
+import com.ixopay.core.model.PaymentIbanData;
+import com.ixopay.core.model.PaymentWalletData;
 
 public class Example {
     public static void main(String[] args) {
         PaymentData examplePaymentData = new PaymentData();
 
-        // create a new IbanData
-        IbanData exampleIbanData = new IbanData();
-        // set PaymentData to IbanData
-        examplePaymentData.setActualInstance(exampleIbanData);
-        // to get back the IbanData set earlier
-        IbanData testIbanData = (IbanData) examplePaymentData.getActualInstance();
+        // create a new PaymentIbanData
+        PaymentIbanData examplePaymentIbanData = new PaymentIbanData();
+        // set PaymentData to PaymentIbanData
+        examplePaymentData.setActualInstance(examplePaymentIbanData);
+        // to get back the PaymentIbanData set earlier
+        PaymentIbanData testPaymentIbanData = (PaymentIbanData) examplePaymentData.getActualInstance();
 
-        // create a new WalletData
-        WalletData exampleWalletData = new WalletData();
-        // set PaymentData to WalletData
-        examplePaymentData.setActualInstance(exampleWalletData);
-        // to get back the WalletData set earlier
-        WalletData testWalletData = (WalletData) examplePaymentData.getActualInstance();
+        // create a new PaymentWalletData
+        PaymentWalletData examplePaymentWalletData = new PaymentWalletData();
+        // set PaymentData to PaymentWalletData
+        examplePaymentData.setActualInstance(examplePaymentWalletData);
+        // to get back the PaymentWalletData set earlier
+        PaymentWalletData testPaymentWalletData = (PaymentWalletData) examplePaymentData.getActualInstance();
     }
 }
 ```

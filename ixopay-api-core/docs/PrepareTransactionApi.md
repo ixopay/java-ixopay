@@ -38,6 +38,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         PrepareTransactionApi apiInstance = new PrepareTransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         PrepareDebitRequest prepareDebitRequest = new PrepareDebitRequest(); // PrepareDebitRequest | Data which is required to process a Debit
@@ -70,7 +71,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -110,6 +111,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         PrepareTransactionApi apiInstance = new PrepareTransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         PrepareDebitRequest prepareDebitRequest = new PrepareDebitRequest(); // PrepareDebitRequest | Data which is required to process a Debit
@@ -144,7 +146,7 @@ ApiResponse<[**PrepareDebitResponse**](PrepareDebitResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -184,6 +186,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         PrepareTransactionApi apiInstance = new PrepareTransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         PreparePreauthorizeRequest preparePreauthorizeRequest = new PreparePreauthorizeRequest(); // PreparePreauthorizeRequest | Data which is required to process a Preauthorize
@@ -216,7 +219,7 @@ public class Example {
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 
@@ -256,6 +259,7 @@ public class Example {
         basicAuth.setUsername("YOUR USERNAME");
         basicAuth.setPassword("YOUR PASSWORD");
 
+
         PrepareTransactionApi apiInstance = new PrepareTransactionApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
         PreparePreauthorizeRequest preparePreauthorizeRequest = new PreparePreauthorizeRequest(); // PreparePreauthorizeRequest | Data which is required to process a Preauthorize
@@ -290,7 +294,7 @@ ApiResponse<[**PreparePreauthorizeResponse**](PreparePreauthorizeResponse.md)>
 
 ### Authorization
 
-[basicAuth](../README.md#basicAuth)
+[basicAuth](../README.md#basicAuth), [signature](../README.md#signature)
 
 ### HTTP request headers
 

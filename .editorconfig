@@ -1,0 +1,26 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = tab
+insert_final_newline = false
+max_line_length = 300
+tab_width = 4
+
+[*.java]
+indent_size = 2
+tab_width = 2
+
+[{*.bash,*.sh,*.zsh,jmx-test}]
+indent_size = 2
+tab_width = 2
+
+[{*.gradle.kts,*.kt,*.kts,*.main.kts,*.space.kts}]
+indent_size = 2
+tab_width = 2
+
+[{*.har,*.jsb2,*.jsb3,*.json,.babelrc,.eslintrc,.stylelintrc,apple-app-site-association,bowerrc,composer.lock,jest.config}]
+indent_size = 2
+tab_width = 2

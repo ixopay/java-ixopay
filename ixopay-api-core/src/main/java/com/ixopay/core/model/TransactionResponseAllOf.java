@@ -41,6 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * TransactionResponseAllOf
  */
 @JsonPropertyOrder({
+  TransactionResponseAllOf.JSON_PROPERTY_SUCCESS,
   TransactionResponseAllOf.JSON_PROPERTY_UUID,
   TransactionResponseAllOf.JSON_PROPERTY_PURCHASE_ID,
   TransactionResponseAllOf.JSON_PROPERTY_RETURN_TYPE,
@@ -61,6 +62,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransactionResponseAllOf {
+  public static final String JSON_PROPERTY_SUCCESS = "success";
+  private Boolean success;
+
   public static final String JSON_PROPERTY_UUID = "uuid";
   private String uuid;
 
@@ -192,6 +196,32 @@ public class TransactionResponseAllOf {
 
   public TransactionResponseAllOf() { 
   }
+
+  public TransactionResponseAllOf success(Boolean success) {
+    this.success = success;
+    return this;
+  }
+
+   /**
+   * Get success
+   * @return success
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getSuccess() {
+    return success;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSuccess(Boolean success) {
+    this.success = success;
+  }
+
 
   public TransactionResponseAllOf uuid(String uuid) {
     this.uuid = uuid;
@@ -663,7 +693,8 @@ public class TransactionResponseAllOf {
       return false;
     }
     TransactionResponseAllOf transactionResponseAllOf = (TransactionResponseAllOf) o;
-    return Objects.equals(this.uuid, transactionResponseAllOf.uuid) &&
+    return Objects.equals(this.success, transactionResponseAllOf.success) &&
+        Objects.equals(this.uuid, transactionResponseAllOf.uuid) &&
         Objects.equals(this.purchaseId, transactionResponseAllOf.purchaseId) &&
         Objects.equals(this.returnType, transactionResponseAllOf.returnType) &&
         Objects.equals(this.redirectType, transactionResponseAllOf.redirectType) &&
@@ -684,13 +715,14 @@ public class TransactionResponseAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData);
+    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionResponseAllOf {\n");
+    sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    purchaseId: ").append(toIndentedString(purchaseId)).append("\n");
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");

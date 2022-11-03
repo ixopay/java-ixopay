@@ -28,15 +28,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
- * WalletDataWalletData
+ * PaymentWalletDataWalletData
  */
 @JsonPropertyOrder({
-  WalletDataWalletData.JSON_PROPERTY_WALLET_REFERENCE_ID,
-  WalletDataWalletData.JSON_PROPERTY_WALLET_OWNER,
-  WalletDataWalletData.JSON_PROPERTY_WALLET_TYPE
+  PaymentWalletDataWalletData.JSON_PROPERTY_WALLET_REFERENCE_ID,
+  PaymentWalletDataWalletData.JSON_PROPERTY_WALLET_OWNER,
+  PaymentWalletDataWalletData.JSON_PROPERTY_WALLET_TYPE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class WalletDataWalletData {
+public class PaymentWalletDataWalletData {
   public static final String JSON_PROPERTY_WALLET_REFERENCE_ID = "walletReferenceId";
   private String walletReferenceId;
 
@@ -46,10 +46,10 @@ public class WalletDataWalletData {
   public static final String JSON_PROPERTY_WALLET_TYPE = "walletType";
   private String walletType;
 
-  public WalletDataWalletData() { 
+  public PaymentWalletDataWalletData() { 
   }
 
-  public WalletDataWalletData walletReferenceId(String walletReferenceId) {
+  public PaymentWalletDataWalletData walletReferenceId(String walletReferenceId) {
     this.walletReferenceId = walletReferenceId;
     return this;
   }
@@ -75,7 +75,7 @@ public class WalletDataWalletData {
   }
 
 
-  public WalletDataWalletData walletOwner(String walletOwner) {
+  public PaymentWalletDataWalletData walletOwner(String walletOwner) {
     this.walletOwner = walletOwner;
     return this;
   }
@@ -101,7 +101,7 @@ public class WalletDataWalletData {
   }
 
 
-  public WalletDataWalletData walletType(String walletType) {
+  public PaymentWalletDataWalletData walletType(String walletType) {
     this.walletType = walletType;
     return this;
   }
@@ -128,7 +128,7 @@ public class WalletDataWalletData {
 
 
   /**
-   * Return true if this WalletData_walletData object is equal to o.
+   * Return true if this PaymentWalletData_walletData object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -138,10 +138,10 @@ public class WalletDataWalletData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WalletDataWalletData walletDataWalletData = (WalletDataWalletData) o;
-    return Objects.equals(this.walletReferenceId, walletDataWalletData.walletReferenceId) &&
-        Objects.equals(this.walletOwner, walletDataWalletData.walletOwner) &&
-        Objects.equals(this.walletType, walletDataWalletData.walletType);
+    PaymentWalletDataWalletData paymentWalletDataWalletData = (PaymentWalletDataWalletData) o;
+    return Objects.equals(this.walletReferenceId, paymentWalletDataWalletData.walletReferenceId) &&
+        Objects.equals(this.walletOwner, paymentWalletDataWalletData.walletOwner) &&
+        Objects.equals(this.walletType, paymentWalletDataWalletData.walletType);
   }
 
   @Override
@@ -152,7 +152,7 @@ public class WalletDataWalletData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WalletDataWalletData {\n");
+    sb.append("class PaymentWalletDataWalletData {\n");
     sb.append("    walletReferenceId: ").append(toIndentedString(walletReferenceId)).append("\n");
     sb.append("    walletOwner: ").append(toIndentedString(walletOwner)).append("\n");
     sb.append("    walletType: ").append(toIndentedString(walletType)).append("\n");
