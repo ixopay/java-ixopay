@@ -13,7 +13,6 @@
 
 package com.ixopay.core.model;
 
-import com.ixopay.core.client.ApiException;
 import java.util.Objects;
 import java.lang.reflect.Type;
 import java.util.Map;

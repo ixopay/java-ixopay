@@ -11,7 +11,7 @@
 |**errorCode** | **Integer** |  |  [optional] |
 |**adapterMessage** | **String** |  |  [optional] |
 |**adapterCode** | **String** |  |  [optional] |
-|**success** | **Boolean** |  |  [optional] |
+|**success** | **Boolean** |  |  |
 |**returnType** | [**ReturnTypeEnum**](#ReturnTypeEnum) |  |  [optional] |
 |**errors** | [**List&lt;ErrorType&gt;**](ErrorType.md) |  |  [optional] |
 

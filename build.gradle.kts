@@ -1,3 +1,5 @@
+import com.github.jk1.license.filter.LicenseBundleNormalizer
+import com.github.jk1.license.render.InventoryHtmlReportRenderer
 
 allprojects {
 	version = "3.0.0"
@@ -11,6 +13,7 @@ allprojects {
 plugins {
 	`java-library`
 	`maven-publish`
+	id("com.github.jk1.dependency-license-report") version "2.0"
 }
 
 java {
@@ -36,4 +39,14 @@ publishing {
 			}
 		}
 	}
+}
+
+licenseReport {
+	renderers = arrayOf(
+		InventoryHtmlReportRenderer()
+	)
+
+	filters = arrayOf(
+		LicenseBundleNormalizer()
+	)
 }

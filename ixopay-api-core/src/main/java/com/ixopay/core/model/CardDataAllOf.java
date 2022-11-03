@@ -39,6 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CardDataAllOf.JSON_PROPERTY_CARD_HOLDER,
   CardDataAllOf.JSON_PROPERTY_EXPIRY_MONTH,
   CardDataAllOf.JSON_PROPERTY_EXPIRY_YEAR,
+  CardDataAllOf.JSON_PROPERTY_BIN_DIGITS,
   CardDataAllOf.JSON_PROPERTY_FIRST_SIX_DIGITS,
   CardDataAllOf.JSON_PROPERTY_LAST_FOUR_DIGITS,
   CardDataAllOf.JSON_PROPERTY_FINGERPRINT,
@@ -72,6 +73,9 @@ public class CardDataAllOf {
 
   public static final String JSON_PROPERTY_EXPIRY_YEAR = "expiryYear";
   private String expiryYear;
+
+  public static final String JSON_PROPERTY_BIN_DIGITS = "binDigits";
+  private String binDigits;
 
   public static final String JSON_PROPERTY_FIRST_SIX_DIGITS = "firstSixDigits";
   private String firstSixDigits;
@@ -285,6 +289,32 @@ public class CardDataAllOf {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;
+  }
+
+
+  public CardDataAllOf binDigits(String binDigits) {
+    this.binDigits = binDigits;
+    return this;
+  }
+
+   /**
+   * Get binDigits
+   * @return binDigits
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BIN_DIGITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBinDigits() {
+    return binDigits;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BIN_DIGITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBinDigits(String binDigits) {
+    this.binDigits = binDigits;
   }
 
 
@@ -567,6 +597,7 @@ public class CardDataAllOf {
         Objects.equals(this.cardHolder, cardDataAllOf.cardHolder) &&
         Objects.equals(this.expiryMonth, cardDataAllOf.expiryMonth) &&
         Objects.equals(this.expiryYear, cardDataAllOf.expiryYear) &&
+        Objects.equals(this.binDigits, cardDataAllOf.binDigits) &&
         Objects.equals(this.firstSixDigits, cardDataAllOf.firstSixDigits) &&
         Objects.equals(this.lastFourDigits, cardDataAllOf.lastFourDigits) &&
         Objects.equals(this.fingerprint, cardDataAllOf.fingerprint) &&
@@ -581,7 +612,7 @@ public class CardDataAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, firstName, lastName, country, cardHolder, expiryMonth, expiryYear, firstSixDigits, lastFourDigits, fingerprint, binBrand, binBank, binType, binLevel, binCountry, threeDSecure, eci);
+    return Objects.hash(type, firstName, lastName, country, cardHolder, expiryMonth, expiryYear, binDigits, firstSixDigits, lastFourDigits, fingerprint, binBrand, binBank, binType, binLevel, binCountry, threeDSecure, eci);
   }
 
   @Override
@@ -595,6 +626,7 @@ public class CardDataAllOf {
     sb.append("    cardHolder: ").append(toIndentedString(cardHolder)).append("\n");
     sb.append("    expiryMonth: ").append(toIndentedString(expiryMonth)).append("\n");
     sb.append("    expiryYear: ").append(toIndentedString(expiryYear)).append("\n");
+    sb.append("    binDigits: ").append(toIndentedString(binDigits)).append("\n");
     sb.append("    firstSixDigits: ").append(toIndentedString(firstSixDigits)).append("\n");
     sb.append("    lastFourDigits: ").append(toIndentedString(lastFourDigits)).append("\n");
     sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");

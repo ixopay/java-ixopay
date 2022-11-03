@@ -49,6 +49,7 @@ import com.ixopay.core.client.JSON;
   CardData.JSON_PROPERTY_CARD_HOLDER,
   CardData.JSON_PROPERTY_EXPIRY_MONTH,
   CardData.JSON_PROPERTY_EXPIRY_YEAR,
+  CardData.JSON_PROPERTY_BIN_DIGITS,
   CardData.JSON_PROPERTY_FIRST_SIX_DIGITS,
   CardData.JSON_PROPERTY_LAST_FOUR_DIGITS,
   CardData.JSON_PROPERTY_FINGERPRINT,
@@ -94,6 +95,9 @@ public class CardData extends ReturnData {
 
   public static final String JSON_PROPERTY_EXPIRY_YEAR = "expiryYear";
   private String expiryYear;
+
+  public static final String JSON_PROPERTY_BIN_DIGITS = "binDigits";
+  private String binDigits;
 
   public static final String JSON_PROPERTY_FIRST_SIX_DIGITS = "firstSixDigits";
   private String firstSixDigits;
@@ -307,6 +311,32 @@ public class CardData extends ReturnData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;
+  }
+
+
+  public CardData binDigits(String binDigits) {
+    this.binDigits = binDigits;
+    return this;
+  }
+
+   /**
+   * Get binDigits
+   * @return binDigits
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BIN_DIGITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBinDigits() {
+    return binDigits;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BIN_DIGITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBinDigits(String binDigits) {
+    this.binDigits = binDigits;
   }
 
 
@@ -589,6 +619,7 @@ public class CardData extends ReturnData {
         Objects.equals(this.cardHolder, cardData.cardHolder) &&
         Objects.equals(this.expiryMonth, cardData.expiryMonth) &&
         Objects.equals(this.expiryYear, cardData.expiryYear) &&
+        Objects.equals(this.binDigits, cardData.binDigits) &&
         Objects.equals(this.firstSixDigits, cardData.firstSixDigits) &&
         Objects.equals(this.lastFourDigits, cardData.lastFourDigits) &&
         Objects.equals(this.fingerprint, cardData.fingerprint) &&
@@ -604,7 +635,7 @@ public class CardData extends ReturnData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, firstName, lastName, country, cardHolder, expiryMonth, expiryYear, firstSixDigits, lastFourDigits, fingerprint, binBrand, binBank, binType, binLevel, binCountry, threeDSecure, eci, super.hashCode());
+    return Objects.hash(type, firstName, lastName, country, cardHolder, expiryMonth, expiryYear, binDigits, firstSixDigits, lastFourDigits, fingerprint, binBrand, binBank, binType, binLevel, binCountry, threeDSecure, eci, super.hashCode());
   }
 
   @Override
@@ -619,6 +650,7 @@ public class CardData extends ReturnData {
     sb.append("    cardHolder: ").append(toIndentedString(cardHolder)).append("\n");
     sb.append("    expiryMonth: ").append(toIndentedString(expiryMonth)).append("\n");
     sb.append("    expiryYear: ").append(toIndentedString(expiryYear)).append("\n");
+    sb.append("    binDigits: ").append(toIndentedString(binDigits)).append("\n");
     sb.append("    firstSixDigits: ").append(toIndentedString(firstSixDigits)).append("\n");
     sb.append("    lastFourDigits: ").append(toIndentedString(lastFourDigits)).append("\n");
     sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");

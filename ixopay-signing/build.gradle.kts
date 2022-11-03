@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.ixopay.java-ixopay"
-version = "3.0.0-SNAPSHOT"
+version = "3.0.0"
 
 repositories {
 	mavenCentral()
@@ -27,7 +27,7 @@ sourceSets {
 
 java {
 	toolchain {
-		languageVersion.set(JavaLanguageVersion.of(8))
+		languageVersion.set(JavaLanguageVersion.of(11))
 	}
 
 	withSourcesJar()

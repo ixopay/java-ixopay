@@ -98,6 +98,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ThreeDSecureData.JSON_PROPERTY_BROWSER_SCREEN_WIDTH,
   ThreeDSecureData.JSON_PROPERTY_BROWSER_TIMEZONE,
   ThreeDSecureData.JSON_PROPERTY_BROWSER_USER_AGENT,
+  ThreeDSecureData.JSON_PROPERTY_BROWSER_PLATFORM,
   ThreeDSecureData.JSON_PROPERTY_SDK_INTERFACE,
   ThreeDSecureData.JSON_PROPERTY_SDK_UI_TYPE,
   ThreeDSecureData.JSON_PROPERTY_SDK_APP_I_D,
@@ -1228,6 +1229,9 @@ public class ThreeDSecureData {
 
   public static final String JSON_PROPERTY_BROWSER_USER_AGENT = "browserUserAgent";
   private String browserUserAgent;
+
+  public static final String JSON_PROPERTY_BROWSER_PLATFORM = "browserPlatform";
+  private String browserPlatform;
 
   /**
    * Gets or Sets sdkInterface
@@ -2939,6 +2943,32 @@ public class ThreeDSecureData {
   }
 
 
+  public ThreeDSecureData browserPlatform(String browserPlatform) {
+    this.browserPlatform = browserPlatform;
+    return this;
+  }
+
+   /**
+   * Get browserPlatform
+   * @return browserPlatform
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BROWSER_PLATFORM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBrowserPlatform() {
+    return browserPlatform;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BROWSER_PLATFORM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBrowserPlatform(String browserPlatform) {
+    this.browserPlatform = browserPlatform;
+  }
+
+
   public ThreeDSecureData sdkInterface(SdkInterfaceEnum sdkInterface) {
     this.sdkInterface = sdkInterface;
     return this;
@@ -3223,6 +3253,7 @@ public class ThreeDSecureData {
         Objects.equals(this.browserScreenWidth, threeDSecureData.browserScreenWidth) &&
         Objects.equals(this.browserTimezone, threeDSecureData.browserTimezone) &&
         Objects.equals(this.browserUserAgent, threeDSecureData.browserUserAgent) &&
+        Objects.equals(this.browserPlatform, threeDSecureData.browserPlatform) &&
         Objects.equals(this.sdkInterface, threeDSecureData.sdkInterface) &&
         Objects.equals(this.sdkUiType, threeDSecureData.sdkUiType) &&
         Objects.equals(this.sdkAppID, threeDSecureData.sdkAppID) &&
@@ -3235,7 +3266,7 @@ public class ThreeDSecureData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(_3dsecure, channel, authenticationIndicator, cardholderAuthenticationMethod, cardholderAuthenticationDateTime, cardHolderAuthenticationData, challengeIndicator, priorReference, priorAuthenticationMethod, priorAuthenticationDateTime, priorAuthenticationData, cardholderAccountType, cardholderAccountAgeIndicator, cardholderAccountDate, cardholderAccountChangeIndicator, cardholderAccountLastChange, cardholderAccountPasswordChangeIndicator, cardholderAccountLastPasswordChange, shippingAddressUsageIndicator, shippingAddressFirstUsage, transactionActivityDay, transactionActivityYear, addCardAttemptsDay, purchaseCountSixMonths, suspiciousAccountActivityIndicator, shippingNameEqualIndicator, paymentAccountAgeIndicator, paymentAccountAgeDate, billingAddressLine3, shippingAddressLine3, billingShippingAddressMatch, homePhoneCountryPrefix, homePhoneNumber, mobilePhoneCountryPrefix, mobilePhoneNumber, workPhoneCountryPrefix, workPhoneNumber, purchaseInstalData, shipIndicator, deliveryTimeframe, deliveryEmailAddress, reorderItemsIndicator, preOrderPurchaseIndicator, preOrderDate, giftCardAmount, giftCardCurrency, giftCardCount, purchaseDate, recurringExpiry, recurringFrequency, transType, exemptionIndicator, threeRIIndicator, browserChallengeWindowSize, browserAcceptHeader, browserIpAddress, browserJavaEnabled, browserLanguage, browserColorDepth, browserScreenHeight, browserScreenWidth, browserTimezone, browserUserAgent, sdkInterface, sdkUiType, sdkAppID, sdkEncData, sdkEphemPubKey, sdkMaxTimeout, sdkReferenceNumber, sdkTransID);
+    return Objects.hash(_3dsecure, channel, authenticationIndicator, cardholderAuthenticationMethod, cardholderAuthenticationDateTime, cardHolderAuthenticationData, challengeIndicator, priorReference, priorAuthenticationMethod, priorAuthenticationDateTime, priorAuthenticationData, cardholderAccountType, cardholderAccountAgeIndicator, cardholderAccountDate, cardholderAccountChangeIndicator, cardholderAccountLastChange, cardholderAccountPasswordChangeIndicator, cardholderAccountLastPasswordChange, shippingAddressUsageIndicator, shippingAddressFirstUsage, transactionActivityDay, transactionActivityYear, addCardAttemptsDay, purchaseCountSixMonths, suspiciousAccountActivityIndicator, shippingNameEqualIndicator, paymentAccountAgeIndicator, paymentAccountAgeDate, billingAddressLine3, shippingAddressLine3, billingShippingAddressMatch, homePhoneCountryPrefix, homePhoneNumber, mobilePhoneCountryPrefix, mobilePhoneNumber, workPhoneCountryPrefix, workPhoneNumber, purchaseInstalData, shipIndicator, deliveryTimeframe, deliveryEmailAddress, reorderItemsIndicator, preOrderPurchaseIndicator, preOrderDate, giftCardAmount, giftCardCurrency, giftCardCount, purchaseDate, recurringExpiry, recurringFrequency, transType, exemptionIndicator, threeRIIndicator, browserChallengeWindowSize, browserAcceptHeader, browserIpAddress, browserJavaEnabled, browserLanguage, browserColorDepth, browserScreenHeight, browserScreenWidth, browserTimezone, browserUserAgent, browserPlatform, sdkInterface, sdkUiType, sdkAppID, sdkEncData, sdkEphemPubKey, sdkMaxTimeout, sdkReferenceNumber, sdkTransID);
   }
 
   @Override
@@ -3305,6 +3336,7 @@ public class ThreeDSecureData {
     sb.append("    browserScreenWidth: ").append(toIndentedString(browserScreenWidth)).append("\n");
     sb.append("    browserTimezone: ").append(toIndentedString(browserTimezone)).append("\n");
     sb.append("    browserUserAgent: ").append(toIndentedString(browserUserAgent)).append("\n");
+    sb.append("    browserPlatform: ").append(toIndentedString(browserPlatform)).append("\n");
     sb.append("    sdkInterface: ").append(toIndentedString(sdkInterface)).append("\n");
     sb.append("    sdkUiType: ").append(toIndentedString(sdkUiType)).append("\n");
     sb.append("    sdkAppID: ").append(toIndentedString(sdkAppID)).append("\n");

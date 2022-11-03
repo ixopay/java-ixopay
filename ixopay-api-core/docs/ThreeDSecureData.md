@@ -70,6 +70,7 @@
 |**browserScreenWidth** | **BigDecimal** |  |  [optional] |
 |**browserTimezone** | **BigDecimal** |  |  [optional] |
 |**browserUserAgent** | **String** |  |  [optional] |
+|**browserPlatform** | **String** |  |  [optional] |
 |**sdkInterface** | [**SdkInterfaceEnum**](#SdkInterfaceEnum) |  |  [optional] |
 |**sdkUiType** | **String** |  |  [optional] |
 |**sdkAppID** | **String** |  |  [optional] |

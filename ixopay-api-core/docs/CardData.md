@@ -14,6 +14,7 @@
 |**cardHolder** | **String** |  |  [optional] |
 |**expiryMonth** | **String** |  |  [optional] |
 |**expiryYear** | **String** |  |  [optional] |
+|**binDigits** | **String** |  |  [optional] |
 |**firstSixDigits** | **String** |  |  [optional] |
 |**lastFourDigits** | **String** |  |  [optional] |
 |**fingerprint** | **String** |  |  [optional] |

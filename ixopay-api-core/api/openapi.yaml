@@ -1432,6 +1432,7 @@ components:
           cardHolderAuthenticationData: cardHolderAuthenticationData
           cardholderAuthenticationMethod: "01"
           browserScreenHeight: 7.386281948385884
+          browserPlatform: browserPlatform
           homePhoneCountryPrefix: homePhoneCountryPrefix
           addCardAttemptsDay: 2.3021358869347655
           purchaseCountSixMonths: 7.061401241503109
@@ -1693,6 +1694,7 @@ components:
           cardHolderAuthenticationData: cardHolderAuthenticationData
           cardholderAuthenticationMethod: "01"
           browserScreenHeight: 7.386281948385884
+          browserPlatform: browserPlatform
           homePhoneCountryPrefix: homePhoneCountryPrefix
           addCardAttemptsDay: 2.3021358869347655
           purchaseCountSixMonths: 7.061401241503109
@@ -1932,6 +1934,7 @@ components:
           cardHolderAuthenticationData: cardHolderAuthenticationData
           cardholderAuthenticationMethod: "01"
           browserScreenHeight: 7.386281948385884
+          browserPlatform: browserPlatform
           homePhoneCountryPrefix: homePhoneCountryPrefix
           addCardAttemptsDay: 2.3021358869347655
           purchaseCountSixMonths: 7.061401241503109
@@ -2193,6 +2196,7 @@ components:
           cardHolderAuthenticationData: cardHolderAuthenticationData
           cardholderAuthenticationMethod: "01"
           browserScreenHeight: 7.386281948385884
+          browserPlatform: browserPlatform
           homePhoneCountryPrefix: homePhoneCountryPrefix
           addCardAttemptsDay: 2.3021358869347655
           purchaseCountSixMonths: 7.061401241503109
@@ -2655,6 +2659,7 @@ components:
           cardHolderAuthenticationData: cardHolderAuthenticationData
           cardholderAuthenticationMethod: "01"
           browserScreenHeight: 7.386281948385884
+          browserPlatform: browserPlatform
           homePhoneCountryPrefix: homePhoneCountryPrefix
           addCardAttemptsDay: 2.3021358869347655
           purchaseCountSixMonths: 7.061401241503109
@@ -3234,6 +3239,7 @@ components:
         cardHolderAuthenticationData: cardHolderAuthenticationData
         cardholderAuthenticationMethod: "01"
         browserScreenHeight: 7.386281948385884
+        browserPlatform: browserPlatform
         homePhoneCountryPrefix: homePhoneCountryPrefix
         addCardAttemptsDay: 2.3021358869347655
         purchaseCountSixMonths: 7.061401241503109
@@ -3529,6 +3535,9 @@ components:
           minimum: -9999
           type: number
         browserUserAgent:
+          maxLength: 2048
+          type: string
+        browserPlatform:
           maxLength: 2048
           type: string
         sdkInterface:
@@ -4087,31 +4096,6 @@ components:
         customer:
           $ref: '#/components/schemas/Customer'
       type: object
-    PeriodUnit:
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YEAR
-      type: string
-    MaybeScheduleResponse:
-      discriminator:
-        mapping:
-          "false": '#/components/schemas/ScheduleErrorResponse'
-          "true": '#/components/schemas/ScheduleResponse'
-        propertyName: success
-      example:
-        success: true
-      properties:
-        success:
-          type: boolean
-      required:
-      - boolean
-      type: object
-    ScheduleErrorResponse:
-      allOf:
-      - $ref: '#/components/schemas/MaybeScheduleResponse'
-      - $ref: '#/components/schemas/ErrorType'
     ErrorType:
       additionalProperties: false
       properties:
@@ -4125,37 +4109,62 @@ components:
         adapterCode:
           type: string
       type: object
-    MaybeTransactionResponse:
+    MaybeScheduleResponse:
       discriminator:
         mapping:
-          "false": '#/components/schemas/TransactionErrorResponse'
-          "true": '#/components/schemas/TransactionResponse'
+          "false": '#/components/schemas/ScheduleErrorResponse'
+          "true": '#/components/schemas/ScheduleResponse'
         propertyName: success
       example:
         success: true
       properties:
         success:
-          nullable: false
           type: boolean
       required:
       - success
       type: object
-    TransactionErrorResponse:
+    ScheduleErrorResponse:
       allOf:
-      - $ref: '#/components/schemas/MaybeTransactionResponse'
+      - $ref: '#/components/schemas/MaybeScheduleResponse'
       - $ref: '#/components/schemas/ErrorType'
-      - $ref: '#/components/schemas/TransactionErrorResponse_allOf'
-    PaymentWalletData:
+    PeriodUnit:
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      type: string
+    ThreeDSecureType:
+      enum:
+      - "OFF"
+      - OPTIONAL
+      - MANDATORY
+      type: string
+    Split:
       additionalProperties: false
+      example:
+        amount: 0.8008281904610115
+        identification: identification
+        sellerMerchantGuid: sellerMerchantGuid
+        sellerMerchantExternalId: sellerMerchantExternalId
+        currency: currency
+        commisionFee:
+          amount: 6.027456183070403
+          currency: currency
       properties:
-        walletData:
-          $ref: '#/components/schemas/PaymentWalletData_walletData'
-      type: object
-    PaymentIbanData:
-      additionalProperties: false
-      properties:
-        ibanData:
-          $ref: '#/components/schemas/PaymentIbanData_ibanData'
+        identification:
+          type: string
+        amount:
+          type: number
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        sellerMerchantGuid:
+          type: string
+        sellerMerchantExternalId:
+          type: string
+        commisionFee:
+          $ref: '#/components/schemas/Split_commisionFee'
       type: object
     ReturnDataType:
       enum:
@@ -4184,38 +4193,39 @@ components:
       - $ref: '#/components/schemas/ReturnData'
       - $ref: '#/components/schemas/cardData_allOf'
       type: object
-    Split:
+    PaymentWalletData:
       additionalProperties: false
-      example:
-        amount: 0.8008281904610115
-        identification: identification
-        sellerMerchantGuid: sellerMerchantGuid
-        sellerMerchantExternalId: sellerMerchantExternalId
-        currency: currency
-        commisionFee:
-          amount: 6.027456183070403
-          currency: currency
       properties:
-        identification:
-          type: string
-        amount:
-          type: number
-        currency:
-          pattern: "^[A-Z]{3}$"
-          type: string
-        sellerMerchantGuid:
-          type: string
-        sellerMerchantExternalId:
-          type: string
-        commisionFee:
-          $ref: '#/components/schemas/Split_commisionFee'
+        walletData:
+          $ref: '#/components/schemas/PaymentWalletData_walletData'
       type: object
-    ThreeDSecureType:
-      enum:
-      - "OFF"
-      - OPTIONAL
-      - MANDATORY
-      type: string
+    PaymentIbanData:
+      additionalProperties: false
+      properties:
+        ibanData:
+          $ref: '#/components/schemas/PaymentIbanData_ibanData'
+      type: object
+    MaybeTransactionResponse:
+      discriminator:
+        mapping:
+          "false": '#/components/schemas/TransactionErrorResponse'
+          "true": '#/components/schemas/TransactionResponse'
+        propertyName: success
+      example:
+        success: true
+      properties:
+        success:
+          nullable: false
+          type: boolean
+      required:
+      - success
+      type: object
+    TransactionErrorResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeTransactionResponse'
+      - $ref: '#/components/schemas/ErrorType'
+      - $ref: '#/components/schemas/TransactionErrorResponse_allOf'
+      type: object
     Items_inner:
       additionalProperties: false
       example:
@@ -4316,6 +4326,8 @@ components:
           additionalProperties:
             type: string
           type: object
+      required:
+      - success
       type: object
       example: null
     ScheduleResponse_allOf:
@@ -4345,48 +4357,15 @@ components:
         value:
           type: string
       type: object
-    TransactionErrorResponse_allOf:
+    Split_commisionFee:
+      example:
+        amount: 6.027456183070403
+        currency: currency
       properties:
-        success:
-          nullable: false
-          type: boolean
-        returnType:
-          enum:
-          - ERROR
+        amount:
+          type: number
+        currency:
           type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorType'
-          type: array
-      type: object
-      example: null
-    PaymentWalletData_walletData:
-      additionalProperties: false
-      properties:
-        walletReferenceId:
-          maxLength: 255
-          type: string
-        walletOwner:
-          maxLength: 255
-          type: string
-        walletType:
-          maxLength: 255
-          type: string
-      type: object
-    PaymentIbanData_ibanData:
-      additionalProperties: false
-      properties:
-        iban:
-          maxLength: 34
-          type: string
-        bic:
-          maxLength: 11
-          type: string
-        mandateId:
-          maxLength: 50
-          type: string
-        mandateDate:
-          $ref: '#/components/schemas/Date'
       type: object
     phoneData_allOf:
       properties:
@@ -4449,6 +4428,9 @@ components:
         expiryYear:
           pattern: "^[0-9]{4}$"
           type: string
+        binDigits:
+          pattern: "^[0-9]{6-8}$"
+          type: string
         firstSixDigits:
           pattern: "^[0-9]{6}$"
           type: string
@@ -4473,16 +4455,51 @@ components:
           type: string
       type: object
       example: null
-    Split_commisionFee:
-      example:
-        amount: 6.027456183070403
-        currency: currency
+    PaymentWalletData_walletData:
+      additionalProperties: false
       properties:
-        amount:
-          type: number
-        currency:
+        walletReferenceId:
+          maxLength: 255
+          type: string
+        walletOwner:
+          maxLength: 255
+          type: string
+        walletType:
+          maxLength: 255
           type: string
       type: object
+    PaymentIbanData_ibanData:
+      additionalProperties: false
+      properties:
+        iban:
+          maxLength: 34
+          type: string
+        bic:
+          maxLength: 11
+          type: string
+        mandateId:
+          maxLength: 50
+          type: string
+        mandateDate:
+          $ref: '#/components/schemas/Date'
+      type: object
+    TransactionErrorResponse_allOf:
+      properties:
+        success:
+          nullable: false
+          type: boolean
+        returnType:
+          enum:
+          - ERROR
+          type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorType'
+          type: array
+      required:
+      - success
+      type: object
+      example: null
   securitySchemes:
     basicAuth:
       scheme: basic

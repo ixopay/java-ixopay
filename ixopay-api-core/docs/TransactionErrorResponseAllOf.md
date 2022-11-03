@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**success** | **Boolean** |  |  [optional] |
+|**success** | **Boolean** |  |  |
 |**returnType** | [**ReturnTypeEnum**](#ReturnTypeEnum) |  |  [optional] |
 |**errors** | [**List&lt;ErrorType&gt;**](ErrorType.md) |  |  [optional] |
 

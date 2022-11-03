@@ -24,7 +24,7 @@ public class HttpUrlConnectionSigner {
 		String contentType = "application/json; charset=utf-8";
 		String body = "REQUEST_BODY";
 
-		URL url = new URL(String.format("https://gateway.ixopay.com/api/v3/transaction/%s/debit", GATEWAY_CONNECTOR_API_KEY));
+		URL url = new URL(String.format("https://gateway.client.com/ixopay/api/v3/transaction/%s/debit", GATEWAY_CONNECTOR_API_KEY));
 		HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
 		urlConnection.setRequestMethod("POST");
 		urlConnection.setDoOutput(true);
