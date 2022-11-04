@@ -21,12 +21,12 @@ Retrieve status of a transaction
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.StatusApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.StatusApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -93,13 +93,13 @@ Retrieve status of a transaction
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.StatusApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.StatusApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -169,12 +169,12 @@ Retrieve status of a transaction
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.StatusApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.StatusApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -241,13 +241,13 @@ Retrieve status of a transaction
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.StatusApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.StatusApi;
 
 public class Example {
     public static void main(String[] args) {

@@ -45,9 +45,9 @@ public class HttpUrlConnectionSigner {
 			GATEWAY_CONNECTOR_SHARED_SECRET,
 			requestInfo
 		);
-		urlConnection.setRequestProperty(HttpHeaders.AUTHORIZATION, headers.getAuthorizationHeader());
-		urlConnection.setRequestProperty(HttpHeaders.X_SIGNATURE, headers.getXSignatureHeader());
-		urlConnection.setRequestProperty(HttpHeaders.DATE, headers.getDateHeader());
+		urlConnection.setRequestProperty(HttpHeaders.authorization(), headers.getAuthorizationHeader());
+		urlConnection.setRequestProperty(HttpHeaders.xSignature(), headers.getXSignatureHeader());
+		urlConnection.setRequestProperty(HttpHeaders.date(), headers.getDateHeader());
 
 		// now the request is signed and we can send it
 		urlConnection.connect();

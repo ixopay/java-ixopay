@@ -72,9 +72,9 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import com.ixopay.core.client.*;
-import com.ixopay.core.model.*;
-import com.ixopay.core.api.OptionsApi;
+import com.ixopay.client.core.client.*;
+import com.ixopay.client.core.model.*;
+import com.ixopay.client.core.api.OptionsApi;
 
 public class OptionsApiExample {
 

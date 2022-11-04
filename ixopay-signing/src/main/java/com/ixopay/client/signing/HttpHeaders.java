@@ -2,14 +2,20 @@ package com.ixopay.client.signing;
 
 /** HTTP header constants. */
 public final class HttpHeaders {
-	private HttpHeaders() {}
+	private HttpHeaders() { }
 
-	/** HTTP {@code Authorization} header name. */
-	public static final String AUTHORIZATION = "Authorization";
+	/** @return HTTP {@code Authorization} header name. */
+	public static String authorization() { return "Authorization"; }
 
-	/** HTTP {@code X-Signature} header name. */
-	public static final String X_SIGNATURE = "X-Signature";
+	/** @return HTTP {@code X-Signature} header name. */
+	public static String xSignature() { return "X-Signature"; }
 
-	/** HTTP {@code Date} header name. */
-	public static final String DATE = "Date";
+	/** @return HTTP {@code Date} header name. */
+	public static String date() {
+		// jdk11 disallows setting the date header using java.net.http.HttpRequest.Builder, so we fallback to x-date
+		if(Runtime.version().feature() > 11)
+			return "Date";
+		else
+			return "X-Date";
+	}
 }

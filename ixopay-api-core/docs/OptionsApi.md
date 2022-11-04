@@ -19,11 +19,11 @@ Retrieve an options list based on given option name
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.OptionsApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.OptionsApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -86,12 +86,12 @@ Retrieve an options list based on given option name
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.OptionsApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.OptionsApi;
 
 public class Example {
     public static void main(String[] args) {

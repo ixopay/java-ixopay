@@ -35,12 +35,12 @@ Process a capture: completes a payment previously authorized through Preauthoriz
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -107,13 +107,13 @@ Process a capture: completes a payment previously authorized through Preauthoriz
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -183,12 +183,12 @@ Process a debit
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -255,13 +255,13 @@ Process a debit
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -331,12 +331,12 @@ Process a deregister: deletes a previously registered payment instrument
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -403,13 +403,13 @@ Process a deregister: deletes a previously registered payment instrument
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -479,12 +479,12 @@ Increases or prolongs the authorization on a customer&#39;s payment instrument (
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -551,13 +551,13 @@ Increases or prolongs the authorization on a customer&#39;s payment instrument (
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -627,12 +627,12 @@ Process a payout
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -699,13 +699,13 @@ Process a payout
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -775,12 +775,12 @@ Process a preauthorize: reserves the payment amount on the customer&#39;s paymen
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -847,13 +847,13 @@ Process a preauthorize: reserves the payment amount on the customer&#39;s paymen
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -923,12 +923,12 @@ Process a refund
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -995,13 +995,13 @@ Process a refund
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -1071,12 +1071,12 @@ Process a register: registers a customer&#39;s payment instrument for future use
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -1143,13 +1143,13 @@ Process a register: registers a customer&#39;s payment instrument for future use
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -1219,12 +1219,12 @@ Process a void: cancels a previously authorized Preauthorize
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -1291,13 +1291,13 @@ Process a void: cancels a previously authorized Preauthorize
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.TransactionApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.TransactionApi;
 
 public class Example {
     public static void main(String[] args) {

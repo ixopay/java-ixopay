@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -69,7 +69,7 @@ ext {
 }
 
 dependencies {
-    implementation project.parent.project("ixopay-signing")
+    api project.parent.project("ixopay-signing")
     implementation "io.swagger:swagger-annotations:$swagger_annotations_version"
     implementation "com.google.code.findbugs:jsr305:3.0.2"
     implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"

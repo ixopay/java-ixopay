@@ -29,12 +29,12 @@ Cancel a schedule. Requires the registrationId of an existing transaction of typ
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -103,13 +103,13 @@ Cancel a schedule. Requires the registrationId of an existing transaction of typ
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -181,12 +181,12 @@ Continue a schedule which has been paused. Requires the registrationId of an exi
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -255,13 +255,13 @@ Continue a schedule which has been paused. Requires the registrationId of an exi
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -333,12 +333,12 @@ Retrieve a schedule. Requires the UUID of an existing transaction of type Regist
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -405,13 +405,13 @@ Retrieve a schedule. Requires the UUID of an existing transaction of type Regist
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -481,12 +481,12 @@ Pause a schedule. Requires the registrationId of an existing transaction of type
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -555,13 +555,13 @@ Pause a schedule. Requires the registrationId of an existing transaction of type
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -633,12 +633,12 @@ Start a schedule. Requires the registrationId of an existing transaction of type
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -705,13 +705,13 @@ Start a schedule. Requires the registrationId of an existing transaction of type
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -781,12 +781,12 @@ Update a schedule. Requires the registrationId of an existing transaction of typ
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -855,13 +855,13 @@ Update a schedule. Requires the registrationId of an existing transaction of typ
 
 ```java
 // Import classes:
-import com.ixopay.core.client.ApiClient;
-import com.ixopay.core.client.ApiException;
-import com.ixopay.core.client.ApiResponse;
-import com.ixopay.core.client.Configuration;
-import com.ixopay.core.client.auth.*;
-import com.ixopay.core.client.models.*;
-import com.ixopay.core.api.ScheduleApi;
+import com.ixopay.client.core.client.ApiClient;
+import com.ixopay.client.core.client.ApiException;
+import com.ixopay.client.core.client.ApiResponse;
+import com.ixopay.client.core.client.Configuration;
+import com.ixopay.client.core.client.auth.*;
+import com.ixopay.client.core.client.models.*;
+import com.ixopay.client.core.api.ScheduleApi;
 
 public class Example {
     public static void main(String[] args) {

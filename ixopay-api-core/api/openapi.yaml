@@ -4109,62 +4109,38 @@ components:
         adapterCode:
           type: string
       type: object
-    MaybeScheduleResponse:
+    MaybeTransactionResponse:
       discriminator:
         mapping:
-          "false": '#/components/schemas/ScheduleErrorResponse'
-          "true": '#/components/schemas/ScheduleResponse'
+          "false": '#/components/schemas/TransactionErrorResponse'
+          "true": '#/components/schemas/TransactionResponse'
         propertyName: success
       example:
         success: true
       properties:
         success:
+          nullable: false
           type: boolean
       required:
       - success
       type: object
-    ScheduleErrorResponse:
+    TransactionErrorResponse:
       allOf:
-      - $ref: '#/components/schemas/MaybeScheduleResponse'
+      - $ref: '#/components/schemas/MaybeTransactionResponse'
       - $ref: '#/components/schemas/ErrorType'
-    PeriodUnit:
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YEAR
-      type: string
-    ThreeDSecureType:
-      enum:
-      - "OFF"
-      - OPTIONAL
-      - MANDATORY
-      type: string
-    Split:
+      - $ref: '#/components/schemas/TransactionErrorResponse_allOf'
+      type: object
+    PaymentWalletData:
       additionalProperties: false
-      example:
-        amount: 0.8008281904610115
-        identification: identification
-        sellerMerchantGuid: sellerMerchantGuid
-        sellerMerchantExternalId: sellerMerchantExternalId
-        currency: currency
-        commisionFee:
-          amount: 6.027456183070403
-          currency: currency
       properties:
-        identification:
-          type: string
-        amount:
-          type: number
-        currency:
-          pattern: "^[A-Z]{3}$"
-          type: string
-        sellerMerchantGuid:
-          type: string
-        sellerMerchantExternalId:
-          type: string
-        commisionFee:
-          $ref: '#/components/schemas/Split_commisionFee'
+        walletData:
+          $ref: '#/components/schemas/PaymentWalletData_walletData'
+      type: object
+    PaymentIbanData:
+      additionalProperties: false
+      properties:
+        ibanData:
+          $ref: '#/components/schemas/PaymentIbanData_ibanData'
       type: object
     ReturnDataType:
       enum:
@@ -4193,39 +4169,63 @@ components:
       - $ref: '#/components/schemas/ReturnData'
       - $ref: '#/components/schemas/cardData_allOf'
       type: object
-    PaymentWalletData:
+    Split:
       additionalProperties: false
+      example:
+        amount: 0.8008281904610115
+        identification: identification
+        sellerMerchantGuid: sellerMerchantGuid
+        sellerMerchantExternalId: sellerMerchantExternalId
+        currency: currency
+        commisionFee:
+          amount: 6.027456183070403
+          currency: currency
       properties:
-        walletData:
-          $ref: '#/components/schemas/PaymentWalletData_walletData'
+        identification:
+          type: string
+        amount:
+          type: number
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        sellerMerchantGuid:
+          type: string
+        sellerMerchantExternalId:
+          type: string
+        commisionFee:
+          $ref: '#/components/schemas/Split_commisionFee'
       type: object
-    PaymentIbanData:
-      additionalProperties: false
-      properties:
-        ibanData:
-          $ref: '#/components/schemas/PaymentIbanData_ibanData'
-      type: object
-    MaybeTransactionResponse:
+    ThreeDSecureType:
+      enum:
+      - "OFF"
+      - OPTIONAL
+      - MANDATORY
+      type: string
+    PeriodUnit:
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      type: string
+    MaybeScheduleResponse:
       discriminator:
         mapping:
-          "false": '#/components/schemas/TransactionErrorResponse'
-          "true": '#/components/schemas/TransactionResponse'
+          "false": '#/components/schemas/ScheduleErrorResponse'
+          "true": '#/components/schemas/ScheduleResponse'
         propertyName: success
       example:
         success: true
       properties:
         success:
-          nullable: false
           type: boolean
       required:
       - success
       type: object
-    TransactionErrorResponse:
+    ScheduleErrorResponse:
       allOf:
-      - $ref: '#/components/schemas/MaybeTransactionResponse'
+      - $ref: '#/components/schemas/MaybeScheduleResponse'
       - $ref: '#/components/schemas/ErrorType'
-      - $ref: '#/components/schemas/TransactionErrorResponse_allOf'
-      type: object
     Items_inner:
       additionalProperties: false
       example:
@@ -4357,15 +4357,50 @@ components:
         value:
           type: string
       type: object
-    Split_commisionFee:
-      example:
-        amount: 6.027456183070403
-        currency: currency
+    TransactionErrorResponse_allOf:
       properties:
-        amount:
-          type: number
-        currency:
+        success:
+          nullable: false
+          type: boolean
+        returnType:
+          enum:
+          - ERROR
           type: string
+        errors:
+          items:
+            $ref: '#/components/schemas/ErrorType'
+          type: array
+      required:
+      - success
+      type: object
+      example: null
+    PaymentWalletData_walletData:
+      additionalProperties: false
+      properties:
+        walletReferenceId:
+          maxLength: 255
+          type: string
+        walletOwner:
+          maxLength: 255
+          type: string
+        walletType:
+          maxLength: 255
+          type: string
+      type: object
+    PaymentIbanData_ibanData:
+      additionalProperties: false
+      properties:
+        iban:
+          maxLength: 34
+          type: string
+        bic:
+          maxLength: 11
+          type: string
+        mandateId:
+          maxLength: 50
+          type: string
+        mandateDate:
+          $ref: '#/components/schemas/Date'
       type: object
     phoneData_allOf:
       properties:
@@ -4455,51 +4490,16 @@ components:
           type: string
       type: object
       example: null
-    PaymentWalletData_walletData:
-      additionalProperties: false
+    Split_commisionFee:
+      example:
+        amount: 6.027456183070403
+        currency: currency
       properties:
-        walletReferenceId:
-          maxLength: 255
-          type: string
-        walletOwner:
-          maxLength: 255
-          type: string
-        walletType:
-          maxLength: 255
+        amount:
+          type: number
+        currency:
           type: string
       type: object
-    PaymentIbanData_ibanData:
-      additionalProperties: false
-      properties:
-        iban:
-          maxLength: 34
-          type: string
-        bic:
-          maxLength: 11
-          type: string
-        mandateId:
-          maxLength: 50
-          type: string
-        mandateDate:
-          $ref: '#/components/schemas/Date'
-      type: object
-    TransactionErrorResponse_allOf:
-      properties:
-        success:
-          nullable: false
-          type: boolean
-        returnType:
-          enum:
-          - ERROR
-          type: string
-        errors:
-          items:
-            $ref: '#/components/schemas/ErrorType'
-          type: array
-      required:
-      - success
-      type: object
-      example: null
   securitySchemes:
     basicAuth:
       scheme: basic

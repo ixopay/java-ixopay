@@ -9,9 +9,9 @@
 ## Example
 ```java
 // Import classes:
-import com.ixopay.core.model.PaymentData;
-import com.ixopay.core.model.PaymentIbanData;
-import com.ixopay.core.model.PaymentWalletData;
+import com.ixopay.client.core.model.PaymentData;
+import com.ixopay.client.core.model.PaymentIbanData;
+import com.ixopay.client.core.model.PaymentWalletData;
 
 public class Example {
     public static void main(String[] args) {
