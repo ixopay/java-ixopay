@@ -32,6 +32,7 @@ import com.ixopay.client.core.model.ReturnData;
 import com.ixopay.client.core.model.ScheduleData;
 import com.ixopay.client.core.model.TransactionErrorResponse;
 import com.ixopay.client.core.model.TransactionResponse;
+import com.ixopay.client.core.model.TransactionResponseAllOfDccData;
 import com.ixopay.client.core.model.TransactionResponseAllOfRiskCheckData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -65,7 +66,8 @@ import com.ixopay.client.core.client.JSON;
   TransactionResponse.JSON_PROPERTY_ERRORS,
   TransactionResponse.JSON_PROPERTY_ADAPTER_MESSAGE,
   TransactionResponse.JSON_PROPERTY_ADAPTER_CODE,
-  TransactionResponse.JSON_PROPERTY_EXTRA_DATA
+  TransactionResponse.JSON_PROPERTY_EXTRA_DATA,
+  TransactionResponse.JSON_PROPERTY_DCC_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonIgnoreProperties(
@@ -100,7 +102,9 @@ public class TransactionResponse extends MaybeTransactionResponse {
     
     PENDING("PENDING"),
     
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    
+    PENDING_DCC("PENDING_DCC");
 
     private String value;
 
@@ -210,6 +214,9 @@ public class TransactionResponse extends MaybeTransactionResponse {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_DCC_DATA = "dccData";
+  private TransactionResponseAllOfDccData dccData;
 
   public TransactionResponse() { 
   }
@@ -698,6 +705,32 @@ public class TransactionResponse extends MaybeTransactionResponse {
   }
 
 
+  public TransactionResponse dccData(TransactionResponseAllOfDccData dccData) {
+    this.dccData = dccData;
+    return this;
+  }
+
+   /**
+   * Get dccData
+   * @return dccData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TransactionResponseAllOfDccData getDccData() {
+    return dccData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDccData(TransactionResponseAllOfDccData dccData) {
+    this.dccData = dccData;
+  }
+
+
   /**
    * Return true if this TransactionResponse object is equal to o.
    */
@@ -728,12 +761,13 @@ public class TransactionResponse extends MaybeTransactionResponse {
         Objects.equals(this.adapterMessage, transactionResponse.adapterMessage) &&
         Objects.equals(this.adapterCode, transactionResponse.adapterCode) &&
         Objects.equals(this.extraData, transactionResponse.extraData) &&
+        Objects.equals(this.dccData, transactionResponse.dccData) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData, super.hashCode());
+    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData, dccData, super.hashCode());
   }
 
   @Override
@@ -759,6 +793,7 @@ public class TransactionResponse extends MaybeTransactionResponse {
     sb.append("    adapterMessage: ").append(toIndentedString(adapterMessage)).append("\n");
     sb.append("    adapterCode: ").append(toIndentedString(adapterCode)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    dccData: ").append(toIndentedString(dccData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

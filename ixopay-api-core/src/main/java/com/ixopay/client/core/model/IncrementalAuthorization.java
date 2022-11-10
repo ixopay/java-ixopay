@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.L2L3Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
@@ -52,7 +53,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   IncrementalAuthorization.JSON_PROPERTY_DESCRIPTION,
   IncrementalAuthorization.JSON_PROPERTY_ITEMS,
   IncrementalAuthorization.JSON_PROPERTY_TRANSACTION_INDICATOR,
-  IncrementalAuthorization.JSON_PROPERTY_LANGUAGE
+  IncrementalAuthorization.JSON_PROPERTY_LANGUAGE,
+  IncrementalAuthorization.JSON_PROPERTY_L2L3_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IncrementalAuthorization {
@@ -108,6 +110,8 @@ public class IncrementalAuthorization {
     
     RECURRING("RECURRING"),
     
+    FIRST_CARDONFILE("FIRST-CARDONFILE"),
+    
     CARDONFILE("CARDONFILE"),
     
     CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
@@ -146,6 +150,9 @@ public class IncrementalAuthorization {
 
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   private String language;
+
+  public static final String JSON_PROPERTY_L2L3_DATA = "l2l3Data";
+  private L2L3Data l2l3Data;
 
   public IncrementalAuthorization() { 
   }
@@ -582,6 +589,32 @@ public class IncrementalAuthorization {
   }
 
 
+  public IncrementalAuthorization l2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+    return this;
+  }
+
+   /**
+   * Get l2l3Data
+   * @return l2l3Data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public L2L3Data getL2l3Data() {
+    return l2l3Data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setL2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+  }
+
+
   /**
    * Return true if this IncrementalAuthorization object is equal to o.
    */
@@ -609,12 +642,13 @@ public class IncrementalAuthorization {
         Objects.equals(this.description, incrementalAuthorization.description) &&
         Objects.equals(this.items, incrementalAuthorization.items) &&
         Objects.equals(this.transactionIndicator, incrementalAuthorization.transactionIndicator) &&
-        Objects.equals(this.language, incrementalAuthorization.language);
+        Objects.equals(this.language, incrementalAuthorization.language) &&
+        Objects.equals(this.l2l3Data, incrementalAuthorization.l2l3Data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, referenceUuid, additionalId1, additionalId2, extraData, merchantMetaData, amount, currency, successUrl, cancelUrl, errorUrl, callbackUrl, description, items, transactionIndicator, language);
+    return Objects.hash(merchantTransactionId, referenceUuid, additionalId1, additionalId2, extraData, merchantMetaData, amount, currency, successUrl, cancelUrl, errorUrl, callbackUrl, description, items, transactionIndicator, language, l2l3Data);
   }
 
   @Override
@@ -637,6 +671,7 @@ public class IncrementalAuthorization {
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    transactionIndicator: ").append(toIndentedString(transactionIndicator)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    l2l3Data: ").append(toIndentedString(l2l3Data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

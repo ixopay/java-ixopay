@@ -23,6 +23,7 @@
 |**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
 |**transactionIndicator** | [**TransactionIndicatorEnum**](#TransactionIndicatorEnum) |  |  [optional] |
 |**language** | **String** |  |  [optional] |
+|**l2l3Data** | [**L2L3Data**](L2L3Data.md) |  |  [optional] |
 
 
 
@@ -33,6 +34,7 @@
 | SINGLE | &quot;SINGLE&quot; |
 | INITIAL | &quot;INITIAL&quot; |
 | RECURRING | &quot;RECURRING&quot; |
+| FIRST_CARDONFILE | &quot;FIRST-CARDONFILE&quot; |
 | CARDONFILE | &quot;CARDONFILE&quot; |
 | CARDONFILE_MERCHANT_INITIATED | &quot;CARDONFILE-MERCHANT-INITIATED&quot; |
 | MOTO | &quot;MOTO&quot; |

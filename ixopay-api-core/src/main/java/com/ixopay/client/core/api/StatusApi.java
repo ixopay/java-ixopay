@@ -24,7 +24,7 @@ import com.ixopay.client.core.client.ApiException;
 import com.ixopay.client.core.client.ApiResponse;
 import com.ixopay.client.core.client.Pair;
 
-import com.ixopay.client.core.model.StatusResponse;
+import com.ixopay.client.core.model.MaybeStatusResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -90,10 +90,10 @@ public class StatusApi {
    * 
    * @param apiKey API Key of Connector (required)
    * @param merchantTransactionId ID of merchant transaction (required)
-   * @return StatusResponse
+   * @return MaybeStatusResponse
    * @throws ApiException if fails to make API call
    */
-  public StatusResponse transactionStatusByMerchantTransactionId(String apiKey, String merchantTransactionId) throws ApiException {
+  public MaybeStatusResponse transactionStatusByMerchantTransactionId(String apiKey, String merchantTransactionId) throws ApiException {
     return  transactionStatusByMerchantTransactionId(null, apiKey, merchantTransactionId);
   }
 
@@ -103,11 +103,11 @@ public class StatusApi {
    * @param sharedSecret optional shared secret for signing requests (can be {@code null}).
    * @param apiKey API Key of Connector (required)
    * @param merchantTransactionId ID of merchant transaction (required)
-   * @return StatusResponse
+   * @return MaybeStatusResponse
    * @throws ApiException if fails to make API call
    */
-  public StatusResponse transactionStatusByMerchantTransactionId(@Nullable String sharedSecret, String apiKey, String merchantTransactionId) throws ApiException {
-    ApiResponse<StatusResponse> localVarResponse = transactionStatusByMerchantTransactionIdWithHttpInfo(sharedSecret, apiKey, merchantTransactionId);
+  public MaybeStatusResponse transactionStatusByMerchantTransactionId(@Nullable String sharedSecret, String apiKey, String merchantTransactionId) throws ApiException {
+    ApiResponse<MaybeStatusResponse> localVarResponse = transactionStatusByMerchantTransactionIdWithHttpInfo(sharedSecret, apiKey, merchantTransactionId);
     return localVarResponse.getData();
   }
 
@@ -116,10 +116,10 @@ public class StatusApi {
    * 
    * @param apiKey API Key of Connector (required)
    * @param merchantTransactionId ID of merchant transaction (required)
-   * @return ApiResponse&lt;StatusResponse&gt;
+   * @return ApiResponse&lt;MaybeStatusResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<StatusResponse> transactionStatusByMerchantTransactionIdWithHttpInfo(String apiKey, String merchantTransactionId) throws ApiException {
+  public ApiResponse<MaybeStatusResponse> transactionStatusByMerchantTransactionIdWithHttpInfo(String apiKey, String merchantTransactionId) throws ApiException {
     return transactionStatusByMerchantTransactionIdWithHttpInfo(null, apiKey, merchantTransactionId);
   }
 
@@ -129,10 +129,10 @@ public class StatusApi {
    * @param sharedSecret optional shared secret for signing requests (can be {@code null}).
    * @param apiKey API Key of Connector (required)
    * @param merchantTransactionId ID of merchant transaction (required)
-   * @return ApiResponse&lt;StatusResponse&gt;
+   * @return ApiResponse&lt;MaybeStatusResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<StatusResponse> transactionStatusByMerchantTransactionIdWithHttpInfo(@Nullable String sharedSecret, String apiKey, String merchantTransactionId) throws ApiException {
+  public ApiResponse<MaybeStatusResponse> transactionStatusByMerchantTransactionIdWithHttpInfo(@Nullable String sharedSecret, String apiKey, String merchantTransactionId) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = transactionStatusByMerchantTransactionIdRequestBuilder(sharedSecret, apiKey, merchantTransactionId);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -142,10 +142,10 @@ public class StatusApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       try {
-        return new ApiResponse<StatusResponse>(
+        return new ApiResponse<MaybeStatusResponse>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<StatusResponse>() {}) // closes the InputStream
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MaybeStatusResponse>() {}) // closes the InputStream
           
         );
       } finally {
@@ -215,10 +215,10 @@ public class StatusApi {
    * 
    * @param apiKey API Key of Connector (required)
    * @param uuid UUID of transaction (required)
-   * @return StatusResponse
+   * @return MaybeStatusResponse
    * @throws ApiException if fails to make API call
    */
-  public StatusResponse transactionStatusByUuid(String apiKey, String uuid) throws ApiException {
+  public MaybeStatusResponse transactionStatusByUuid(String apiKey, String uuid) throws ApiException {
     return  transactionStatusByUuid(null, apiKey, uuid);
   }
 
@@ -228,11 +228,11 @@ public class StatusApi {
    * @param sharedSecret optional shared secret for signing requests (can be {@code null}).
    * @param apiKey API Key of Connector (required)
    * @param uuid UUID of transaction (required)
-   * @return StatusResponse
+   * @return MaybeStatusResponse
    * @throws ApiException if fails to make API call
    */
-  public StatusResponse transactionStatusByUuid(@Nullable String sharedSecret, String apiKey, String uuid) throws ApiException {
-    ApiResponse<StatusResponse> localVarResponse = transactionStatusByUuidWithHttpInfo(sharedSecret, apiKey, uuid);
+  public MaybeStatusResponse transactionStatusByUuid(@Nullable String sharedSecret, String apiKey, String uuid) throws ApiException {
+    ApiResponse<MaybeStatusResponse> localVarResponse = transactionStatusByUuidWithHttpInfo(sharedSecret, apiKey, uuid);
     return localVarResponse.getData();
   }
 
@@ -241,10 +241,10 @@ public class StatusApi {
    * 
    * @param apiKey API Key of Connector (required)
    * @param uuid UUID of transaction (required)
-   * @return ApiResponse&lt;StatusResponse&gt;
+   * @return ApiResponse&lt;MaybeStatusResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<StatusResponse> transactionStatusByUuidWithHttpInfo(String apiKey, String uuid) throws ApiException {
+  public ApiResponse<MaybeStatusResponse> transactionStatusByUuidWithHttpInfo(String apiKey, String uuid) throws ApiException {
     return transactionStatusByUuidWithHttpInfo(null, apiKey, uuid);
   }
 
@@ -254,10 +254,10 @@ public class StatusApi {
    * @param sharedSecret optional shared secret for signing requests (can be {@code null}).
    * @param apiKey API Key of Connector (required)
    * @param uuid UUID of transaction (required)
-   * @return ApiResponse&lt;StatusResponse&gt;
+   * @return ApiResponse&lt;MaybeStatusResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<StatusResponse> transactionStatusByUuidWithHttpInfo(@Nullable String sharedSecret, String apiKey, String uuid) throws ApiException {
+  public ApiResponse<MaybeStatusResponse> transactionStatusByUuidWithHttpInfo(@Nullable String sharedSecret, String apiKey, String uuid) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = transactionStatusByUuidRequestBuilder(sharedSecret, apiKey, uuid);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -267,10 +267,10 @@ public class StatusApi {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
       try {
-        return new ApiResponse<StatusResponse>(
+        return new ApiResponse<MaybeStatusResponse>(
           localVarResponse.statusCode(),
           localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<StatusResponse>() {}) // closes the InputStream
+          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<MaybeStatusResponse>() {}) // closes the InputStream
           
         );
       } finally {

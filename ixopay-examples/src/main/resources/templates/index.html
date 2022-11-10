@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_fragments::head"></head>
+<body>
+<header th:include="_fragments::header"></header>
+<main>
+	<h2>Purchase</h2>
+	<form method="post" th:action="@{/create}">
+		<fieldset>
+			<legend>Example purchase for 1 USD</legend>
+			<button type="submit">Purchase</button>
+		</fieldset>
+	</form>
+</main>
+</body>
+</html>

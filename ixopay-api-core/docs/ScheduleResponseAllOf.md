@@ -11,8 +11,8 @@
 |**oldStatus** | **ScheduleStatus** |  |  [optional] |
 |**newStatus** | **ScheduleStatus** |  |  [optional] |
 |**scheduledAt** | **OffsetDateTime** |  |  [optional] |
-|**registrationUuid** | **String** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
+|**registrationUuid** | **String** |  |  [optional] |
 
 
 

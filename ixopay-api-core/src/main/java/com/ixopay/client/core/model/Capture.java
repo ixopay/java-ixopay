@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.L2L3Data;
 import com.ixopay.client.core.model.Split;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,12 +42,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Capture.JSON_PROPERTY_ADDITIONAL_ID1,
   Capture.JSON_PROPERTY_ADDITIONAL_ID2,
   Capture.JSON_PROPERTY_EXTRA_DATA,
+  Capture.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   Capture.JSON_PROPERTY_MERCHANT_META_DATA,
   Capture.JSON_PROPERTY_REFERENCE_UUID,
   Capture.JSON_PROPERTY_AMOUNT,
   Capture.JSON_PROPERTY_CURRENCY,
+  Capture.JSON_PROPERTY_DESCRIPTION,
   Capture.JSON_PROPERTY_ITEMS,
-  Capture.JSON_PROPERTY_SPLITS
+  Capture.JSON_PROPERTY_SPLITS,
+  Capture.JSON_PROPERTY_IS_FINAL_CAPTURE,
+  Capture.JSON_PROPERTY_L2L3_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Capture {
@@ -62,6 +67,9 @@ public class Capture {
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
 
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
+
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
 
@@ -74,11 +82,20 @@ public class Capture {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
 
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ItemsInner> items = null;
 
   public static final String JSON_PROPERTY_SPLITS = "splits";
   private List<Split> splits = null;
+
+  public static final String JSON_PROPERTY_IS_FINAL_CAPTURE = "isFinalCapture";
+  private Boolean isFinalCapture;
+
+  public static final String JSON_PROPERTY_L2L3_DATA = "l2l3Data";
+  private L2L3Data l2l3Data;
 
   public Capture() { 
   }
@@ -195,6 +212,40 @@ public class Capture {
   }
 
 
+  public Capture pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public Capture putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+  }
+
+
   public Capture merchantMetaData(String merchantMetaData) {
     this.merchantMetaData = merchantMetaData;
     return this;
@@ -299,6 +350,32 @@ public class Capture {
   }
 
 
+  public Capture description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
   public Capture items(List<ItemsInner> items) {
     this.items = items;
     return this;
@@ -367,6 +444,58 @@ public class Capture {
   }
 
 
+  public Capture isFinalCapture(Boolean isFinalCapture) {
+    this.isFinalCapture = isFinalCapture;
+    return this;
+  }
+
+   /**
+   * Get isFinalCapture
+   * @return isFinalCapture
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_IS_FINAL_CAPTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsFinalCapture() {
+    return isFinalCapture;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_FINAL_CAPTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsFinalCapture(Boolean isFinalCapture) {
+    this.isFinalCapture = isFinalCapture;
+  }
+
+
+  public Capture l2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+    return this;
+  }
+
+   /**
+   * Get l2l3Data
+   * @return l2l3Data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public L2L3Data getL2l3Data() {
+    return l2l3Data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setL2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+  }
+
+
   /**
    * Return true if this Capture object is equal to o.
    */
@@ -383,17 +512,21 @@ public class Capture {
         Objects.equals(this.additionalId1, capture.additionalId1) &&
         Objects.equals(this.additionalId2, capture.additionalId2) &&
         Objects.equals(this.extraData, capture.extraData) &&
+        Objects.equals(this.pspPassthroughData, capture.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, capture.merchantMetaData) &&
         Objects.equals(this.referenceUuid, capture.referenceUuid) &&
         Objects.equals(this.amount, capture.amount) &&
         Objects.equals(this.currency, capture.currency) &&
+        Objects.equals(this.description, capture.description) &&
         Objects.equals(this.items, capture.items) &&
-        Objects.equals(this.splits, capture.splits);
+        Objects.equals(this.splits, capture.splits) &&
+        Objects.equals(this.isFinalCapture, capture.isFinalCapture) &&
+        Objects.equals(this.l2l3Data, capture.l2l3Data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, referenceUuid, amount, currency, items, splits);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, pspPassthroughData, merchantMetaData, referenceUuid, amount, currency, description, items, splits, isFinalCapture, l2l3Data);
   }
 
   @Override
@@ -404,12 +537,16 @@ public class Capture {
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    referenceUuid: ").append(toIndentedString(referenceUuid)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    splits: ").append(toIndentedString(splits)).append("\n");
+    sb.append("    isFinalCapture: ").append(toIndentedString(isFinalCapture)).append("\n");
+    sb.append("    l2l3Data: ").append(toIndentedString(l2l3Data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

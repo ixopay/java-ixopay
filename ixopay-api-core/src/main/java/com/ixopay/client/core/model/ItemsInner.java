@@ -40,6 +40,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ItemsInner.JSON_PROPERTY_QUANTITY,
   ItemsInner.JSON_PROPERTY_PRICE,
   ItemsInner.JSON_PROPERTY_CURRENCY,
+  ItemsInner.JSON_PROPERTY_UNIT,
+  ItemsInner.JSON_PROPERTY_UNIT_PRICE,
+  ItemsInner.JSON_PROPERTY_DISCOUNT,
+  ItemsInner.JSON_PROPERTY_SHIPPING_AMOUNT,
+  ItemsInner.JSON_PROPERTY_TAX_AMOUNT,
+  ItemsInner.JSON_PROPERTY_TAX_RATE,
+  ItemsInner.JSON_PROPERTY_COMMODITY_CODE,
   ItemsInner.JSON_PROPERTY_EXTRA_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -61,6 +68,27 @@ public class ItemsInner {
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
+
+  public static final String JSON_PROPERTY_UNIT = "unit";
+  private String unit;
+
+  public static final String JSON_PROPERTY_UNIT_PRICE = "unitPrice";
+  private String unitPrice;
+
+  public static final String JSON_PROPERTY_DISCOUNT = "discount";
+  private String discount;
+
+  public static final String JSON_PROPERTY_SHIPPING_AMOUNT = "shippingAmount";
+  private String shippingAmount;
+
+  public static final String JSON_PROPERTY_TAX_AMOUNT = "taxAmount";
+  private String taxAmount;
+
+  public static final String JSON_PROPERTY_TAX_RATE = "taxRate";
+  private String taxRate;
+
+  public static final String JSON_PROPERTY_COMMODITY_CODE = "commodityCode";
+  private String commodityCode;
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
@@ -224,6 +252,188 @@ public class ItemsInner {
   }
 
 
+  public ItemsInner unit(String unit) {
+    this.unit = unit;
+    return this;
+  }
+
+   /**
+   * Get unit
+   * @return unit
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getUnit() {
+    return unit;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UNIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnit(String unit) {
+    this.unit = unit;
+  }
+
+
+  public ItemsInner unitPrice(String unitPrice) {
+    this.unitPrice = unitPrice;
+    return this;
+  }
+
+   /**
+   * Get unitPrice
+   * @return unitPrice
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getUnitPrice() {
+    return unitPrice;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnitPrice(String unitPrice) {
+    this.unitPrice = unitPrice;
+  }
+
+
+  public ItemsInner discount(String discount) {
+    this.discount = discount;
+    return this;
+  }
+
+   /**
+   * Get discount
+   * @return discount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DISCOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDiscount() {
+    return discount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DISCOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDiscount(String discount) {
+    this.discount = discount;
+  }
+
+
+  public ItemsInner shippingAmount(String shippingAmount) {
+    this.shippingAmount = shippingAmount;
+    return this;
+  }
+
+   /**
+   * Get shippingAmount
+   * @return shippingAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SHIPPING_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getShippingAmount() {
+    return shippingAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHIPPING_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShippingAmount(String shippingAmount) {
+    this.shippingAmount = shippingAmount;
+  }
+
+
+  public ItemsInner taxAmount(String taxAmount) {
+    this.taxAmount = taxAmount;
+    return this;
+  }
+
+   /**
+   * Get taxAmount
+   * @return taxAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TAX_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTaxAmount() {
+    return taxAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TAX_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxAmount(String taxAmount) {
+    this.taxAmount = taxAmount;
+  }
+
+
+  public ItemsInner taxRate(String taxRate) {
+    this.taxRate = taxRate;
+    return this;
+  }
+
+   /**
+   * Get taxRate
+   * @return taxRate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TAX_RATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTaxRate() {
+    return taxRate;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TAX_RATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTaxRate(String taxRate) {
+    this.taxRate = taxRate;
+  }
+
+
+  public ItemsInner commodityCode(String commodityCode) {
+    this.commodityCode = commodityCode;
+    return this;
+  }
+
+   /**
+   * Get commodityCode
+   * @return commodityCode
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_COMMODITY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCommodityCode() {
+    return commodityCode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_COMMODITY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommodityCode(String commodityCode) {
+    this.commodityCode = commodityCode;
+  }
+
+
   public ItemsInner extraData(Map<String, String> extraData) {
     this.extraData = extraData;
     return this;
@@ -276,12 +486,19 @@ public class ItemsInner {
         Objects.equals(this.quantity, itemsInner.quantity) &&
         Objects.equals(this.price, itemsInner.price) &&
         Objects.equals(this.currency, itemsInner.currency) &&
+        Objects.equals(this.unit, itemsInner.unit) &&
+        Objects.equals(this.unitPrice, itemsInner.unitPrice) &&
+        Objects.equals(this.discount, itemsInner.discount) &&
+        Objects.equals(this.shippingAmount, itemsInner.shippingAmount) &&
+        Objects.equals(this.taxAmount, itemsInner.taxAmount) &&
+        Objects.equals(this.taxRate, itemsInner.taxRate) &&
+        Objects.equals(this.commodityCode, itemsInner.commodityCode) &&
         Objects.equals(this.extraData, itemsInner.extraData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(identification, name, description, quantity, price, currency, extraData);
+    return Objects.hash(identification, name, description, quantity, price, currency, unit, unitPrice, discount, shippingAmount, taxAmount, taxRate, commodityCode, extraData);
   }
 
   @Override
@@ -294,6 +511,13 @@ public class ItemsInner {
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+    sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
+    sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
+    sb.append("    shippingAmount: ").append(toIndentedString(shippingAmount)).append("\n");
+    sb.append("    taxAmount: ").append(toIndentedString(taxAmount)).append("\n");
+    sb.append("    taxRate: ").append(toIndentedString(taxRate)).append("\n");
+    sb.append("    commodityCode: ").append(toIndentedString(commodityCode)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
     sb.append("}");
     return sb.toString();

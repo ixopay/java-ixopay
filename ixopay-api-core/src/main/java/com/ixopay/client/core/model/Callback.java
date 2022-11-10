@@ -48,6 +48,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Callback.JSON_PROPERTY_PAYMENT_METHOD,
   Callback.JSON_PROPERTY_AMOUNT,
   Callback.JSON_PROPERTY_CURRENCY,
+  Callback.JSON_PROPERTY_SURCHARGE_AMOUNT,
+  Callback.JSON_PROPERTY_TOTAL_AMOUNT,
   Callback.JSON_PROPERTY_SCHEDULE_DATA,
   Callback.JSON_PROPERTY_CUSTOMER_PROFILE_DATA,
   Callback.JSON_PROPERTY_ERROR_MESSAGE,
@@ -123,6 +125,12 @@ public class Callback {
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
+
+  public static final String JSON_PROPERTY_SURCHARGE_AMOUNT = "surchargeAmount";
+  private String surchargeAmount;
+
+  public static final String JSON_PROPERTY_TOTAL_AMOUNT = "totalAmount";
+  private String totalAmount;
 
   public static final String JSON_PROPERTY_SCHEDULE_DATA = "scheduleData";
   private ScheduleData scheduleData;
@@ -368,6 +376,58 @@ public class Callback {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public Callback surchargeAmount(String surchargeAmount) {
+    this.surchargeAmount = surchargeAmount;
+    return this;
+  }
+
+   /**
+   * Get surchargeAmount
+   * @return surchargeAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SURCHARGE_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSurchargeAmount() {
+    return surchargeAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SURCHARGE_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSurchargeAmount(String surchargeAmount) {
+    this.surchargeAmount = surchargeAmount;
+  }
+
+
+  public Callback totalAmount(String totalAmount) {
+    this.totalAmount = totalAmount;
+    return this;
+  }
+
+   /**
+   * Get totalAmount
+   * @return totalAmount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TOTAL_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTotalAmount() {
+    return totalAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TOTAL_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTotalAmount(String totalAmount) {
+    this.totalAmount = totalAmount;
   }
 
 
@@ -711,6 +771,8 @@ public class Callback {
         Objects.equals(this.paymentMethod, callback.paymentMethod) &&
         Objects.equals(this.amount, callback.amount) &&
         Objects.equals(this.currency, callback.currency) &&
+        Objects.equals(this.surchargeAmount, callback.surchargeAmount) &&
+        Objects.equals(this.totalAmount, callback.totalAmount) &&
         Objects.equals(this.scheduleData, callback.scheduleData) &&
         Objects.equals(this.customerProfileData, callback.customerProfileData) &&
         Objects.equals(this.errorMessage, callback.errorMessage) &&
@@ -727,7 +789,7 @@ public class Callback {
 
   @Override
   public int hashCode() {
-    return Objects.hash(result, uuid, merchantTransactionId, purchaseId, transactionType, paymentMethod, amount, currency, scheduleData, customerProfileData, errorMessage, errorCode, adapterMessage, adapterCode, chargebackData, chargebackReversalData, extraData, merchantMetaData, returnData, customer);
+    return Objects.hash(result, uuid, merchantTransactionId, purchaseId, transactionType, paymentMethod, amount, currency, surchargeAmount, totalAmount, scheduleData, customerProfileData, errorMessage, errorCode, adapterMessage, adapterCode, chargebackData, chargebackReversalData, extraData, merchantMetaData, returnData, customer);
   }
 
   @Override
@@ -742,6 +804,8 @@ public class Callback {
     sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    surchargeAmount: ").append(toIndentedString(surchargeAmount)).append("\n");
+    sb.append("    totalAmount: ").append(toIndentedString(totalAmount)).append("\n");
     sb.append("    scheduleData: ").append(toIndentedString(scheduleData)).append("\n");
     sb.append("    customerProfileData: ").append(toIndentedString(customerProfileData)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");

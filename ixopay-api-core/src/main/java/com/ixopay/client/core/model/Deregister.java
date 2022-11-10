@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Deregister.JSON_PROPERTY_ADDITIONAL_ID1,
   Deregister.JSON_PROPERTY_ADDITIONAL_ID2,
   Deregister.JSON_PROPERTY_EXTRA_DATA,
+  Deregister.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   Deregister.JSON_PROPERTY_MERCHANT_META_DATA,
   Deregister.JSON_PROPERTY_REFERENCE_UUID
 })
@@ -53,6 +54,9 @@ public class Deregister {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
@@ -175,6 +179,40 @@ public class Deregister {
   }
 
 
+  public Deregister pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public Deregister putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+  }
+
+
   public Deregister merchantMetaData(String merchantMetaData) {
     this.merchantMetaData = merchantMetaData;
     return this;
@@ -243,13 +281,14 @@ public class Deregister {
         Objects.equals(this.additionalId1, deregister.additionalId1) &&
         Objects.equals(this.additionalId2, deregister.additionalId2) &&
         Objects.equals(this.extraData, deregister.extraData) &&
+        Objects.equals(this.pspPassthroughData, deregister.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, deregister.merchantMetaData) &&
         Objects.equals(this.referenceUuid, deregister.referenceUuid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, referenceUuid);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, pspPassthroughData, merchantMetaData, referenceUuid);
   }
 
   @Override
@@ -260,6 +299,7 @@ public class Deregister {
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    referenceUuid: ").append(toIndentedString(referenceUuid)).append("\n");
     sb.append("}");

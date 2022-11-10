@@ -39,7 +39,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UpdateSchedule.JSON_PROPERTY_PERIOD_LENGTH,
   UpdateSchedule.JSON_PROPERTY_PERIOD_UNIT,
   UpdateSchedule.JSON_PROPERTY_START_DATE_TIME,
-  UpdateSchedule.JSON_PROPERTY_MERCHANT_META_DATA
+  UpdateSchedule.JSON_PROPERTY_MERCHANT_META_DATA,
+  UpdateSchedule.JSON_PROPERTY_CALLBACK_URL
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UpdateSchedule {
@@ -63,6 +64,9 @@ public class UpdateSchedule {
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
+
+  public static final String JSON_PROPERTY_CALLBACK_URL = "callbackUrl";
+  private String callbackUrl;
 
   public UpdateSchedule() { 
   }
@@ -250,6 +254,32 @@ public class UpdateSchedule {
   }
 
 
+  public UpdateSchedule callbackUrl(String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+   /**
+   * Get callbackUrl
+   * @return callbackUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CALLBACK_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCallbackUrl() {
+    return callbackUrl;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CALLBACK_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallbackUrl(String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+  }
+
+
   /**
    * Return true if this UpdateSchedule object is equal to o.
    */
@@ -268,12 +298,13 @@ public class UpdateSchedule {
         Objects.equals(this.periodLength, updateSchedule.periodLength) &&
         Objects.equals(this.periodUnit, updateSchedule.periodUnit) &&
         Objects.equals(this.startDateTime, updateSchedule.startDateTime) &&
-        Objects.equals(this.merchantMetaData, updateSchedule.merchantMetaData);
+        Objects.equals(this.merchantMetaData, updateSchedule.merchantMetaData) &&
+        Objects.equals(this.callbackUrl, updateSchedule.callbackUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(registrationUuid, amount, currency, periodLength, periodUnit, startDateTime, merchantMetaData);
+    return Objects.hash(registrationUuid, amount, currency, periodLength, periodUnit, startDateTime, merchantMetaData, callbackUrl);
   }
 
   @Override
@@ -287,6 +318,7 @@ public class UpdateSchedule {
     sb.append("    periodUnit: ").append(toIndentedString(periodUnit)).append("\n");
     sb.append("    startDateTime: ").append(toIndentedString(startDateTime)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
+    sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

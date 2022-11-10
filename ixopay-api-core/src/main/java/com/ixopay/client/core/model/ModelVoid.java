@@ -36,9 +36,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ModelVoid.JSON_PROPERTY_MERCHANT_TRANSACTION_ID,
   ModelVoid.JSON_PROPERTY_ADDITIONAL_ID1,
   ModelVoid.JSON_PROPERTY_ADDITIONAL_ID2,
+  ModelVoid.JSON_PROPERTY_AMOUNT,
+  ModelVoid.JSON_PROPERTY_CURRENCY,
   ModelVoid.JSON_PROPERTY_EXTRA_DATA,
+  ModelVoid.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   ModelVoid.JSON_PROPERTY_MERCHANT_META_DATA,
-  ModelVoid.JSON_PROPERTY_REFERENCE_UUID
+  ModelVoid.JSON_PROPERTY_REFERENCE_UUID,
+  ModelVoid.JSON_PROPERTY_DESCRIPTION
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ModelVoid {
@@ -51,14 +55,26 @@ public class ModelVoid {
   public static final String JSON_PROPERTY_ADDITIONAL_ID2 = "additionalId2";
   private String additionalId2;
 
+  public static final String JSON_PROPERTY_AMOUNT = "amount";
+  private String amount;
+
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  private String currency;
+
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
 
   public static final String JSON_PROPERTY_REFERENCE_UUID = "referenceUuid";
   private String referenceUuid;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
 
   public ModelVoid() { 
   }
@@ -141,6 +157,58 @@ public class ModelVoid {
   }
 
 
+  public ModelVoid amount(String amount) {
+    this.amount = amount;
+    return this;
+  }
+
+   /**
+   * Get amount
+   * @return amount
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getAmount() {
+    return amount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAmount(String amount) {
+    this.amount = amount;
+  }
+
+
+  public ModelVoid currency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * Get currency
+   * @return currency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
   public ModelVoid extraData(Map<String, String> extraData) {
     this.extraData = extraData;
     return this;
@@ -172,6 +240,40 @@ public class ModelVoid {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExtraData(Map<String, String> extraData) {
     this.extraData = extraData;
+  }
+
+
+  public ModelVoid pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public ModelVoid putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
   }
 
 
@@ -227,6 +329,32 @@ public class ModelVoid {
   }
 
 
+  public ModelVoid description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
   /**
    * Return true if this Void object is equal to o.
    */
@@ -242,14 +370,18 @@ public class ModelVoid {
     return Objects.equals(this.merchantTransactionId, _void.merchantTransactionId) &&
         Objects.equals(this.additionalId1, _void.additionalId1) &&
         Objects.equals(this.additionalId2, _void.additionalId2) &&
+        Objects.equals(this.amount, _void.amount) &&
+        Objects.equals(this.currency, _void.currency) &&
         Objects.equals(this.extraData, _void.extraData) &&
+        Objects.equals(this.pspPassthroughData, _void.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, _void.merchantMetaData) &&
-        Objects.equals(this.referenceUuid, _void.referenceUuid);
+        Objects.equals(this.referenceUuid, _void.referenceUuid) &&
+        Objects.equals(this.description, _void.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, referenceUuid);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, amount, currency, extraData, pspPassthroughData, merchantMetaData, referenceUuid, description);
   }
 
   @Override
@@ -259,9 +391,13 @@ public class ModelVoid {
     sb.append("    merchantTransactionId: ").append(toIndentedString(merchantTransactionId)).append("\n");
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    referenceUuid: ").append(toIndentedString(referenceUuid)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

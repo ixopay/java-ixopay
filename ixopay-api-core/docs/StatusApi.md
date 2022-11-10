@@ -13,7 +13,7 @@ All URIs are relative to *https://gateway.ixopay.com/api/v3*
 
 ## transactionStatusByMerchantTransactionId
 
-> StatusResponse transactionStatusByMerchantTransactionId(apiKey, merchantTransactionId)
+> MaybeStatusResponse transactionStatusByMerchantTransactionId(apiKey, merchantTransactionId)
 
 Retrieve status of a transaction
 
@@ -43,7 +43,7 @@ public class Example {
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String merchantTransactionId = "merchantTransactionId_example"; // String | ID of merchant transaction
         try {
-            StatusResponse result = apiInstance.transactionStatusByMerchantTransactionId(apiKey, merchantTransactionId);
+            MaybeStatusResponse result = apiInstance.transactionStatusByMerchantTransactionId(apiKey, merchantTransactionId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StatusApi#transactionStatusByMerchantTransactionId");
@@ -66,7 +66,7 @@ public class Example {
 
 ### Return type
 
-[**StatusResponse**](StatusResponse.md)
+[**MaybeStatusResponse**](MaybeStatusResponse.md)
 
 
 ### Authorization
@@ -85,7 +85,7 @@ public class Example {
 
 ## transactionStatusByMerchantTransactionIdWithHttpInfo
 
-> ApiResponse<StatusResponse> transactionStatusByMerchantTransactionId transactionStatusByMerchantTransactionIdWithHttpInfo(apiKey, merchantTransactionId)
+> ApiResponse<MaybeStatusResponse> transactionStatusByMerchantTransactionId transactionStatusByMerchantTransactionIdWithHttpInfo(apiKey, merchantTransactionId)
 
 Retrieve status of a transaction
 
@@ -116,7 +116,7 @@ public class Example {
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String merchantTransactionId = "merchantTransactionId_example"; // String | ID of merchant transaction
         try {
-            ApiResponse<StatusResponse> response = apiInstance.transactionStatusByMerchantTransactionIdWithHttpInfo(apiKey, merchantTransactionId);
+            ApiResponse<MaybeStatusResponse> response = apiInstance.transactionStatusByMerchantTransactionIdWithHttpInfo(apiKey, merchantTransactionId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -141,7 +141,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**StatusResponse**](StatusResponse.md)>
+ApiResponse<[**MaybeStatusResponse**](MaybeStatusResponse.md)>
 
 
 ### Authorization
@@ -161,7 +161,7 @@ ApiResponse<[**StatusResponse**](StatusResponse.md)>
 
 ## transactionStatusByUuid
 
-> StatusResponse transactionStatusByUuid(apiKey, uuid)
+> MaybeStatusResponse transactionStatusByUuid(apiKey, uuid)
 
 Retrieve status of a transaction
 
@@ -191,7 +191,7 @@ public class Example {
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String uuid = "uuid_example"; // String | UUID of transaction
         try {
-            StatusResponse result = apiInstance.transactionStatusByUuid(apiKey, uuid);
+            MaybeStatusResponse result = apiInstance.transactionStatusByUuid(apiKey, uuid);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StatusApi#transactionStatusByUuid");
@@ -214,7 +214,7 @@ public class Example {
 
 ### Return type
 
-[**StatusResponse**](StatusResponse.md)
+[**MaybeStatusResponse**](MaybeStatusResponse.md)
 
 
 ### Authorization
@@ -233,7 +233,7 @@ public class Example {
 
 ## transactionStatusByUuidWithHttpInfo
 
-> ApiResponse<StatusResponse> transactionStatusByUuid transactionStatusByUuidWithHttpInfo(apiKey, uuid)
+> ApiResponse<MaybeStatusResponse> transactionStatusByUuid transactionStatusByUuidWithHttpInfo(apiKey, uuid)
 
 Retrieve status of a transaction
 
@@ -264,7 +264,7 @@ public class Example {
         String apiKey = "apiKey_example"; // String | API Key of Connector
         String uuid = "uuid_example"; // String | UUID of transaction
         try {
-            ApiResponse<StatusResponse> response = apiInstance.transactionStatusByUuidWithHttpInfo(apiKey, uuid);
+            ApiResponse<MaybeStatusResponse> response = apiInstance.transactionStatusByUuidWithHttpInfo(apiKey, uuid);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -289,7 +289,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**StatusResponse**](StatusResponse.md)>
+ApiResponse<[**MaybeStatusResponse**](MaybeStatusResponse.md)>
 
 
 ### Authorization

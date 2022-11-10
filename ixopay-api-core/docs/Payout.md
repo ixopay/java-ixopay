@@ -11,6 +11,7 @@
 |**additionalId1** | **String** |  |  [optional] |
 |**additionalId2** | **String** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**pspPassthroughData** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
 |**referenceUuid** | **String** |  |  [optional] |
 |**amount** | **String** |  |  |
@@ -24,7 +25,23 @@
 |**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
 |**splits** | [**List&lt;Split&gt;**](Split.md) |  |  [optional] |
 |**customer** | [**Customer**](Customer.md) |  |  [optional] |
+|**payByLink** | [**PayByLink**](PayByLink.md) |  |  [optional] |
 |**language** | **String** |  |  [optional] |
+|**transactionIndicator** | [**TransactionIndicatorEnum**](#TransactionIndicatorEnum) |  |  [optional] |
+|**l2l3Data** | [**L2L3Data**](L2L3Data.md) |  |  [optional] |
+
+
+
+## Enum: TransactionIndicatorEnum
+
+| Name | Value |
+|---- | -----|
+| SINGLE | &quot;SINGLE&quot; |
+| INITIAL | &quot;INITIAL&quot; |
+| RECURRING | &quot;RECURRING&quot; |
+| CARDONFILE | &quot;CARDONFILE&quot; |
+| CARDONFILE_MERCHANT_INITIATED | &quot;CARDONFILE-MERCHANT-INITIATED&quot; |
+| MOTO | &quot;MOTO&quot; |
 
 
 

@@ -213,6 +213,36 @@ paths:
       - prepare-transaction
       x-content-type: application/json
       x-accepts: application/json
+  /transaction/{apiKey}/continue-dcc:
+    post:
+      operationId: processContinueDcc
+      parameters:
+      - description: API Key of Connector
+        explode: false
+        in: path
+        name: apiKey
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContinueDcc'
+        description: Data which is required to continue a pending DCC transaction.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaybeTransactionResponse'
+          description: Transaction response
+      summary: Continue a DCC transaction
+      tags:
+      - continue-dcc
+      x-content-type: application/json
+      x-accepts: application/json
   /transaction/{apiKey}/preauthorize:
     post:
       operationId: processPreauthorize
@@ -1212,7 +1242,7 @@ paths:
                     errorMessage: Transaction not found
                     errorCode: 8001
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: '#/components/schemas/MaybeStatusResponse'
           description: Status response
       summary: Retrieve status of a transaction
       tags:
@@ -1281,7 +1311,7 @@ paths:
                     errorMessage: Transaction not found
                     errorCode: 8001
               schema:
-                $ref: '#/components/schemas/StatusResponse'
+                $ref: '#/components/schemas/MaybeStatusResponse'
           description: Status response
       summary: Retrieve status of a transaction
       tags:
@@ -1371,6 +1401,7 @@ components:
           startDateTime: null
           currency: currency
           periodLength: 0
+          callbackUrl: callbackUrl
           periodUnit: null
           merchantMetaData: merchantMetaData
         cancelUrl: https://openapi-generator.tech
@@ -1451,22 +1482,36 @@ components:
           browserScreenWidth: 1.2315135367772556
           suspiciousAccountActivityIndicator: "01"
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
         customer:
           lastName: lastName
@@ -1531,19 +1576,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
@@ -1561,6 +1606,7 @@ components:
           - SINGLE
           - INITIAL
           - RECURRING
+          - FIRST-CARDONFILE
           - CARDONFILE
           - CARDONFILE-MERCHANT-INITIATED
           type: string
@@ -1594,48 +1640,34 @@ components:
     Debit:
       additionalProperties: false
       example:
-        additionalId1: additionalId1
+        requestDcc: true
         transactionToken: transactionToken
-        amount: amount
         splits:
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         extraData:
           key: extraData
-        withRegister: true
-        customerProfileData:
-          profileGuid: profileGuid
-          customerIdentification: customerIdentification
-          markAsPreferred: true
-        successUrl: https://openapi-generator.tech
         description: description
         language: language
         referenceUuid: referenceUuid
         transactionIndicator: SINGLE
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
-        errorUrl: https://openapi-generator.tech
-        schedule:
-          amount: amount
-          startDateTime: null
-          currency: currency
-          periodLength: 0
-          periodUnit: null
-          merchantMetaData: merchantMetaData
-        cancelUrl: https://openapi-generator.tech
         merchantTransactionId: merchantTransactionId
         currency: currency
         callbackUrl: https://openapi-generator.tech
@@ -1712,23 +1744,69 @@ components:
           shippingAddressUsageIndicator: "01"
           browserScreenWidth: 1.2315135367772556
           suspiciousAccountActivityIndicator: "01"
+        additionalId1: additionalId1
+        amount: amount
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        l2l3Data:
+          taxAmount: taxAmount
+        successUrl: https://openapi-generator.tech
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          callbackUrl: callbackUrl
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        payByLink:
+          sendByEmail: true
+          expirationInMinute: 1
+        dccData:
+          convertedAmount: convertedAmount
+          originalAmount: originalAmount
+          markUp: 5.637376656633329
+          selectedCurrency: selectedCurrency
+          remoteIdentifier: remoteIdentifier
+          originalCurrency: originalCurrency
+          conversionRate: 5.962133916683182
+          convertedCurrency: convertedCurrency
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
         customer:
           lastName: lastName
@@ -1778,6 +1856,10 @@ components:
           additionalProperties:
             type: string
           type: object
+        pspPassthroughData:
+          additionalProperties:
+            type: string
+          type: object
         merchantMetaData:
           maxLength: 255
           type: string
@@ -1793,19 +1875,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
@@ -1827,6 +1909,7 @@ components:
           - SINGLE
           - INITIAL
           - RECURRING
+          - FIRST-CARDONFILE
           - CARDONFILE
           - CARDONFILE-MERCHANT-INITIATED
           - MOTO
@@ -1839,10 +1922,18 @@ components:
           $ref: '#/components/schemas/CustomerProfileData'
         threeDSecureData:
           $ref: '#/components/schemas/ThreeDSecureData'
+        payByLink:
+          $ref: '#/components/schemas/PayByLink'
         language:
           maxLength: 2
           minLength: 2
           type: string
+        requestDcc:
+          type: boolean
+        dccData:
+          $ref: '#/components/schemas/DccData'
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -1873,6 +1964,7 @@ components:
           startDateTime: null
           currency: currency
           periodLength: 0
+          callbackUrl: callbackUrl
           periodUnit: null
           merchantMetaData: merchantMetaData
         cancelUrl: https://openapi-generator.tech
@@ -1953,22 +2045,36 @@ components:
           browserScreenWidth: 1.2315135367772556
           suspiciousAccountActivityIndicator: "01"
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
         customer:
           lastName: lastName
@@ -2033,19 +2139,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 255
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
@@ -2063,6 +2169,7 @@ components:
           - SINGLE
           - INITIAL
           - RECURRING
+          - FIRST-CARDONFILE
           - CARDONFILE
           - CARDONFILE-MERCHANT-INITIATED
           type: string
@@ -2096,48 +2203,34 @@ components:
     Preauthorize:
       additionalProperties: false
       example:
-        additionalId1: additionalId1
+        requestDcc: true
         transactionToken: transactionToken
-        amount: amount
         splits:
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         extraData:
           key: extraData
-        withRegister: true
-        customerProfileData:
-          profileGuid: profileGuid
-          customerIdentification: customerIdentification
-          markAsPreferred: true
-        successUrl: https://openapi-generator.tech
         description: description
         language: language
         referenceUuid: referenceUuid
         transactionIndicator: SINGLE
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
-        errorUrl: https://openapi-generator.tech
-        schedule:
-          amount: amount
-          startDateTime: null
-          currency: currency
-          periodLength: 0
-          periodUnit: null
-          merchantMetaData: merchantMetaData
-        cancelUrl: https://openapi-generator.tech
         merchantTransactionId: merchantTransactionId
         currency: currency
         callbackUrl: https://openapi-generator.tech
@@ -2214,23 +2307,69 @@ components:
           shippingAddressUsageIndicator: "01"
           browserScreenWidth: 1.2315135367772556
           suspiciousAccountActivityIndicator: "01"
+        additionalId1: additionalId1
+        amount: amount
+        withRegister: true
+        customerProfileData:
+          profileGuid: profileGuid
+          customerIdentification: customerIdentification
+          markAsPreferred: true
+        l2l3Data:
+          taxAmount: taxAmount
+        successUrl: https://openapi-generator.tech
+        errorUrl: https://openapi-generator.tech
+        schedule:
+          amount: amount
+          startDateTime: null
+          currency: currency
+          periodLength: 0
+          callbackUrl: callbackUrl
+          periodUnit: null
+          merchantMetaData: merchantMetaData
+        cancelUrl: https://openapi-generator.tech
+        payByLink:
+          sendByEmail: true
+          expirationInMinute: 1
+        dccData:
+          convertedAmount: convertedAmount
+          originalAmount: originalAmount
+          markUp: 5.637376656633329
+          selectedCurrency: selectedCurrency
+          remoteIdentifier: remoteIdentifier
+          originalCurrency: originalCurrency
+          conversionRate: 5.962133916683182
+          convertedCurrency: convertedCurrency
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
         customer:
           lastName: lastName
@@ -2280,6 +2419,10 @@ components:
           additionalProperties:
             type: string
           type: object
+        pspPassthroughData:
+          additionalProperties:
+            type: string
+          type: object
         merchantMetaData:
           maxLength: 255
           type: string
@@ -2295,19 +2438,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
@@ -2329,6 +2472,7 @@ components:
           - SINGLE
           - INITIAL
           - RECURRING
+          - FIRST-CARDONFILE
           - CARDONFILE
           - CARDONFILE-MERCHANT-INITIATED
           - MOTO
@@ -2341,10 +2485,18 @@ components:
           $ref: '#/components/schemas/CustomerProfileData'
         threeDSecureData:
           $ref: '#/components/schemas/ThreeDSecureData'
+        payByLink:
+          $ref: '#/components/schemas/PayByLink'
         language:
           maxLength: 2
           minLength: 2
           type: string
+        requestDcc:
+          type: boolean
+        dccData:
+          $ref: '#/components/schemas/DccData'
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -2357,6 +2509,8 @@ components:
         amount: amount
         extraData:
           key: extraData
+        l2l3Data:
+          taxAmount: taxAmount
         successUrl: https://openapi-generator.tech
         description: description
         language: language
@@ -2369,22 +2523,36 @@ components:
         currency: currency
         callbackUrl: https://openapi-generator.tech
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
       properties:
         merchantTransactionId:
@@ -2418,19 +2586,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         description:
           maxLength: 255
@@ -2444,6 +2612,7 @@ components:
           - SINGLE
           - INITIAL
           - RECURRING
+          - FIRST-CARDONFILE
           - CARDONFILE
           - CARDONFILE-MERCHANT-INITIATED
           - MOTO
@@ -2452,6 +2621,8 @@ components:
           maxLength: 2
           minLength: 2
           type: string
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -2463,47 +2634,67 @@ components:
       example:
         additionalId1: additionalId1
         amount: amount
+        isFinalCapture: true
         splits:
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         extraData:
           key: extraData
+        l2l3Data:
+          taxAmount: taxAmount
+        description: description
+        referenceUuid: referenceUuid
+        pspPassthroughData:
+          key: pspPassthroughData
+        merchantMetaData: merchantMetaData
         merchantTransactionId: merchantTransactionId
         currency: currency
-        referenceUuid: referenceUuid
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
-        merchantMetaData: merchantMetaData
       properties:
         merchantTransactionId:
           maxLength: 50
@@ -2521,6 +2712,10 @@ components:
           additionalProperties:
             type: string
           type: object
+        pspPassthroughData:
+          additionalProperties:
+            type: string
+          type: object
         merchantMetaData:
           maxLength: 255
           type: string
@@ -2534,6 +2729,9 @@ components:
         currency:
           pattern: "^[A-Z]{3}$"
           type: string
+        description:
+          maxLength: 255
+          type: string
         items:
           items:
             $ref: '#/components/schemas/Items_inner'
@@ -2542,6 +2740,10 @@ components:
           items:
             $ref: '#/components/schemas/Split'
           type: array
+        isFinalCapture:
+          type: boolean
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -2563,7 +2765,17 @@ components:
           maxLength: 50
           minLength: 1
           type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
         extraData:
+          additionalProperties:
+            type: string
+          type: object
+        pspPassthroughData:
           additionalProperties:
             type: string
           type: object
@@ -2573,6 +2785,9 @@ components:
         referenceUuid:
           maxLength: 50
           minLength: 1
+          type: string
+        description:
+          maxLength: 255
           type: string
       required:
       - merchantTransactionId
@@ -2589,9 +2804,14 @@ components:
           profileGuid: profileGuid
           customerIdentification: customerIdentification
           markAsPreferred: true
+        l2l3Data:
+          taxAmount: taxAmount
         successUrl: https://openapi-generator.tech
         description: description
         language: language
+        transactionIndicator: SINGLE
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
         errorUrl: https://openapi-generator.tech
         schedule:
@@ -2599,10 +2819,14 @@ components:
           startDateTime: null
           currency: currency
           periodLength: 0
+          callbackUrl: callbackUrl
           periodUnit: null
           merchantMetaData: merchantMetaData
         cancelUrl: https://openapi-generator.tech
         merchantTransactionId: merchantTransactionId
+        payByLink:
+          sendByEmail: true
+          expirationInMinute: 1
         callbackUrl: https://openapi-generator.tech
         threeDSecureData:
           homePhoneNumber: homePhoneNumber
@@ -2726,29 +2950,43 @@ components:
           additionalProperties:
             type: string
           type: object
+        pspPassthroughData:
+          additionalProperties:
+            type: string
+          type: object
         merchantMetaData:
           maxLength: 255
           type: string
         successUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
         description:
           maxLength: 255
+          type: string
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - FIRST-CARDONFILE
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          - MOTO
           type: string
         customer:
           $ref: '#/components/schemas/Customer'
@@ -2758,10 +2996,14 @@ components:
           $ref: '#/components/schemas/CustomerProfileData'
         threeDSecureData:
           $ref: '#/components/schemas/ThreeDSecureData'
+        payByLink:
+          $ref: '#/components/schemas/PayByLink'
         language:
           maxLength: 2
           minLength: 2
           type: string
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - merchantTransactionId
       type: object
@@ -2774,6 +3016,8 @@ components:
         merchantTransactionId: merchantTransactionId
         referenceUuid: referenceUuid
         additionalId2: additionalId2
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
       properties:
         merchantTransactionId:
@@ -2789,6 +3033,10 @@ components:
           minLength: 1
           type: string
         extraData:
+          additionalProperties:
+            type: string
+          type: object
+        pspPassthroughData:
           additionalProperties:
             type: string
           type: object
@@ -2812,45 +3060,63 @@ components:
         splits:
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         extraData:
           key: extraData
+        l2l3Data:
+          taxAmount: taxAmount
         description: description
         referenceUuid: referenceUuid
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
         merchantTransactionId: merchantTransactionId
         currency: currency
         callbackUrl: callbackUrl
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
       properties:
         merchantTransactionId:
@@ -2866,6 +3132,10 @@ components:
           minLength: 1
           type: string
         extraData:
+          additionalProperties:
+            type: string
+          type: object
+        pspPassthroughData:
           additionalProperties:
             type: string
           type: object
@@ -2898,6 +3168,8 @@ components:
           items:
             $ref: '#/components/schemas/Split'
           type: array
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -2913,49 +3185,71 @@ components:
         splits:
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         - amount: 0.8008281904610115
           identification: identification
+          commissionFee:
+            amount: 6.027456183070403
+            currency: currency
           sellerMerchantGuid: sellerMerchantGuid
           sellerMerchantExternalId: sellerMerchantExternalId
           currency: currency
-          commisionFee:
-            amount: 6.027456183070403
-            currency: currency
         extraData:
           key: extraData
+        l2l3Data:
+          taxAmount: taxAmount
         successUrl: https://openapi-generator.tech
         description: description
         language: language
         referenceUuid: referenceUuid
+        transactionIndicator: SINGLE
+        pspPassthroughData:
+          key: pspPassthroughData
         merchantMetaData: merchantMetaData
         errorUrl: https://openapi-generator.tech
         cancelUrl: https://openapi-generator.tech
         merchantTransactionId: merchantTransactionId
+        payByLink:
+          sendByEmail: true
+          expirationInMinute: 1
         currency: currency
         callbackUrl: https://openapi-generator.tech
         items:
-        - identification: identification
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
-        - identification: identification
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
+        - unitPrice: unitPrice
           quantity: 0.8008281904610115
           extraData:
             key: extraData
+          description: description
+          discount: discount
+          taxRate: taxRate
+          unit: unit
+          identification: identification
           price: 6.027456183070403
           name: name
-          description: description
+          commodityCode: commodityCode
           currency: currency
+          shippingAmount: shippingAmount
+          taxAmount: taxAmount
         additionalId2: additionalId2
         customer:
           lastName: lastName
@@ -3005,6 +3299,10 @@ components:
           additionalProperties:
             type: string
           type: object
+        pspPassthroughData:
+          additionalProperties:
+            type: string
+          type: object
         merchantMetaData:
           maxLength: 255
           type: string
@@ -3020,19 +3318,19 @@ components:
           type: string
         successUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         cancelUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         errorUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         callbackUrl:
           format: uri
-          maxLength: 512
+          maxLength: 65535
           type: string
         transactionToken:
           type: string
@@ -3049,10 +3347,23 @@ components:
           type: array
         customer:
           $ref: '#/components/schemas/Customer'
+        payByLink:
+          $ref: '#/components/schemas/PayByLink'
         language:
           maxLength: 2
           minLength: 2
           type: string
+        transactionIndicator:
+          enum:
+          - SINGLE
+          - INITIAL
+          - RECURRING
+          - CARDONFILE
+          - CARDONFILE-MERCHANT-INITIATED
+          - MOTO
+          type: string
+        l2l3Data:
+          $ref: '#/components/schemas/L2L3Data'
       required:
       - amount
       - currency
@@ -3066,6 +3377,7 @@ components:
         startDateTime: null
         currency: currency
         periodLength: 0
+        callbackUrl: callbackUrl
         periodUnit: null
         merchantMetaData: merchantMetaData
       properties:
@@ -3085,6 +3397,8 @@ components:
         startDateTime:
           $ref: '#/components/schemas/DateTimeZone'
         merchantMetaData:
+          type: string
+        callbackUrl:
           type: string
       required:
       - registrationUuid
@@ -3097,6 +3411,7 @@ components:
         startDateTime: null
         currency: currency
         periodLength: 0
+        callbackUrl: callbackUrl
         periodUnit: null
         merchantMetaData: merchantMetaData
       properties:
@@ -3116,6 +3431,8 @@ components:
         startDateTime:
           $ref: '#/components/schemas/DateTimeZone'
         merchantMetaData:
+          type: string
+        callbackUrl:
           type: string
       type: object
     PauseSchedule:
@@ -3155,7 +3472,7 @@ components:
       type: string
     DateTimeZone:
       format: date-time
-      pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))\\T(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])\\\
+      pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))T(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])\\\
         +[0-9]{2}\\:[0-9]{2}$"
       type: string
     DateTime:
@@ -3166,7 +3483,18 @@ components:
       format: date
       pattern: "^[0-9]{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1]))$"
       type: string
+    L2L3Data:
+      example:
+        taxAmount: taxAmount
+      properties:
+        taxAmount:
+          type: string
+      type: object
     ExtraData:
+      additionalProperties:
+        type: string
+      type: object
+    PspPassthroughData:
       additionalProperties:
         type: string
       type: object
@@ -3565,13 +3893,6 @@ components:
       type: object
     ChargebackData:
       additionalProperties: false
-      example:
-        reason: reason
-        amount: amount
-        chargebackDateTime: null
-        originalUuid: originalUuid
-        originalMerchantTransactionId: originalMerchantTransactionId
-        currency: currency
       properties:
         originalUuid:
           type: string
@@ -3592,14 +3913,6 @@ components:
       type: object
     ChargebackReversalData:
       additionalProperties: false
-      example:
-        reason: reason
-        amount: amount
-        originalUuid: originalUuid
-        originalMerchantTransactionId: originalMerchantTransactionId
-        chargebackUuid: chargebackUuid
-        currency: currency
-        reversalDateTime: null
       properties:
         originalUuid:
           type: string
@@ -3627,6 +3940,7 @@ components:
         startDateTime: null
         currency: currency
         periodLength: 0
+        callbackUrl: callbackUrl
         periodUnit: null
         merchantMetaData: merchantMetaData
       properties:
@@ -3645,6 +3959,8 @@ components:
           $ref: '#/components/schemas/DateTimeZone'
         merchantMetaData:
           type: string
+        callbackUrl:
+          type: string
       required:
       - amount
       - currency
@@ -3653,11 +3969,6 @@ components:
       type: object
     ScheduleData:
       additionalProperties: false
-      example:
-        scheduleStatus: null
-        scheduleId: scheduleId
-        scheduledAt: null
-        scheduleMerchantMetaData: scheduleMerchantMetaData
       properties:
         scheduleId:
           type: string
@@ -3665,7 +3976,19 @@ components:
           $ref: '#/components/schemas/ScheduleStatus'
         scheduledAt:
           $ref: '#/components/schemas/DateTimeZone'
-        scheduleMerchantMetaData:
+        merchantMetaData:
+          type: string
+      type: object
+    ContinueDcc:
+      additionalProperties: false
+      example:
+        continueDccUuid: continueDccUuid
+        selectedDccCurrency: selectedDccCurrency
+      properties:
+        continueDccUuid:
+          type: string
+        selectedDccCurrency:
+          pattern: "^[A-Z]{3}$"
           type: string
       type: object
     ScheduleStatus:
@@ -3814,6 +4137,38 @@ components:
         markAsPreferred:
           type: boolean
       type: object
+    DccData:
+      example:
+        convertedAmount: convertedAmount
+        originalAmount: originalAmount
+        markUp: 5.637376656633329
+        selectedCurrency: selectedCurrency
+        remoteIdentifier: remoteIdentifier
+        originalCurrency: originalCurrency
+        conversionRate: 5.962133916683182
+        convertedCurrency: convertedCurrency
+      properties:
+        remoteIdentifier:
+          type: string
+        originalAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        originalCurrency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        convertedAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        convertedCurrency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        conversionRate:
+          type: number
+        selectedCurrency:
+          type: string
+        markUp:
+          type: number
+      type: object
     TransactionResponse:
       allOf:
       - $ref: '#/components/schemas/MaybeTransactionResponse'
@@ -3823,138 +4178,9 @@ components:
       - $ref: '#/components/schemas/MaybeScheduleResponse'
       - $ref: '#/components/schemas/ScheduleResponse_allOf'
     StatusResponse:
-      additionalProperties: false
-      example:
-        amount: amount
-        transactionStatus: null
-        extraData:
-          key: extraData
-        customerProfileData:
-          profileGuid: profileGuid
-          customerIdentification: customerIdentification
-          markAsPreferred: true
-        purchaseId: purchaseId
-        uuid: uuid
-        merchantMetaData: merchantMetaData
-        transactionType: null
-        chargebackData:
-          reason: reason
-          amount: amount
-          chargebackDateTime: null
-          originalUuid: originalUuid
-          originalMerchantTransactionId: originalMerchantTransactionId
-          currency: currency
-        success: true
-        returnData:
-          _TYPE: ""
-        schedules:
-        - scheduleStatus: null
-          scheduleId: scheduleId
-          scheduledAt: null
-          scheduleMerchantMetaData: scheduleMerchantMetaData
-        - scheduleStatus: null
-          scheduleId: scheduleId
-          scheduledAt: null
-          scheduleMerchantMetaData: scheduleMerchantMetaData
-        merchantTransactionId: merchantTransactionId
-        paymentMethod: paymentMethod
-        currency: currency
-        errors:
-        - adapterCode: adapterCode
-          code: 0
-          message: message
-          adapterMessage: adapterMessage
-        - adapterCode: adapterCode
-          code: 0
-          message: message
-          adapterMessage: adapterMessage
-        chargebackReversalData:
-          reason: reason
-          amount: amount
-          originalUuid: originalUuid
-          originalMerchantTransactionId: originalMerchantTransactionId
-          chargebackUuid: chargebackUuid
-          currency: currency
-          reversalDateTime: null
-        customer:
-          lastName: lastName
-          shippingCompany: shippingCompany
-          shippingCity: shippingCity
-          gender: M
-          extraData:
-            key: extraData
-          shippingPostcode: shippingPostcode
-          shippingAddress2: shippingAddress2
-          shippingAddress1: shippingAddress1
-          billingAddress2: billingAddress2
-          billingAddress1: billingAddress1
-          identification: identification
-          shippingCountry: shippingCountry
-          billingCountry: billingCountry
-          company: company
-          email: email
-          shippingLastName: shippingLastName
-          ipAddress: ipAddress
-          shippingPhone: shippingPhone
-          billingState: billingState
-          birthDate: null
-          firstName: firstName
-          emailVerified: true
-          nationalId: nationalId
-          shippingFirstName: shippingFirstName
-          paymentData: null
-          shippingState: shippingState
-          billingPostcode: billingPostcode
-          billingCity: billingCity
-          billingPhone: billingPhone
-      properties:
-        success:
-          type: boolean
-        transactionStatus:
-          $ref: '#/components/schemas/TransactionStatus'
-        uuid:
-          type: string
-        merchantTransactionId:
-          maxLength: 50
-          minLength: 1
-          type: string
-        purchaseId:
-          type: string
-        transactionType:
-          $ref: '#/components/schemas/TransactionType'
-        paymentMethod:
-          type: string
-        amount:
-          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
-          type: string
-        currency:
-          pattern: "^[A-Z]{3}$"
-          type: string
-        schedules:
-          items:
-            $ref: '#/components/schemas/ScheduleData'
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/TransactionError'
-          type: array
-        chargebackData:
-          $ref: '#/components/schemas/ChargebackData'
-        chargebackReversalData:
-          $ref: '#/components/schemas/ChargebackReversalData'
-        extraData:
-          additionalProperties:
-            type: string
-          type: object
-        merchantMetaData:
-          type: string
-        returnData:
-          $ref: '#/components/schemas/ReturnData'
-        customer:
-          $ref: '#/components/schemas/Customer'
-        customerProfileData:
-          $ref: '#/components/schemas/CustomerProfileData'
-      type: object
+      allOf:
+      - $ref: '#/components/schemas/MaybeStatusResponse'
+      - $ref: '#/components/schemas/StatusResponse_allOf'
     OptionsResponse:
       additionalProperties: false
       example:
@@ -3975,6 +4201,13 @@ components:
         error:
           type: string
       type: object
+    PayByLinkData:
+      properties:
+        payByLink:
+          type: boolean
+        sendViaEmail:
+          type: boolean
+      type: object
     ReturnData:
       discriminator:
         mapping:
@@ -3983,8 +4216,6 @@ components:
           ibanData: '#/components/schemas/ibanData'
           walletData: '#/components/schemas/walletData'
         propertyName: _TYPE
-      example:
-        _TYPE: ""
       properties:
         _TYPE:
           allOf:
@@ -3999,11 +4230,6 @@ components:
       type: array
     TransactionError:
       additionalProperties: false
-      example:
-        adapterCode: adapterCode
-        code: 0
-        message: message
-        adapterMessage: adapterMessage
       properties:
         message:
           type: string
@@ -4068,6 +4294,12 @@ components:
         currency:
           pattern: "^[A-Z]{3}$"
           type: string
+        surchargeAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        totalAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
         scheduleData:
           $ref: '#/components/schemas/ScheduleData'
         customerProfileData:
@@ -4096,6 +4328,19 @@ components:
         customer:
           $ref: '#/components/schemas/Customer'
       type: object
+    PayByLink:
+      additionalProperties: false
+      example:
+        sendByEmail: true
+        expirationInMinute: 1
+      properties:
+        sendByEmail:
+          type: boolean
+        expirationInMinute:
+          format: int32
+          minimum: 1
+          type: integer
+      type: object
     ErrorType:
       additionalProperties: false
       properties:
@@ -4109,6 +4354,24 @@ components:
         adapterCode:
           type: string
       type: object
+    MaybeScheduleResponse:
+      discriminator:
+        mapping:
+          "false": '#/components/schemas/ScheduleErrorResponse'
+          "true": '#/components/schemas/ScheduleResponse'
+        propertyName: success
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+      type: object
+    ScheduleErrorResponse:
+      allOf:
+      - $ref: '#/components/schemas/MaybeScheduleResponse'
+      - $ref: '#/components/schemas/ErrorType'
     MaybeTransactionResponse:
       discriminator:
         mapping:
@@ -4142,6 +4405,13 @@ components:
         ibanData:
           $ref: '#/components/schemas/PaymentIbanData_ibanData'
       type: object
+    PeriodUnit:
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      type: string
     ReturnDataType:
       enum:
       - cardData
@@ -4174,12 +4444,12 @@ components:
       example:
         amount: 0.8008281904610115
         identification: identification
+        commissionFee:
+          amount: 6.027456183070403
+          currency: currency
         sellerMerchantGuid: sellerMerchantGuid
         sellerMerchantExternalId: sellerMerchantExternalId
         currency: currency
-        commisionFee:
-          amount: 6.027456183070403
-          currency: currency
       properties:
         identification:
           type: string
@@ -4192,27 +4462,14 @@ components:
           type: string
         sellerMerchantExternalId:
           type: string
-        commisionFee:
-          $ref: '#/components/schemas/Split_commisionFee'
+        commissionFee:
+          $ref: '#/components/schemas/Split_commissionFee'
       type: object
-    ThreeDSecureType:
-      enum:
-      - "OFF"
-      - OPTIONAL
-      - MANDATORY
-      type: string
-    PeriodUnit:
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YEAR
-      type: string
-    MaybeScheduleResponse:
+    MaybeStatusResponse:
       discriminator:
         mapping:
-          "false": '#/components/schemas/ScheduleErrorResponse'
-          "true": '#/components/schemas/ScheduleResponse'
+          "false": '#/components/schemas/StatusErrorResponse'
+          "true": '#/components/schemas/StatusResponse'
         propertyName: success
       example:
         success: true
@@ -4222,21 +4479,34 @@ components:
       required:
       - success
       type: object
-    ScheduleErrorResponse:
+    StatusErrorResponse:
       allOf:
-      - $ref: '#/components/schemas/MaybeScheduleResponse'
+      - $ref: '#/components/schemas/MaybeStatusResponse'
       - $ref: '#/components/schemas/ErrorType'
+    ThreeDSecureType:
+      enum:
+      - "OFF"
+      - OPTIONAL
+      - MANDATORY
+      type: string
     Items_inner:
       additionalProperties: false
       example:
-        identification: identification
+        unitPrice: unitPrice
         quantity: 0.8008281904610115
         extraData:
           key: extraData
+        description: description
+        discount: discount
+        taxRate: taxRate
+        unit: unit
+        identification: identification
         price: 6.027456183070403
         name: name
-        description: description
+        commodityCode: commodityCode
         currency: currency
+        shippingAmount: shippingAmount
+        taxAmount: taxAmount
       properties:
         identification:
           type: string
@@ -4250,6 +4520,25 @@ components:
           type: number
         currency:
           pattern: "^[A-Z]{3}$"
+          type: string
+        unit:
+          type: string
+        unitPrice:
+          pattern: "^(([0-9]{1,10})|([0-9]{1,10}\\.[0-9]{1,3}))$"
+          type: string
+        discount:
+          pattern: "^(([0-9]{1,10})|([0-9]{1,10}\\.[0-9]{1,3}))$"
+          type: string
+        shippingAmount:
+          pattern: "^(([0-9]{1,10})|([0-9]{1,10}\\.[0-9]{1,3}))$"
+          type: string
+        taxAmount:
+          pattern: "^(([0-9]{1,10})|([0-9]{1,10}\\.[0-9]{1,3}))$"
+          type: string
+        taxRate:
+          pattern: "^(([0-9]{1,10})|([0-9]{1,10}\\.[0-9]{1,3}))$"
+          type: string
+        commodityCode:
           type: string
         extraData:
           additionalProperties:
@@ -4270,6 +4559,28 @@ components:
           type: boolean
       type: object
       example: null
+    TransactionResponse_allOf_dccData:
+      properties:
+        uuid:
+          type: string
+        originalAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        originalCurrency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        convertedAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        convertedCurrency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        conversionRate:
+          type: number
+        disclaimer:
+          type: string
+      type: object
+      example: null
     TransactionResponse_allOf:
       properties:
         success:
@@ -4286,6 +4597,7 @@ components:
           - HTML
           - PENDING
           - ERROR
+          - PENDING_DCC
           type: string
         redirectType:
           enum:
@@ -4326,6 +4638,8 @@ components:
           additionalProperties:
             type: string
           type: object
+        dccData:
+          $ref: '#/components/schemas/TransactionResponse_allOf_dccData'
       required:
       - success
       type: object
@@ -4340,10 +4654,66 @@ components:
           $ref: '#/components/schemas/ScheduleStatus'
         scheduledAt:
           $ref: '#/components/schemas/DateTimeZone'
-        registrationUuid:
-          type: string
         merchantMetaData:
           type: string
+        registrationUuid:
+          type: string
+      type: object
+      example: null
+    StatusResponse_allOf:
+      properties:
+        transactionStatus:
+          $ref: '#/components/schemas/TransactionStatus'
+        uuid:
+          type: string
+        merchantTransactionId:
+          maxLength: 50
+          minLength: 1
+          type: string
+        purchaseId:
+          type: string
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        paymentMethod:
+          type: string
+        amount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        currency:
+          pattern: "^[A-Z]{3}$"
+          type: string
+        surchargeAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        totalAmount:
+          pattern: "^(([0-9]+)|([0-9]+\\.[0-9]{1,3}))$"
+          type: string
+        schedules:
+          items:
+            $ref: '#/components/schemas/ScheduleData'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/TransactionError'
+          type: array
+        chargebackData:
+          $ref: '#/components/schemas/ChargebackData'
+        chargebackReversalData:
+          $ref: '#/components/schemas/ChargebackReversalData'
+        extraData:
+          additionalProperties:
+            type: string
+          type: object
+        merchantMetaData:
+          type: string
+        returnData:
+          $ref: '#/components/schemas/ReturnData'
+        payByLinkData:
+          $ref: '#/components/schemas/PayByLinkData'
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customerProfileData:
+          $ref: '#/components/schemas/CustomerProfileData'
       type: object
       example: null
     OptionsResponse_options_inner:
@@ -4490,7 +4860,7 @@ components:
           type: string
       type: object
       example: null
-    Split_commisionFee:
+    Split_commissionFee:
       example:
         amount: 6.027456183070403
         currency: currency
@@ -4498,6 +4868,7 @@ components:
         amount:
           type: number
         currency:
+          pattern: "^[A-Z]{3}$"
           type: string
       type: object
   securitySchemes:

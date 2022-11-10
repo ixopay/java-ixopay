@@ -192,5 +192,8 @@ gradle-app.setting
 # front of the first "!" for patterns that begin with a literal "!",
 # for example, "\!important!.txt".
 
-# ignore directory build but not the generated xjc sources
+.env
+.env.*
+
+# ignore directory build
 build/

@@ -11,6 +11,7 @@
 |**additionalId1** | **String** |  |  [optional] |
 |**additionalId2** | **String** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**pspPassthroughData** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
 |**referenceUuid** | **String** |  |  |
 |**amount** | **String** |  |  |
@@ -20,6 +21,7 @@
 |**description** | **String** |  |  [optional] |
 |**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
 |**splits** | [**List&lt;Split&gt;**](Split.md) |  |  [optional] |
+|**l2l3Data** | [**L2L3Data**](L2L3Data.md) |  |  [optional] |
 
 
 

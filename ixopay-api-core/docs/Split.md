@@ -12,7 +12,7 @@
 |**currency** | **String** |  |  [optional] |
 |**sellerMerchantGuid** | **String** |  |  [optional] |
 |**sellerMerchantExternalId** | **String** |  |  [optional] |
-|**commisionFee** | [**SplitCommisionFee**](SplitCommisionFee.md) |  |  [optional] |
+|**commissionFee** | [**SplitCommissionFee**](SplitCommissionFee.md) |  |  [optional] |
 
 
 

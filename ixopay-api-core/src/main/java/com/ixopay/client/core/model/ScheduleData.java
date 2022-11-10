@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ScheduleData.JSON_PROPERTY_SCHEDULE_ID,
   ScheduleData.JSON_PROPERTY_SCHEDULE_STATUS,
   ScheduleData.JSON_PROPERTY_SCHEDULED_AT,
-  ScheduleData.JSON_PROPERTY_SCHEDULE_MERCHANT_META_DATA
+  ScheduleData.JSON_PROPERTY_MERCHANT_META_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ScheduleData {
@@ -49,8 +49,8 @@ public class ScheduleData {
   public static final String JSON_PROPERTY_SCHEDULED_AT = "scheduledAt";
   private OffsetDateTime scheduledAt;
 
-  public static final String JSON_PROPERTY_SCHEDULE_MERCHANT_META_DATA = "scheduleMerchantMetaData";
-  private String scheduleMerchantMetaData;
+  public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
+  private String merchantMetaData;
 
   public ScheduleData() { 
   }
@@ -133,29 +133,29 @@ public class ScheduleData {
   }
 
 
-  public ScheduleData scheduleMerchantMetaData(String scheduleMerchantMetaData) {
-    this.scheduleMerchantMetaData = scheduleMerchantMetaData;
+  public ScheduleData merchantMetaData(String merchantMetaData) {
+    this.merchantMetaData = merchantMetaData;
     return this;
   }
 
    /**
-   * Get scheduleMerchantMetaData
-   * @return scheduleMerchantMetaData
+   * Get merchantMetaData
+   * @return merchantMetaData
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SCHEDULE_MERCHANT_META_DATA)
+  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getScheduleMerchantMetaData() {
-    return scheduleMerchantMetaData;
+  public String getMerchantMetaData() {
+    return merchantMetaData;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SCHEDULE_MERCHANT_META_DATA)
+  @JsonProperty(JSON_PROPERTY_MERCHANT_META_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScheduleMerchantMetaData(String scheduleMerchantMetaData) {
-    this.scheduleMerchantMetaData = scheduleMerchantMetaData;
+  public void setMerchantMetaData(String merchantMetaData) {
+    this.merchantMetaData = merchantMetaData;
   }
 
 
@@ -174,12 +174,12 @@ public class ScheduleData {
     return Objects.equals(this.scheduleId, scheduleData.scheduleId) &&
         Objects.equals(this.scheduleStatus, scheduleData.scheduleStatus) &&
         Objects.equals(this.scheduledAt, scheduleData.scheduledAt) &&
-        Objects.equals(this.scheduleMerchantMetaData, scheduleData.scheduleMerchantMetaData);
+        Objects.equals(this.merchantMetaData, scheduleData.merchantMetaData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scheduleId, scheduleStatus, scheduledAt, scheduleMerchantMetaData);
+    return Objects.hash(scheduleId, scheduleStatus, scheduledAt, merchantMetaData);
   }
 
   @Override
@@ -189,7 +189,7 @@ public class ScheduleData {
     sb.append("    scheduleId: ").append(toIndentedString(scheduleId)).append("\n");
     sb.append("    scheduleStatus: ").append(toIndentedString(scheduleStatus)).append("\n");
     sb.append("    scheduledAt: ").append(toIndentedString(scheduledAt)).append("\n");
-    sb.append("    scheduleMerchantMetaData: ").append(toIndentedString(scheduleMerchantMetaData)).append("\n");
+    sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

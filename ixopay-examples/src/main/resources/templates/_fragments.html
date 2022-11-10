@@ -1,0 +1,15 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<title>IXOPAY: Spring Boot Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<!--	<link rel="stylesheet" href="/awsm_theme_black.min.css" media="(prefers-color-scheme: dark)">-->
+	<!--	<link rel="stylesheet" href="/awsm_theme_white.min.css" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: light)">-->
+	<link rel="stylesheet" th:href="@{/water.css}">
+</head>
+<body>
+<header th:fragment="header">
+	<h1>IXOPAY <small>Spring Boot Example</small></h1>
+</header>
+</body>
+</html>

@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.Customer;
 import com.ixopay.client.core.model.CustomerProfileData;
+import com.ixopay.client.core.model.DccData;
 import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.L2L3Data;
+import com.ixopay.client.core.model.PayByLink;
 import com.ixopay.client.core.model.Schedule;
 import com.ixopay.client.core.model.Split;
 import com.ixopay.client.core.model.ThreeDSecureData;
@@ -46,6 +49,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Preauthorize.JSON_PROPERTY_ADDITIONAL_ID1,
   Preauthorize.JSON_PROPERTY_ADDITIONAL_ID2,
   Preauthorize.JSON_PROPERTY_EXTRA_DATA,
+  Preauthorize.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   Preauthorize.JSON_PROPERTY_MERCHANT_META_DATA,
   Preauthorize.JSON_PROPERTY_REFERENCE_UUID,
   Preauthorize.JSON_PROPERTY_AMOUNT,
@@ -64,7 +68,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Preauthorize.JSON_PROPERTY_SCHEDULE,
   Preauthorize.JSON_PROPERTY_CUSTOMER_PROFILE_DATA,
   Preauthorize.JSON_PROPERTY_THREE_D_SECURE_DATA,
-  Preauthorize.JSON_PROPERTY_LANGUAGE
+  Preauthorize.JSON_PROPERTY_PAY_BY_LINK,
+  Preauthorize.JSON_PROPERTY_LANGUAGE,
+  Preauthorize.JSON_PROPERTY_REQUEST_DCC,
+  Preauthorize.JSON_PROPERTY_DCC_DATA,
+  Preauthorize.JSON_PROPERTY_L2L3_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Preauthorize {
@@ -79,6 +87,9 @@ public class Preauthorize {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
@@ -129,6 +140,8 @@ public class Preauthorize {
     
     RECURRING("RECURRING"),
     
+    FIRST_CARDONFILE("FIRST-CARDONFILE"),
+    
     CARDONFILE("CARDONFILE"),
     
     CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
@@ -177,8 +190,20 @@ public class Preauthorize {
   public static final String JSON_PROPERTY_THREE_D_SECURE_DATA = "threeDSecureData";
   private ThreeDSecureData threeDSecureData;
 
+  public static final String JSON_PROPERTY_PAY_BY_LINK = "payByLink";
+  private PayByLink payByLink;
+
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   private String language;
+
+  public static final String JSON_PROPERTY_REQUEST_DCC = "requestDcc";
+  private Boolean requestDcc;
+
+  public static final String JSON_PROPERTY_DCC_DATA = "dccData";
+  private DccData dccData;
+
+  public static final String JSON_PROPERTY_L2L3_DATA = "l2l3Data";
+  private L2L3Data l2l3Data;
 
   public Preauthorize() { 
   }
@@ -292,6 +317,40 @@ public class Preauthorize {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExtraData(Map<String, String> extraData) {
     this.extraData = extraData;
+  }
+
+
+  public Preauthorize pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public Preauthorize putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
   }
 
 
@@ -779,6 +838,32 @@ public class Preauthorize {
   }
 
 
+  public Preauthorize payByLink(PayByLink payByLink) {
+    this.payByLink = payByLink;
+    return this;
+  }
+
+   /**
+   * Get payByLink
+   * @return payByLink
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PAY_BY_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PayByLink getPayByLink() {
+    return payByLink;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAY_BY_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPayByLink(PayByLink payByLink) {
+    this.payByLink = payByLink;
+  }
+
+
   public Preauthorize language(String language) {
     this.language = language;
     return this;
@@ -805,6 +890,84 @@ public class Preauthorize {
   }
 
 
+  public Preauthorize requestDcc(Boolean requestDcc) {
+    this.requestDcc = requestDcc;
+    return this;
+  }
+
+   /**
+   * Get requestDcc
+   * @return requestDcc
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REQUEST_DCC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getRequestDcc() {
+    return requestDcc;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REQUEST_DCC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequestDcc(Boolean requestDcc) {
+    this.requestDcc = requestDcc;
+  }
+
+
+  public Preauthorize dccData(DccData dccData) {
+    this.dccData = dccData;
+    return this;
+  }
+
+   /**
+   * Get dccData
+   * @return dccData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DccData getDccData() {
+    return dccData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDccData(DccData dccData) {
+    this.dccData = dccData;
+  }
+
+
+  public Preauthorize l2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+    return this;
+  }
+
+   /**
+   * Get l2l3Data
+   * @return l2l3Data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public L2L3Data getL2l3Data() {
+    return l2l3Data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setL2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+  }
+
+
   /**
    * Return true if this Preauthorize object is equal to o.
    */
@@ -821,6 +984,7 @@ public class Preauthorize {
         Objects.equals(this.additionalId1, preauthorize.additionalId1) &&
         Objects.equals(this.additionalId2, preauthorize.additionalId2) &&
         Objects.equals(this.extraData, preauthorize.extraData) &&
+        Objects.equals(this.pspPassthroughData, preauthorize.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, preauthorize.merchantMetaData) &&
         Objects.equals(this.referenceUuid, preauthorize.referenceUuid) &&
         Objects.equals(this.amount, preauthorize.amount) &&
@@ -839,12 +1003,16 @@ public class Preauthorize {
         Objects.equals(this.schedule, preauthorize.schedule) &&
         Objects.equals(this.customerProfileData, preauthorize.customerProfileData) &&
         Objects.equals(this.threeDSecureData, preauthorize.threeDSecureData) &&
-        Objects.equals(this.language, preauthorize.language);
+        Objects.equals(this.payByLink, preauthorize.payByLink) &&
+        Objects.equals(this.language, preauthorize.language) &&
+        Objects.equals(this.requestDcc, preauthorize.requestDcc) &&
+        Objects.equals(this.dccData, preauthorize.dccData) &&
+        Objects.equals(this.l2l3Data, preauthorize.l2l3Data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, referenceUuid, amount, currency, successUrl, cancelUrl, errorUrl, callbackUrl, transactionToken, description, items, splits, withRegister, transactionIndicator, customer, schedule, customerProfileData, threeDSecureData, language);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, pspPassthroughData, merchantMetaData, referenceUuid, amount, currency, successUrl, cancelUrl, errorUrl, callbackUrl, transactionToken, description, items, splits, withRegister, transactionIndicator, customer, schedule, customerProfileData, threeDSecureData, payByLink, language, requestDcc, dccData, l2l3Data);
   }
 
   @Override
@@ -855,6 +1023,7 @@ public class Preauthorize {
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    referenceUuid: ").append(toIndentedString(referenceUuid)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
@@ -873,7 +1042,11 @@ public class Preauthorize {
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    customerProfileData: ").append(toIndentedString(customerProfileData)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
+    sb.append("    payByLink: ").append(toIndentedString(payByLink)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    requestDcc: ").append(toIndentedString(requestDcc)).append("\n");
+    sb.append("    dccData: ").append(toIndentedString(dccData)).append("\n");
+    sb.append("    l2l3Data: ").append(toIndentedString(l2l3Data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

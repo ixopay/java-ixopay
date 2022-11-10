@@ -25,6 +25,7 @@
 |**adapterMessage** | **String** |  |  [optional] |
 |**adapterCode** | **String** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**dccData** | [**TransactionResponseAllOfDccData**](TransactionResponseAllOfDccData.md) |  |  [optional] |
 
 
 
@@ -37,6 +38,7 @@
 | HTML | &quot;HTML&quot; |
 | PENDING | &quot;PENDING&quot; |
 | ERROR | &quot;ERROR&quot; |
+| PENDING_DCC | &quot;PENDING_DCC&quot; |
 
 
 

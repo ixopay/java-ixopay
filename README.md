@@ -84,6 +84,4 @@ Add the dependency (replace `VERSION` with the [GitHub release name](https://git
 
 ## Example
 
-https://github.com/ixopay/java-ixopay/blob/15c2d0d5105d16777e2e144f32da8c90039d12f2/ixopay-examples/src/main/java/com/ixopay/client/examples/DebitTransactionApp.java#L27-L71
-
-https://github.com/ixopay/java-ixopay/blob/develop/ixopay-examples/src/main/java/com/ixopay/client/examples/DebitTransactionApp.java#L27-L71
+https://github.com/ixopay/java-ixopay/blob/master/ixopay-examples/src/main/java/com/ixopay/client/examples/DebitTransactionApp.java#L27-L71

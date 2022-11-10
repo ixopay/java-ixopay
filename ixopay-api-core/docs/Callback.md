@@ -15,6 +15,8 @@
 |**paymentMethod** | **String** |  |  [optional] |
 |**amount** | **String** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |
+|**surchargeAmount** | **String** |  |  [optional] |
+|**totalAmount** | **String** |  |  [optional] |
 |**scheduleData** | [**ScheduleData**](ScheduleData.md) |  |  [optional] |
 |**customerProfileData** | [**CustomerProfileData**](CustomerProfileData.md) |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |

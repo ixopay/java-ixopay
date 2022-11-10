@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ixopay.client.core.model.SplitCommisionFee;
+import com.ixopay.client.core.model.SplitCommissionFee;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Split.JSON_PROPERTY_CURRENCY,
   Split.JSON_PROPERTY_SELLER_MERCHANT_GUID,
   Split.JSON_PROPERTY_SELLER_MERCHANT_EXTERNAL_ID,
-  Split.JSON_PROPERTY_COMMISION_FEE
+  Split.JSON_PROPERTY_COMMISSION_FEE
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Split {
@@ -57,8 +57,8 @@ public class Split {
   public static final String JSON_PROPERTY_SELLER_MERCHANT_EXTERNAL_ID = "sellerMerchantExternalId";
   private String sellerMerchantExternalId;
 
-  public static final String JSON_PROPERTY_COMMISION_FEE = "commisionFee";
-  private SplitCommisionFee commisionFee;
+  public static final String JSON_PROPERTY_COMMISSION_FEE = "commissionFee";
+  private SplitCommissionFee commissionFee;
 
   public Split() { 
   }
@@ -193,29 +193,29 @@ public class Split {
   }
 
 
-  public Split commisionFee(SplitCommisionFee commisionFee) {
-    this.commisionFee = commisionFee;
+  public Split commissionFee(SplitCommissionFee commissionFee) {
+    this.commissionFee = commissionFee;
     return this;
   }
 
    /**
-   * Get commisionFee
-   * @return commisionFee
+   * Get commissionFee
+   * @return commissionFee
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_COMMISION_FEE)
+  @JsonProperty(JSON_PROPERTY_COMMISSION_FEE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public SplitCommisionFee getCommisionFee() {
-    return commisionFee;
+  public SplitCommissionFee getCommissionFee() {
+    return commissionFee;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMMISION_FEE)
+  @JsonProperty(JSON_PROPERTY_COMMISSION_FEE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommisionFee(SplitCommisionFee commisionFee) {
-    this.commisionFee = commisionFee;
+  public void setCommissionFee(SplitCommissionFee commissionFee) {
+    this.commissionFee = commissionFee;
   }
 
 
@@ -236,12 +236,12 @@ public class Split {
         Objects.equals(this.currency, split.currency) &&
         Objects.equals(this.sellerMerchantGuid, split.sellerMerchantGuid) &&
         Objects.equals(this.sellerMerchantExternalId, split.sellerMerchantExternalId) &&
-        Objects.equals(this.commisionFee, split.commisionFee);
+        Objects.equals(this.commissionFee, split.commissionFee);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(identification, amount, currency, sellerMerchantGuid, sellerMerchantExternalId, commisionFee);
+    return Objects.hash(identification, amount, currency, sellerMerchantGuid, sellerMerchantExternalId, commissionFee);
   }
 
   @Override
@@ -253,7 +253,7 @@ public class Split {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    sellerMerchantGuid: ").append(toIndentedString(sellerMerchantGuid)).append("\n");
     sb.append("    sellerMerchantExternalId: ").append(toIndentedString(sellerMerchantExternalId)).append("\n");
-    sb.append("    commisionFee: ").append(toIndentedString(commisionFee)).append("\n");
+    sb.append("    commissionFee: ").append(toIndentedString(commissionFee)).append("\n");
     sb.append("}");
     return sb.toString();
   }

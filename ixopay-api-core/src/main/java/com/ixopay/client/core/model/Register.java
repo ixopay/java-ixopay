@@ -24,6 +24,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.Customer;
 import com.ixopay.client.core.model.CustomerProfileData;
+import com.ixopay.client.core.model.L2L3Data;
+import com.ixopay.client.core.model.PayByLink;
 import com.ixopay.client.core.model.Schedule;
 import com.ixopay.client.core.model.ThreeDSecureData;
 import io.swagger.annotations.ApiModel;
@@ -42,6 +44,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Register.JSON_PROPERTY_ADDITIONAL_ID1,
   Register.JSON_PROPERTY_ADDITIONAL_ID2,
   Register.JSON_PROPERTY_EXTRA_DATA,
+  Register.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   Register.JSON_PROPERTY_MERCHANT_META_DATA,
   Register.JSON_PROPERTY_SUCCESS_URL,
   Register.JSON_PROPERTY_CANCEL_URL,
@@ -49,11 +52,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Register.JSON_PROPERTY_CALLBACK_URL,
   Register.JSON_PROPERTY_TRANSACTION_TOKEN,
   Register.JSON_PROPERTY_DESCRIPTION,
+  Register.JSON_PROPERTY_TRANSACTION_INDICATOR,
   Register.JSON_PROPERTY_CUSTOMER,
   Register.JSON_PROPERTY_SCHEDULE,
   Register.JSON_PROPERTY_CUSTOMER_PROFILE_DATA,
   Register.JSON_PROPERTY_THREE_D_SECURE_DATA,
-  Register.JSON_PROPERTY_LANGUAGE
+  Register.JSON_PROPERTY_PAY_BY_LINK,
+  Register.JSON_PROPERTY_LANGUAGE,
+  Register.JSON_PROPERTY_L2L3_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Register {
@@ -68,6 +74,9 @@ public class Register {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
@@ -90,6 +99,54 @@ public class Register {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
+  /**
+   * Gets or Sets transactionIndicator
+   */
+  public enum TransactionIndicatorEnum {
+    SINGLE("SINGLE"),
+    
+    INITIAL("INITIAL"),
+    
+    RECURRING("RECURRING"),
+    
+    FIRST_CARDONFILE("FIRST-CARDONFILE"),
+    
+    CARDONFILE("CARDONFILE"),
+    
+    CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
+    
+    MOTO("MOTO");
+
+    private String value;
+
+    TransactionIndicatorEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TransactionIndicatorEnum fromValue(String value) {
+      for (TransactionIndicatorEnum b : TransactionIndicatorEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRANSACTION_INDICATOR = "transactionIndicator";
+  private TransactionIndicatorEnum transactionIndicator;
+
   public static final String JSON_PROPERTY_CUSTOMER = "customer";
   private Customer customer;
 
@@ -102,8 +159,14 @@ public class Register {
   public static final String JSON_PROPERTY_THREE_D_SECURE_DATA = "threeDSecureData";
   private ThreeDSecureData threeDSecureData;
 
+  public static final String JSON_PROPERTY_PAY_BY_LINK = "payByLink";
+  private PayByLink payByLink;
+
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   private String language;
+
+  public static final String JSON_PROPERTY_L2L3_DATA = "l2l3Data";
+  private L2L3Data l2l3Data;
 
   public Register() { 
   }
@@ -217,6 +280,40 @@ public class Register {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExtraData(Map<String, String> extraData) {
     this.extraData = extraData;
+  }
+
+
+  public Register pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public Register putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
   }
 
 
@@ -402,6 +499,32 @@ public class Register {
   }
 
 
+  public Register transactionIndicator(TransactionIndicatorEnum transactionIndicator) {
+    this.transactionIndicator = transactionIndicator;
+    return this;
+  }
+
+   /**
+   * Get transactionIndicator
+   * @return transactionIndicator
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TRANSACTION_INDICATOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TransactionIndicatorEnum getTransactionIndicator() {
+    return transactionIndicator;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TRANSACTION_INDICATOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransactionIndicator(TransactionIndicatorEnum transactionIndicator) {
+    this.transactionIndicator = transactionIndicator;
+  }
+
+
   public Register customer(Customer customer) {
     this.customer = customer;
     return this;
@@ -506,6 +629,32 @@ public class Register {
   }
 
 
+  public Register payByLink(PayByLink payByLink) {
+    this.payByLink = payByLink;
+    return this;
+  }
+
+   /**
+   * Get payByLink
+   * @return payByLink
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PAY_BY_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PayByLink getPayByLink() {
+    return payByLink;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAY_BY_LINK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPayByLink(PayByLink payByLink) {
+    this.payByLink = payByLink;
+  }
+
+
   public Register language(String language) {
     this.language = language;
     return this;
@@ -532,6 +681,32 @@ public class Register {
   }
 
 
+  public Register l2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+    return this;
+  }
+
+   /**
+   * Get l2l3Data
+   * @return l2l3Data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public L2L3Data getL2l3Data() {
+    return l2l3Data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setL2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+  }
+
+
   /**
    * Return true if this Register object is equal to o.
    */
@@ -548,6 +723,7 @@ public class Register {
         Objects.equals(this.additionalId1, register.additionalId1) &&
         Objects.equals(this.additionalId2, register.additionalId2) &&
         Objects.equals(this.extraData, register.extraData) &&
+        Objects.equals(this.pspPassthroughData, register.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, register.merchantMetaData) &&
         Objects.equals(this.successUrl, register.successUrl) &&
         Objects.equals(this.cancelUrl, register.cancelUrl) &&
@@ -555,16 +731,19 @@ public class Register {
         Objects.equals(this.callbackUrl, register.callbackUrl) &&
         Objects.equals(this.transactionToken, register.transactionToken) &&
         Objects.equals(this.description, register.description) &&
+        Objects.equals(this.transactionIndicator, register.transactionIndicator) &&
         Objects.equals(this.customer, register.customer) &&
         Objects.equals(this.schedule, register.schedule) &&
         Objects.equals(this.customerProfileData, register.customerProfileData) &&
         Objects.equals(this.threeDSecureData, register.threeDSecureData) &&
-        Objects.equals(this.language, register.language);
+        Objects.equals(this.payByLink, register.payByLink) &&
+        Objects.equals(this.language, register.language) &&
+        Objects.equals(this.l2l3Data, register.l2l3Data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, successUrl, cancelUrl, errorUrl, callbackUrl, transactionToken, description, customer, schedule, customerProfileData, threeDSecureData, language);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, pspPassthroughData, merchantMetaData, successUrl, cancelUrl, errorUrl, callbackUrl, transactionToken, description, transactionIndicator, customer, schedule, customerProfileData, threeDSecureData, payByLink, language, l2l3Data);
   }
 
   @Override
@@ -575,6 +754,7 @@ public class Register {
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    successUrl: ").append(toIndentedString(successUrl)).append("\n");
     sb.append("    cancelUrl: ").append(toIndentedString(cancelUrl)).append("\n");
@@ -582,11 +762,14 @@ public class Register {
     sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    transactionToken: ").append(toIndentedString(transactionToken)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    transactionIndicator: ").append(toIndentedString(transactionIndicator)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    customerProfileData: ").append(toIndentedString(customerProfileData)).append("\n");
     sb.append("    threeDSecureData: ").append(toIndentedString(threeDSecureData)).append("\n");
+    sb.append("    payByLink: ").append(toIndentedString(payByLink)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    l2l3Data: ").append(toIndentedString(l2l3Data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_fragments::head"></head>
+<body>
+<header th:include="_fragments::header"></header>
+<main>
+	<h2>Error</h2>
+	<p>
+		<strong th:text="${error.errorCode()}?: '?'"></strong>
+		<span th:text="${error.errorMessage()?: '?'}"></span>
+	</p>
+	<div th:unless="${error.adapterCode() == null && error.adapterMessage() == null}">
+		<h3>Adapter Error</h3>
+		<p>
+			<strong th:text="${error.adapterCode()}" th:unless="${error.adapterCode() == null}"></strong>
+			<span th:text="${error.adapterMessage()}" th:unless="${error.adapterMessage() == null}"></span>
+		</p>
+	</div>
+</main>
+</body>
+</html>

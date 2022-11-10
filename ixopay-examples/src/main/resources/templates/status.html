@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="_fragments::head"></head>
+<body>
+<header th:include="_fragments::header"></header>
+<main>
+	<h2>Status</h2>
+	<table>
+		<tr>
+			<th>Transaction Status</th>
+			<td th:text="${transaction.getTransactionStatus()}"></td>
+		</tr>
+		<tr>
+			<th>UUID</th>
+			<td th:text="${transaction.getUuid()}"></td>
+		</tr>
+		<tr>
+			<th>Merchant Transaction ID</th>
+			<td th:text="${transaction.getMerchantTransactionId()}"></td>
+		</tr>
+		<tr>
+			<th>Purchase ID</th>
+			<td th:text="${transaction.getPurchaseId()}"></td>
+		</tr>
+		<tr>
+			<th>Transaction Type</th>
+			<td th:text="${transaction.getTransactionType()}"></td>
+		</tr>
+		<tr>
+			<th>Payment Method</th>
+			<td th:text="${transaction.getPaymentMethod()}"></td>
+		</tr>
+		<tr>
+			<th>Amount</th>
+			<td th:text="${transaction.getAmount()}"></td>
+		</tr>
+		<tr>
+			<th>Currency</th>
+			<td th:text="${transaction.getCurrency()}"></td>
+		</tr>
+		<tr th:unless="${#lists.isEmpty(transaction.getSchedules())}">
+			<th>Schedules</th>
+			<td th:each="schedule : ${transaction.getSchedules()}">
+				<table>
+					<tr>
+						<th>Schedule ID</th>
+						<td th:text="${schedule.getScheduleId()}"></td>
+					</tr>
+					<tr>
+						<th>Schedule Status</th>
+						<td th:text="${schedule.getScheduleStatus()}"></td>
+					</tr>
+					<tr>
+						<th>Scheduled At</th>
+						<td th:text="${schedule.getScheduledAt()}"></td>
+					</tr>
+					<tr>
+						<th>Schedule Merchant Metadata</th>
+						<td th:text="${schedule.getScheduleMerchantMetaData()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${#lists.isEmpty(transaction.getErrors())}">
+			<th>Errors</th>
+			<td th:each="error : ${transaction.getErrors()}">
+				<table>
+					<tr th:if="${error.getCode() != null}">
+						<th>Code</th>
+						<td th:text="${error.getCode()}"></td>
+					</tr>
+					<tr th:if="${error.getMessage() != null && !error.getMessage().isBlank()}">
+						<th>Message</th>
+						<td th:text="${error.getMessage()}"></td>
+					</tr>
+					<tr th:if="${error.getAdapterCode() != null && !error.getAdapterCode().isBlank()}">
+						<th>Code</th>
+						<td th:text="${error.getAdapterCode()}"></td>
+					</tr>
+					<tr th:if="${error.getAdapterMessage() != null && !error.getAdapterMessage().isBlank()}">
+						<th>Message</th>
+						<td th:text="${error.getAdapterMessage()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${transaction.getChargebackData() == null}">
+			<th>Chargeback Data</th>
+			<td>
+				<table>
+					<tr>
+						<th>Original UUID</th>
+						<td th:text="${transaction.getChargebackData().getOriginalUuid()}"></td>
+					</tr>
+					<tr>
+						<th>Original Merchant Transaction ID</th>
+						<td th:text="${transaction.getChargebackData().getOriginalMerchantTransactionId()}"></td>
+					</tr>
+					<tr>
+						<th>Amount</th>
+						<td th:text="${transaction.getChargebackData().getAmount()}"></td>
+					</tr>
+					<tr>
+						<th>Currency</th>
+						<td th:text="${transaction.getChargebackData().getCurrency()}"></td>
+					</tr>
+					<tr>
+						<th>Reason</th>
+						<td th:text="${transaction.getChargebackData().getReason()}"></td>
+					</tr>
+					<tr>
+						<th>Chargeback Datetime</th>
+						<td th:text="${transaction.getChargebackData().getChargebackDateTime()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${transaction.getChargebackReversalData() == null}">
+			<th>Chargeback Reversal Data</th>
+			<td>
+				<table>
+					<tr>
+						<th>Original UUID</th>
+						<td th:text="${transaction.getChargebackReversalData().getOriginalUuid()}"></td>
+					</tr>
+					<tr>
+						<th>Original Merchant Transaction ID</th>
+						<td th:text="${transaction.getChargebackReversalData().getOriginalMerchantTransactionId()}"></td>
+					</tr>
+					<tr>
+						<th>Chargeback UUID</th>
+						<td th:text="${transaction.getChargebackReversalData().getChargebackUuid()}"></td>
+					</tr>
+					<tr>
+						<th>Amount</th>
+						<td th:text="${transaction.getChargebackReversalData().getAmount()}"></td>
+					</tr>
+					<tr>
+						<th>Currency</th>
+						<td th:text="${transaction.getChargebackReversalData().getCurrency()}"></td>
+					</tr>
+					<tr>
+						<th>Reason</th>
+						<td th:text="${transaction.getChargebackReversalData().getReason()}"></td>
+					</tr>
+					<tr>
+						<th>Reversal Datetime</th>
+						<td th:text="${transaction.getChargebackReversalData().getReversalDateTime()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${#maps.isEmpty(transaction.getExtraData())}">
+			<th>Extra Data</th>
+			<td>
+				<table>
+					<tr th:each="extraData : ${transaction.getExtraData().entrySet()}">
+						<th th:text="${extraData.getKey()}"></th>
+						<td th:text="${extraData.getValue()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${#strings.isEmpty(transaction.getMerchantMetaData())}">
+			<th>Merchant Metadata</th>
+			<td th:text="${transaction.getMerchantMetaData()}"></td>
+		</tr>
+		<tr th:unless="${transaction.getReturnData() == null}" th:switch="${transaction.getReturnData().getTYPE().getValue()}">
+			<th>Return Data</th>
+			<td th:case="${'cardData'}">
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getType())}">
+						<th>Type</th>
+						<td th:text="${transaction.getReturnData().getType()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getFirstName())}">
+						<th>First Name</th>
+						<td th:text="${transaction.getReturnData().getFirstName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getLastName())}">
+						<th>Last Name</th>
+						<td th:text="${transaction.getReturnData().getLastName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getCountry())}">
+						<th>Country</th>
+						<td th:text="${transaction.getReturnData().getCountry()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getCardHolder())}">
+						<th>Card Holder</th>
+						<td th:text="${transaction.getReturnData().getCardHolder()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getExpiryMonth())}">
+						<th>Expiry Month</th>
+						<td th:text="${transaction.getReturnData().getExpiryMonth()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getExpiryYear())}">
+						<th>Expiry Year</th>
+						<td th:text="${transaction.getReturnData().getExpiryYear()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinDigits())}">
+						<th>BIN Digits</th>
+						<td th:text="${transaction.getReturnData().getBinDigits()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getFirstSixDigits())}">
+						<th>First Six Digits</th>
+						<td th:text="${transaction.getReturnData().getFirstSixDigits()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getLastFourDigits())}">
+						<th>Last Four Digits</th>
+						<td th:text="${transaction.getReturnData().getLastFourDigits()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getFingerprint())}">
+						<th>Fingerprint</th>
+						<td>
+							<code th:text="${transaction.getReturnData().getFingerprint()}"></code>
+						</td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinBrand())}">
+						<th>BIN Brand</th>
+						<td th:text="${transaction.getReturnData().getBinBrand()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinBank())}">
+						<th>BIN Bank</th>
+						<td th:text="${transaction.getReturnData().getBinBank()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinType())}">
+						<th>Last Type</th>
+						<td th:text="${transaction.getReturnData().getBinType()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinLevel())}">
+						<th>BIN Level</th>
+						<td th:text="${transaction.getReturnData().getBinLevel()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBinCountry())}">
+						<th>BIN Country</th>
+						<td th:text="${transaction.getReturnData().getBinCountry()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getThreeDSecure())}">
+						<th>3D Secure</th>
+						<td th:text="${transaction.getReturnData().getThreeDSecure()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getEci())}">
+						<th>ECI</th>
+						<td th:text="${transaction.getReturnData().getEci()}"></td>
+					</tr>
+				</table>
+			</td>
+			<td th:case="${'phoneData'}">
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getPhoneNumber())}">
+						<th>Phone NUmber</th>
+						<td th:text="${transaction.getReturnData().getPhoneNumber()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getCountry())}">
+						<th>Country</th>
+						<td th:text="${transaction.getReturnData().getCountry()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getOperator())}">
+						<th>Operator</th>
+						<td th:text="${transaction.getReturnData().getOperator()}"></td>
+					</tr>
+				</table>
+			</td>
+			<td th:case="${'ibanData'}">
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getAccountOwner())}">
+						<th>Account Owner</th>
+						<td th:text="${transaction.getReturnData().getAccountOwner()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getIban())}">
+						<th>IBAN</th>
+						<td th:text="${transaction.getReturnData().getIban()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBic())}">
+						<th>BIC</th>
+						<td th:text="${transaction.getReturnData().getBic()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getMandateId())}">
+						<th>Mandate ID</th>
+						<td th:text="${transaction.getReturnData().getMandateId()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getMandateDate())}">
+						<th>Mandate Date</th>
+						<td th:text="${transaction.getReturnData().getMandateDate()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBankName())}">
+						<th>Bank Name</th>
+						<td th:text="${transaction.getReturnData().getBankName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getBankBranchName())}">
+						<th>Bank Branch Name</th>
+						<td th:text="${transaction.getReturnData().getBankBranchName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getCountry())}">
+						<th>Country</th>
+						<td th:text="${transaction.getReturnData().getCountry()}"></td>
+					</tr>
+				</table>
+			</td>
+			<td th:case="${'walletData'}">
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getWalletReferenceId())}">
+						<th>Wallet Reference ID</th>
+						<td th:text="${transaction.getReturnData().getWalletReferenceId()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getWalletOwner())}">
+						<th>Wallet Owner</th>
+						<td th:text="${transaction.getReturnData().getWalletOwner()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getReturnData().getWalletType())}">
+						<th>Wallet Type</th>
+						<td th:text="${transaction.getReturnData().getWalletType()}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${transaction.getCustomer() == null}">
+			<th>Customer</th>
+			<td>
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getIdentification())}">
+						<th>identification</th>
+						<td th:text="${transaction.getCustomer().getIdentification()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getFirstName())}">
+						<th>firstName</th>
+						<td th:text="${transaction.getCustomer().getFirstName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getLastName())}">
+						<th>lastName</th>
+						<td th:text="${transaction.getCustomer().getLastName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBirthDate())}">
+						<th>birthDate</th>
+						<td th:text="${transaction.getCustomer().getBirthDate()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getGender())}">
+						<th>gender</th>
+						<td th:text="${transaction.getCustomer().getGender()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingAddress1())}">
+						<th>billingAddress1</th>
+						<td th:text="${transaction.getCustomer().getBillingAddress1()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingAddress1())}">
+						<th>billingAddress2</th>
+						<td th:text="${transaction.getCustomer().getBillingAddress1()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingCity())}">
+						<th>billingCity</th>
+						<td th:text="${transaction.getCustomer().getBillingCity()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingPostcode())}">
+						<th>billingPostcode</th>
+						<td th:text="${transaction.getCustomer().getBillingPostcode()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingState())}">
+						<th>billingState</th>
+						<td th:text="${transaction.getCustomer().getBillingState()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingCountry())}">
+						<th>billingCountry</th>
+						<td th:text="${transaction.getCustomer().getBillingCountry()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getBillingPhone())}">
+						<th>billingPhone</th>
+						<td th:text="${transaction.getCustomer().getBillingPhone()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingFirstName())}">
+						<th>shippingFirstName</th>
+						<td th:text="${transaction.getCustomer().getShippingFirstName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingLastName())}">
+						<th>shippingLastName</th>
+						<td th:text="${transaction.getCustomer().getShippingLastName()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingCompany())}">
+						<th>shippingCompany</th>
+						<td th:text="${transaction.getCustomer().getShippingCompany()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingAddress1())}">
+						<th>shippingAddress1</th>
+						<td th:text="${transaction.getCustomer().getShippingAddress1()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingAddress1())}">
+						<th>shippingAddress2</th>
+						<td th:text="${transaction.getCustomer().getShippingAddress1()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingCity())}">
+						<th>shippingCity</th>
+						<td th:text="${transaction.getCustomer().getShippingCity()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingPostcode())}">
+						<th>shippingPostcode</th>
+						<td th:text="${transaction.getCustomer().getShippingPostcode()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingState())}">
+						<th>shippingState</th>
+						<td th:text="${transaction.getCustomer().getShippingState()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingCountry())}">
+						<th>shippingCountry</th>
+						<td th:text="${transaction.getCustomer().getShippingCountry()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getShippingPhone())}">
+						<th>shippingPhone</th>
+						<td th:text="${transaction.getCustomer().getShippingPhone()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getCompany())}">
+						<th>company</th>
+						<td th:text="${transaction.getCustomer().getCompany()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getEmail())}">
+						<th>email</th>
+						<td th:text="${transaction.getCustomer().getEmail()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getEmailVerified())}">
+						<th>emailVerified</th>
+						<td th:text="${transaction.getCustomer().getEmailVerified()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getIpAddress())}">
+						<th>ipAddress</th>
+						<td th:text="${transaction.getCustomer().getIpAddress()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomer().getNationalId())}">
+						<th>nationalId</th>
+						<td th:text="${transaction.getCustomer().getNationalId()}"></td>
+					</tr>
+					<tr th:unless="${#maps.isEmpty(transaction.getCustomer().getExtraData())}">
+						<th>Extra Data</th>
+						<td>
+							<table>
+								<tr th:each="extraData : ${transaction.getCustomer().getExtraData.entrySet()}">
+									<th th:text="${extraData.getKey()}"></th>
+									<td th:text="${extraData.getValue()}"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<!-- Payment data missing because type switch needed -->
+				</table>
+			</td>
+		</tr>
+		<tr th:unless="${transaction.getCustomerProfileData() == null}">
+			<th>Customer Profile Data</th>
+			<td>
+				<table>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomerProfileData().getProfileGuid())}">
+						<th>Profile GUID</th>
+						<td th:text="${transaction.getCustomerProfileData().getProfileGuid()}"></td>
+					</tr>
+					<tr th:unless="${#strings.isEmpty(transaction.getCustomerProfileData().getCustomerIdentification())}">
+						<th>Profile GUID</th>
+						<td th:text="${transaction.getCustomerProfileData().getCustomerIdentification()}"></td>
+					</tr>
+					<tr th:unless="${transaction.getCustomerProfileData().getMarkAsPreferred() == null}">
+						<th>Profile GUID</th>
+						<td><input type="checkbox" th:checked="${transaction.getCustomerProfileData().getMarkAsPreferred() ? 'checked' : ''}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</main>
+</body>
+</html>

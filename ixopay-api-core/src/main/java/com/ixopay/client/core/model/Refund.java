@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.L2L3Data;
 import com.ixopay.client.core.model.Split;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,6 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Refund.JSON_PROPERTY_ADDITIONAL_ID1,
   Refund.JSON_PROPERTY_ADDITIONAL_ID2,
   Refund.JSON_PROPERTY_EXTRA_DATA,
+  Refund.JSON_PROPERTY_PSP_PASSTHROUGH_DATA,
   Refund.JSON_PROPERTY_MERCHANT_META_DATA,
   Refund.JSON_PROPERTY_REFERENCE_UUID,
   Refund.JSON_PROPERTY_AMOUNT,
@@ -49,7 +51,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Refund.JSON_PROPERTY_TRANSACTION_TOKEN,
   Refund.JSON_PROPERTY_DESCRIPTION,
   Refund.JSON_PROPERTY_ITEMS,
-  Refund.JSON_PROPERTY_SPLITS
+  Refund.JSON_PROPERTY_SPLITS,
+  Refund.JSON_PROPERTY_L2L3_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Refund {
@@ -64,6 +67,9 @@ public class Refund {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_PSP_PASSTHROUGH_DATA = "pspPassthroughData";
+  private Map<String, String> pspPassthroughData = null;
 
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
@@ -91,6 +97,9 @@ public class Refund {
 
   public static final String JSON_PROPERTY_SPLITS = "splits";
   private List<Split> splits = null;
+
+  public static final String JSON_PROPERTY_L2L3_DATA = "l2l3Data";
+  private L2L3Data l2l3Data;
 
   public Refund() { 
   }
@@ -204,6 +213,40 @@ public class Refund {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExtraData(Map<String, String> extraData) {
     this.extraData = extraData;
+  }
+
+
+  public Refund pspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
+    return this;
+  }
+
+  public Refund putPspPassthroughDataItem(String key, String pspPassthroughDataItem) {
+    if (this.pspPassthroughData == null) {
+      this.pspPassthroughData = new HashMap<>();
+    }
+    this.pspPassthroughData.put(key, pspPassthroughDataItem);
+    return this;
+  }
+
+   /**
+   * Get pspPassthroughData
+   * @return pspPassthroughData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getPspPassthroughData() {
+    return pspPassthroughData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PSP_PASSTHROUGH_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPspPassthroughData(Map<String, String> pspPassthroughData) {
+    this.pspPassthroughData = pspPassthroughData;
   }
 
 
@@ -457,6 +500,32 @@ public class Refund {
   }
 
 
+  public Refund l2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+    return this;
+  }
+
+   /**
+   * Get l2l3Data
+   * @return l2l3Data
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public L2L3Data getL2l3Data() {
+    return l2l3Data;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_L2L3_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setL2l3Data(L2L3Data l2l3Data) {
+    this.l2l3Data = l2l3Data;
+  }
+
+
   /**
    * Return true if this Refund object is equal to o.
    */
@@ -473,6 +542,7 @@ public class Refund {
         Objects.equals(this.additionalId1, refund.additionalId1) &&
         Objects.equals(this.additionalId2, refund.additionalId2) &&
         Objects.equals(this.extraData, refund.extraData) &&
+        Objects.equals(this.pspPassthroughData, refund.pspPassthroughData) &&
         Objects.equals(this.merchantMetaData, refund.merchantMetaData) &&
         Objects.equals(this.referenceUuid, refund.referenceUuid) &&
         Objects.equals(this.amount, refund.amount) &&
@@ -481,12 +551,13 @@ public class Refund {
         Objects.equals(this.transactionToken, refund.transactionToken) &&
         Objects.equals(this.description, refund.description) &&
         Objects.equals(this.items, refund.items) &&
-        Objects.equals(this.splits, refund.splits);
+        Objects.equals(this.splits, refund.splits) &&
+        Objects.equals(this.l2l3Data, refund.l2l3Data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, merchantMetaData, referenceUuid, amount, currency, callbackUrl, transactionToken, description, items, splits);
+    return Objects.hash(merchantTransactionId, additionalId1, additionalId2, extraData, pspPassthroughData, merchantMetaData, referenceUuid, amount, currency, callbackUrl, transactionToken, description, items, splits, l2l3Data);
   }
 
   @Override
@@ -497,6 +568,7 @@ public class Refund {
     sb.append("    additionalId1: ").append(toIndentedString(additionalId1)).append("\n");
     sb.append("    additionalId2: ").append(toIndentedString(additionalId2)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    pspPassthroughData: ").append(toIndentedString(pspPassthroughData)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    referenceUuid: ").append(toIndentedString(referenceUuid)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
@@ -506,6 +578,7 @@ public class Refund {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    splits: ").append(toIndentedString(splits)).append("\n");
+    sb.append("    l2l3Data: ").append(toIndentedString(l2l3Data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

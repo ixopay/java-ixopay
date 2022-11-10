@@ -44,8 +44,8 @@ import com.ixopay.client.core.client.JSON;
   ScheduleResponse.JSON_PROPERTY_OLD_STATUS,
   ScheduleResponse.JSON_PROPERTY_NEW_STATUS,
   ScheduleResponse.JSON_PROPERTY_SCHEDULED_AT,
-  ScheduleResponse.JSON_PROPERTY_REGISTRATION_UUID,
-  ScheduleResponse.JSON_PROPERTY_MERCHANT_META_DATA
+  ScheduleResponse.JSON_PROPERTY_MERCHANT_META_DATA,
+  ScheduleResponse.JSON_PROPERTY_REGISTRATION_UUID
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonIgnoreProperties(
@@ -71,11 +71,11 @@ public class ScheduleResponse extends MaybeScheduleResponse {
   public static final String JSON_PROPERTY_SCHEDULED_AT = "scheduledAt";
   private OffsetDateTime scheduledAt;
 
-  public static final String JSON_PROPERTY_REGISTRATION_UUID = "registrationUuid";
-  private String registrationUuid;
-
   public static final String JSON_PROPERTY_MERCHANT_META_DATA = "merchantMetaData";
   private String merchantMetaData;
+
+  public static final String JSON_PROPERTY_REGISTRATION_UUID = "registrationUuid";
+  private String registrationUuid;
 
   public ScheduleResponse() { 
   }
@@ -184,32 +184,6 @@ public class ScheduleResponse extends MaybeScheduleResponse {
   }
 
 
-  public ScheduleResponse registrationUuid(String registrationUuid) {
-    this.registrationUuid = registrationUuid;
-    return this;
-  }
-
-   /**
-   * Get registrationUuid
-   * @return registrationUuid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRegistrationUuid() {
-    return registrationUuid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistrationUuid(String registrationUuid) {
-    this.registrationUuid = registrationUuid;
-  }
-
-
   public ScheduleResponse merchantMetaData(String merchantMetaData) {
     this.merchantMetaData = merchantMetaData;
     return this;
@@ -236,6 +210,32 @@ public class ScheduleResponse extends MaybeScheduleResponse {
   }
 
 
+  public ScheduleResponse registrationUuid(String registrationUuid) {
+    this.registrationUuid = registrationUuid;
+    return this;
+  }
+
+   /**
+   * Get registrationUuid
+   * @return registrationUuid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRegistrationUuid() {
+    return registrationUuid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGISTRATION_UUID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrationUuid(String registrationUuid) {
+    this.registrationUuid = registrationUuid;
+  }
+
+
   /**
    * Return true if this ScheduleResponse object is equal to o.
    */
@@ -252,14 +252,14 @@ public class ScheduleResponse extends MaybeScheduleResponse {
         Objects.equals(this.oldStatus, scheduleResponse.oldStatus) &&
         Objects.equals(this.newStatus, scheduleResponse.newStatus) &&
         Objects.equals(this.scheduledAt, scheduleResponse.scheduledAt) &&
-        Objects.equals(this.registrationUuid, scheduleResponse.registrationUuid) &&
         Objects.equals(this.merchantMetaData, scheduleResponse.merchantMetaData) &&
+        Objects.equals(this.registrationUuid, scheduleResponse.registrationUuid) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scheduleId, oldStatus, newStatus, scheduledAt, registrationUuid, merchantMetaData, super.hashCode());
+    return Objects.hash(scheduleId, oldStatus, newStatus, scheduledAt, merchantMetaData, registrationUuid, super.hashCode());
   }
 
   @Override
@@ -271,8 +271,8 @@ public class ScheduleResponse extends MaybeScheduleResponse {
     sb.append("    oldStatus: ").append(toIndentedString(oldStatus)).append("\n");
     sb.append("    newStatus: ").append(toIndentedString(newStatus)).append("\n");
     sb.append("    scheduledAt: ").append(toIndentedString(scheduledAt)).append("\n");
-    sb.append("    registrationUuid: ").append(toIndentedString(registrationUuid)).append("\n");
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
+    sb.append("    registrationUuid: ").append(toIndentedString(registrationUuid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

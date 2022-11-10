@@ -74,23 +74,22 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 import com.ixopay.client.core.client.*;
 import com.ixopay.client.core.model.*;
-import com.ixopay.client.core.api.OptionsApi;
+import com.ixopay.client.core.api.ContinueDccApi;
 
-public class OptionsApiExample {
+public class ContinueDccApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         // Configure clients using the `defaultClient` object, such as
         // overriding the host and port, timeout, etc.
-        OptionsApi apiInstance = new OptionsApi(defaultClient);
+        ContinueDccApi apiInstance = new ContinueDccApi(defaultClient);
         String apiKey = "apiKey_example"; // String | API Key of Connector
-        String optionsName = "optionsName_example"; // String | Options identifier of the appropriate adapter
-        OptionsRequest optionsRequest = new OptionsRequest(); // OptionsRequest | Parameters may be required dependent on the adapter
+        ContinueDcc continueDcc = new ContinueDcc(); // ContinueDcc | Data which is required to continue a pending DCC transaction.
         try {
-            OptionsResponse result = apiInstance.options(apiKey, optionsName, optionsRequest);
+            MaybeTransactionResponse result = apiInstance.processContinueDcc(apiKey, continueDcc);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling OptionsApi#options");
+            System.err.println("Exception when calling ContinueDccApi#processContinueDcc");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -107,6 +106,8 @@ All URIs are relative to *https://gateway.ixopay.com/api/v3*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ContinueDccApi* | [**processContinueDcc**](docs/ContinueDccApi.md#processContinueDcc) | **POST** /transaction/{apiKey}/continue-dcc | Continue a DCC transaction
+*ContinueDccApi* | [**processContinueDccWithHttpInfo**](docs/ContinueDccApi.md#processContinueDccWithHttpInfo) | **POST** /transaction/{apiKey}/continue-dcc | Continue a DCC transaction
 *OptionsApi* | [**options**](docs/OptionsApi.md#options) | **POST** /options/{apiKey}/{optionsName} | Retrieve an options list based on given option name
 *OptionsApi* | [**optionsWithHttpInfo**](docs/OptionsApi.md#optionsWithHttpInfo) | **POST** /options/{apiKey}/{optionsName} | Retrieve an options list based on given option name
 *PrepareTransactionApi* | [**processPrepareDebit**](docs/PrepareTransactionApi.md#processPrepareDebit) | **POST** /transaction/{apiKey}/prepare-debit | Process a prepare Debit
@@ -158,9 +159,11 @@ Class | Method | HTTP request | Description
  - [CardDataAllOf](docs/CardDataAllOf.md)
  - [ChargebackData](docs/ChargebackData.md)
  - [ChargebackReversalData](docs/ChargebackReversalData.md)
+ - [ContinueDcc](docs/ContinueDcc.md)
  - [ContinueSchedule](docs/ContinueSchedule.md)
  - [Customer](docs/Customer.md)
  - [CustomerProfileData](docs/CustomerProfileData.md)
+ - [DccData](docs/DccData.md)
  - [Debit](docs/Debit.md)
  - [Deregister](docs/Deregister.md)
  - [ErrorType](docs/ErrorType.md)
@@ -168,13 +171,17 @@ Class | Method | HTTP request | Description
  - [IbanDataAllOf](docs/IbanDataAllOf.md)
  - [IncrementalAuthorization](docs/IncrementalAuthorization.md)
  - [ItemsInner](docs/ItemsInner.md)
+ - [L2L3Data](docs/L2L3Data.md)
  - [MaybeScheduleResponse](docs/MaybeScheduleResponse.md)
+ - [MaybeStatusResponse](docs/MaybeStatusResponse.md)
  - [MaybeTransactionResponse](docs/MaybeTransactionResponse.md)
  - [ModelVoid](docs/ModelVoid.md)
  - [OptionsRequest](docs/OptionsRequest.md)
  - [OptionsResponse](docs/OptionsResponse.md)
  - [OptionsResponseOptionsInner](docs/OptionsResponseOptionsInner.md)
  - [PauseSchedule](docs/PauseSchedule.md)
+ - [PayByLink](docs/PayByLink.md)
+ - [PayByLinkData](docs/PayByLinkData.md)
  - [PaymentData](docs/PaymentData.md)
  - [PaymentIbanData](docs/PaymentIbanData.md)
  - [PaymentIbanDataIbanData](docs/PaymentIbanDataIbanData.md)
@@ -200,9 +207,11 @@ Class | Method | HTTP request | Description
  - [ScheduleResponseAllOf](docs/ScheduleResponseAllOf.md)
  - [ScheduleStatus](docs/ScheduleStatus.md)
  - [Split](docs/Split.md)
- - [SplitCommisionFee](docs/SplitCommisionFee.md)
+ - [SplitCommissionFee](docs/SplitCommissionFee.md)
  - [StartSchedule](docs/StartSchedule.md)
+ - [StatusErrorResponse](docs/StatusErrorResponse.md)
  - [StatusResponse](docs/StatusResponse.md)
+ - [StatusResponseAllOf](docs/StatusResponseAllOf.md)
  - [ThreeDSecureData](docs/ThreeDSecureData.md)
  - [ThreeDSecureType](docs/ThreeDSecureType.md)
  - [TransactionError](docs/TransactionError.md)
@@ -210,6 +219,7 @@ Class | Method | HTTP request | Description
  - [TransactionErrorResponseAllOf](docs/TransactionErrorResponseAllOf.md)
  - [TransactionResponse](docs/TransactionResponse.md)
  - [TransactionResponseAllOf](docs/TransactionResponseAllOf.md)
+ - [TransactionResponseAllOfDccData](docs/TransactionResponseAllOfDccData.md)
  - [TransactionResponseAllOfRiskCheckData](docs/TransactionResponseAllOfRiskCheckData.md)
  - [TransactionStatus](docs/TransactionStatus.md)
  - [TransactionType](docs/TransactionType.md)

@@ -13,6 +13,7 @@
 |**periodUnit** | **PeriodUnit** |  |  |
 |**startDateTime** | **OffsetDateTime** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
+|**callbackUrl** | **String** |  |  [optional] |
 
 
 

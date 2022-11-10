@@ -26,6 +26,7 @@ import com.ixopay.client.core.model.CustomerProfileData;
 import com.ixopay.client.core.model.ErrorType;
 import com.ixopay.client.core.model.ReturnData;
 import com.ixopay.client.core.model.ScheduleData;
+import com.ixopay.client.core.model.TransactionResponseAllOfDccData;
 import com.ixopay.client.core.model.TransactionResponseAllOfRiskCheckData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -58,7 +59,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TransactionResponseAllOf.JSON_PROPERTY_ERRORS,
   TransactionResponseAllOf.JSON_PROPERTY_ADAPTER_MESSAGE,
   TransactionResponseAllOf.JSON_PROPERTY_ADAPTER_CODE,
-  TransactionResponseAllOf.JSON_PROPERTY_EXTRA_DATA
+  TransactionResponseAllOf.JSON_PROPERTY_EXTRA_DATA,
+  TransactionResponseAllOf.JSON_PROPERTY_DCC_DATA
 })
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TransactionResponseAllOf {
@@ -83,7 +85,9 @@ public class TransactionResponseAllOf {
     
     PENDING("PENDING"),
     
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    
+    PENDING_DCC("PENDING_DCC");
 
     private String value;
 
@@ -193,6 +197,9 @@ public class TransactionResponseAllOf {
 
   public static final String JSON_PROPERTY_EXTRA_DATA = "extraData";
   private Map<String, String> extraData = null;
+
+  public static final String JSON_PROPERTY_DCC_DATA = "dccData";
+  private TransactionResponseAllOfDccData dccData;
 
   public TransactionResponseAllOf() { 
   }
@@ -681,6 +688,32 @@ public class TransactionResponseAllOf {
   }
 
 
+  public TransactionResponseAllOf dccData(TransactionResponseAllOfDccData dccData) {
+    this.dccData = dccData;
+    return this;
+  }
+
+   /**
+   * Get dccData
+   * @return dccData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TransactionResponseAllOfDccData getDccData() {
+    return dccData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DCC_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDccData(TransactionResponseAllOfDccData dccData) {
+    this.dccData = dccData;
+  }
+
+
   /**
    * Return true if this TransactionResponse_allOf object is equal to o.
    */
@@ -710,12 +743,13 @@ public class TransactionResponseAllOf {
         Objects.equals(this.errors, transactionResponseAllOf.errors) &&
         Objects.equals(this.adapterMessage, transactionResponseAllOf.adapterMessage) &&
         Objects.equals(this.adapterCode, transactionResponseAllOf.adapterCode) &&
-        Objects.equals(this.extraData, transactionResponseAllOf.extraData);
+        Objects.equals(this.extraData, transactionResponseAllOf.extraData) &&
+        Objects.equals(this.dccData, transactionResponseAllOf.dccData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData);
+    return Objects.hash(success, uuid, purchaseId, returnType, redirectType, redirectUrl, redirectQRCode, htmlContent, paymentDescriptor, paymentMethod, returnData, scheduleData, customerProfileData, riskCheckData, errors, adapterMessage, adapterCode, extraData, dccData);
   }
 
   @Override
@@ -740,6 +774,7 @@ public class TransactionResponseAllOf {
     sb.append("    adapterMessage: ").append(toIndentedString(adapterMessage)).append("\n");
     sb.append("    adapterCode: ").append(toIndentedString(adapterCode)).append("\n");
     sb.append("    extraData: ").append(toIndentedString(extraData)).append("\n");
+    sb.append("    dccData: ").append(toIndentedString(dccData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
