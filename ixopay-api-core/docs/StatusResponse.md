@@ -17,16 +17,16 @@
 |**currency** | **String** |  |  [optional] |
 |**surchargeAmount** | **String** |  |  [optional] |
 |**totalAmount** | **String** |  |  [optional] |
-|**schedules** | [**List&lt;ScheduleData&gt;**](ScheduleData.md) |  |  [optional] |
-|**errors** | [**List&lt;TransactionError&gt;**](TransactionError.md) |  |  [optional] |
-|**chargebackData** | [**ChargebackData**](ChargebackData.md) |  |  [optional] |
-|**chargebackReversalData** | [**ChargebackReversalData**](ChargebackReversalData.md) |  |  [optional] |
+|**schedules** | **List&lt;ScheduleData&gt;** |  |  [optional] |
+|**errors** | **List&lt;TransactionError&gt;** |  |  [optional] |
+|**chargebackData** | **ChargebackData** |  |  [optional] |
+|**chargebackReversalData** | **ChargebackReversalData** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
 |**returnData** | [**ReturnData**](ReturnData.md) |  |  [optional] |
-|**payByLinkData** | [**PayByLinkData**](PayByLinkData.md) |  |  [optional] |
-|**customer** | [**Customer**](Customer.md) |  |  [optional] |
-|**customerProfileData** | [**CustomerProfileData**](CustomerProfileData.md) |  |  [optional] |
+|**payByLinkData** | **PayByLinkData** |  |  [optional] |
+|**customer** | **CustomerData** |  |  [optional] |
+|**customerProfileData** | **CustomerProfileData** |  |  [optional] |
 
 
 

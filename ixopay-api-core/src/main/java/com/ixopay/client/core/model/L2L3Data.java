@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   L2L3Data.JSON_PROPERTY_TAX_AMOUNT
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class L2L3Data {
   public static final String JSON_PROPERTY_TAX_AMOUNT = "taxAmount";
   private String taxAmount;

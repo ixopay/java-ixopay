@@ -15,7 +15,7 @@ package com.ixopay.client.core.client;
 
 import java.net.http.HttpHeaders;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ApiException extends RuntimeException {
     private int code = 0;
     private HttpHeaders responseHeaders = null;

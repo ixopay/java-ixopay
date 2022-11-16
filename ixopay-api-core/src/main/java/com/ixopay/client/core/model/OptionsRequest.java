@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   OptionsRequest.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class OptionsRequest {
   public static final String JSON_PROPERTY_PARAMETERS = "parameters";
   private Object parameters;

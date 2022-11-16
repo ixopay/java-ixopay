@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   StartSchedule.JSON_PROPERTY_MERCHANT_META_DATA,
   StartSchedule.JSON_PROPERTY_CALLBACK_URL
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class StartSchedule {
   public static final String JSON_PROPERTY_REGISTRATION_UUID = "registrationUuid";
   private String registrationUuid;

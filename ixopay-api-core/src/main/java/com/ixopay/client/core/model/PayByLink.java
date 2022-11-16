@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PayByLink.JSON_PROPERTY_SEND_BY_EMAIL,
   PayByLink.JSON_PROPERTY_EXPIRATION_IN_MINUTE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class PayByLink {
   public static final String JSON_PROPERTY_SEND_BY_EMAIL = "sendByEmail";
   private Boolean sendByEmail;

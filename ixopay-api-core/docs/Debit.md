@@ -22,13 +22,13 @@
 |**callbackUrl** | **URI** |  |  [optional] |
 |**transactionToken** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
-|**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
+|**items** | [**List&lt;Item&gt;**](Item.md) |  |  [optional] |
 |**splits** | [**List&lt;Split&gt;**](Split.md) |  |  [optional] |
 |**withRegister** | **Boolean** |  |  [optional] |
 |**transactionIndicator** | [**TransactionIndicatorEnum**](#TransactionIndicatorEnum) |  |  [optional] |
 |**customer** | [**Customer**](Customer.md) |  |  [optional] |
 |**schedule** | [**Schedule**](Schedule.md) |  |  [optional] |
-|**customerProfileData** | [**CustomerProfileData**](CustomerProfileData.md) |  |  [optional] |
+|**customerProfileData** | [**CustomerProfile**](CustomerProfile.md) |  |  [optional] |
 |**threeDSecureData** | [**ThreeDSecureData**](ThreeDSecureData.md) |  |  [optional] |
 |**payByLink** | [**PayByLink**](PayByLink.md) |  |  [optional] |
 |**language** | **String** |  |  [optional] |
@@ -49,6 +49,7 @@
 | CARDONFILE | &quot;CARDONFILE&quot; |
 | CARDONFILE_MERCHANT_INITIATED | &quot;CARDONFILE-MERCHANT-INITIATED&quot; |
 | MOTO | &quot;MOTO&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

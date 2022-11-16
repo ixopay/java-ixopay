@@ -48,7 +48,9 @@ public enum TransactionType {
   
   PAYOUT("PAYOUT"),
   
-  INCREMENTAL_AUTHORIZATION("INCREMENTAL-AUTHORIZATION");
+  INCREMENTAL_AUTHORIZATION("INCREMENTAL-AUTHORIZATION"),
+  
+  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
   private String value;
 
@@ -73,7 +75,7 @@ public enum TransactionType {
         return b;
       }
     }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    return UNKNOWN_DEFAULT_OPEN_API;
   }
 }
 

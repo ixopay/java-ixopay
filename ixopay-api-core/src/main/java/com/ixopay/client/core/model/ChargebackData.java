@@ -13,6 +13,10 @@
 
 package com.ixopay.client.core.model;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.Objects;
 import java.util.Arrays;
 import java.util.Map;
@@ -39,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ChargebackData.JSON_PROPERTY_REASON,
   ChargebackData.JSON_PROPERTY_CHARGEBACK_DATE_TIME
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ChargebackData {
   public static final String JSON_PROPERTY_ORIGINAL_UUID = "originalUuid";
   private String originalUuid;
@@ -217,6 +221,49 @@ public class ChargebackData {
     this.chargebackDateTime = chargebackDateTime;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   * @param key the name of the property
+   * @param value the value value of the property
+   * @return self reference
+   */
+  @JsonAnySetter
+  public ChargebackData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) properties.
+   * @return the additional (undeclared) properties
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   * @param key the name of the property
+   * @return the additional (undeclared) property with the specified name
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
   /**
    * Return true if this ChargebackData object is equal to o.
@@ -235,12 +282,13 @@ public class ChargebackData {
         Objects.equals(this.amount, chargebackData.amount) &&
         Objects.equals(this.currency, chargebackData.currency) &&
         Objects.equals(this.reason, chargebackData.reason) &&
-        Objects.equals(this.chargebackDateTime, chargebackData.chargebackDateTime);
+        Objects.equals(this.chargebackDateTime, chargebackData.chargebackDateTime)&&
+        Objects.equals(this.additionalProperties, chargebackData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(originalUuid, originalMerchantTransactionId, amount, currency, reason, chargebackDateTime);
+    return Objects.hash(originalUuid, originalMerchantTransactionId, amount, currency, reason, chargebackDateTime, additionalProperties);
   }
 
   @Override
@@ -253,6 +301,7 @@ public class ChargebackData {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("    chargebackDateTime: ").append(toIndentedString(chargebackDateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

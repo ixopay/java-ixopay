@@ -18,14 +18,14 @@
 |**paymentDescriptor** | **String** |  |  [optional] |
 |**paymentMethod** | **String** |  |  [optional] |
 |**returnData** | [**ReturnData**](ReturnData.md) |  |  [optional] |
-|**scheduleData** | [**ScheduleData**](ScheduleData.md) |  |  [optional] |
-|**customerProfileData** | [**CustomerProfileData**](CustomerProfileData.md) |  |  [optional] |
-|**riskCheckData** | [**TransactionResponseAllOfRiskCheckData**](TransactionResponseAllOfRiskCheckData.md) |  |  [optional] |
-|**errors** | [**List&lt;ErrorType&gt;**](ErrorType.md) |  |  [optional] |
+|**scheduleData** | **ScheduleData** |  |  [optional] |
+|**customerProfileData** | **CustomerProfileData** |  |  [optional] |
+|**riskCheckData** | **RiskCheckData** |  |  [optional] |
+|**errors** | **List&lt;ErrorType&gt;** |  |  [optional] |
 |**adapterMessage** | **String** |  |  [optional] |
 |**adapterCode** | **String** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
-|**dccData** | [**TransactionResponseAllOfDccData**](TransactionResponseAllOfDccData.md) |  |  [optional] |
+|**dccData** | **TransactionDccData** |  |  [optional] |
 
 
 
@@ -39,6 +39,7 @@
 | PENDING | &quot;PENDING&quot; |
 | ERROR | &quot;ERROR&quot; |
 | PENDING_DCC | &quot;PENDING_DCC&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 
@@ -49,6 +50,7 @@
 | IFRAME | &quot;iframe&quot; |
 | FULLPAGE | &quot;fullpage&quot; |
 | _3DS | &quot;3ds&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

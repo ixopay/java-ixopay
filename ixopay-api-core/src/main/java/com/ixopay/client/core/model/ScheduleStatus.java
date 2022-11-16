@@ -38,7 +38,9 @@ public enum ScheduleStatus {
   
   CREATE_PENDING("CREATE-PENDING"),
   
-  NON_EXISTING("NON-EXISTING");
+  NON_EXISTING("NON-EXISTING"),
+  
+  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
   private String value;
 
@@ -63,7 +65,7 @@ public enum ScheduleStatus {
         return b;
       }
     }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    return UNKNOWN_DEFAULT_OPEN_API;
   }
 }
 

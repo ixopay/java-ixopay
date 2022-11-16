@@ -34,7 +34,9 @@ public enum ReturnDataType {
   
   IBANDATA("ibanData"),
   
-  WALLETDATA("walletData");
+  WALLETDATA("walletData"),
+  
+  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
   private String value;
 
@@ -59,7 +61,7 @@ public enum ReturnDataType {
         return b;
       }
     }
-    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    return UNKNOWN_DEFAULT_OPEN_API;
   }
 }
 

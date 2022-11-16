@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**_TYPE** | [**ReturnDataType**](ReturnDataType.md) |  |  |
+|**_TYPE** | **ReturnDataType** |  |  |
 
 
 

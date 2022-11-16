@@ -75,7 +75,7 @@ Add the dependency (replace `VERSION` with the [GitHub release name](https://git
  ```maven
 <dependency>
 	<groupId>com.ixopay.java-ixopay</groupId>
-	<artifactId>ixopay-api</artifactId>
+	<artifactId>ixopay-api</artifactId>`
 	<version>VERSION</version>
 </dependency>
 ```
@@ -84,4 +84,4 @@ Add the dependency (replace `VERSION` with the [GitHub release name](https://git
 
 ## Example
 
-https://github.com/ixopay/java-ixopay/blob/master/ixopay-examples/src/main/java/com/ixopay/client/examples/DebitTransactionApp.java#L27-L71
+This project contains a module with a sample application in [ixopay-examples](ixopay-examples/).

@@ -23,8 +23,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.Customer;
-import com.ixopay.client.core.model.CustomerProfileData;
-import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.CustomerProfile;
+import com.ixopay.client.core.model.Item;
 import com.ixopay.client.core.model.Schedule;
 import com.ixopay.client.core.model.ThreeDSecureData;
 import io.swagger.annotations.ApiModel;
@@ -64,7 +64,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PrepareDebitRequest.JSON_PROPERTY_THREE_D_SECURE_DATA,
   PrepareDebitRequest.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class PrepareDebitRequest {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;
@@ -109,7 +109,7 @@ public class PrepareDebitRequest {
   private String description;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ItemsInner> items = null;
+  private List<Item> items = null;
 
   public static final String JSON_PROPERTY_WITH_REGISTER = "withRegister";
   private Boolean withRegister;
@@ -128,7 +128,9 @@ public class PrepareDebitRequest {
     
     CARDONFILE("CARDONFILE"),
     
-    CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED");
+    CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -153,7 +155,7 @@ public class PrepareDebitRequest {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -167,7 +169,7 @@ public class PrepareDebitRequest {
   private Schedule schedule;
 
   public static final String JSON_PROPERTY_CUSTOMER_PROFILE_DATA = "customerProfileData";
-  private CustomerProfileData customerProfileData;
+  private CustomerProfile customerProfileData;
 
   public static final String JSON_PROPERTY_THREE_D_SECURE_DATA = "threeDSecureData";
   private ThreeDSecureData threeDSecureData;
@@ -550,12 +552,12 @@ public class PrepareDebitRequest {
   }
 
 
-  public PrepareDebitRequest items(List<ItemsInner> items) {
+  public PrepareDebitRequest items(List<Item> items) {
     this.items = items;
     return this;
   }
 
-  public PrepareDebitRequest addItemsItem(ItemsInner itemsItem) {
+  public PrepareDebitRequest addItemsItem(Item itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -572,14 +574,14 @@ public class PrepareDebitRequest {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ItemsInner> getItems() {
+  public List<Item> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ItemsInner> items) {
+  public void setItems(List<Item> items) {
     this.items = items;
   }
 
@@ -688,7 +690,7 @@ public class PrepareDebitRequest {
   }
 
 
-  public PrepareDebitRequest customerProfileData(CustomerProfileData customerProfileData) {
+  public PrepareDebitRequest customerProfileData(CustomerProfile customerProfileData) {
     this.customerProfileData = customerProfileData;
     return this;
   }
@@ -702,14 +704,14 @@ public class PrepareDebitRequest {
   @JsonProperty(JSON_PROPERTY_CUSTOMER_PROFILE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CustomerProfileData getCustomerProfileData() {
+  public CustomerProfile getCustomerProfileData() {
     return customerProfileData;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER_PROFILE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerProfileData(CustomerProfileData customerProfileData) {
+  public void setCustomerProfileData(CustomerProfile customerProfileData) {
     this.customerProfileData = customerProfileData;
   }
 

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.Item;
 import com.ixopay.client.core.model.L2L3Data;
 import com.ixopay.client.core.model.Split;
 import io.swagger.annotations.ApiModel;
@@ -54,7 +54,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Refund.JSON_PROPERTY_SPLITS,
   Refund.JSON_PROPERTY_L2L3_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Refund {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;
@@ -93,7 +93,7 @@ public class Refund {
   private String description;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ItemsInner> items = null;
+  private List<Item> items = null;
 
   public static final String JSON_PROPERTY_SPLITS = "splits";
   private List<Split> splits = null;
@@ -432,12 +432,12 @@ public class Refund {
   }
 
 
-  public Refund items(List<ItemsInner> items) {
+  public Refund items(List<Item> items) {
     this.items = items;
     return this;
   }
 
-  public Refund addItemsItem(ItemsInner itemsItem) {
+  public Refund addItemsItem(Item itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -454,14 +454,14 @@ public class Refund {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ItemsInner> getItems() {
+  public List<Item> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ItemsInner> items) {
+  public void setItems(List<Item> items) {
     this.items = items;
   }
 

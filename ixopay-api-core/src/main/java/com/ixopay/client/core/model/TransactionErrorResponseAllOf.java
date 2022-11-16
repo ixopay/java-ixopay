@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TransactionErrorResponseAllOf.JSON_PROPERTY_RETURN_TYPE,
   TransactionErrorResponseAllOf.JSON_PROPERTY_ERRORS
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class TransactionErrorResponseAllOf {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   private Boolean success;
@@ -47,7 +47,9 @@ public class TransactionErrorResponseAllOf {
    * Gets or Sets returnType
    */
   public enum ReturnTypeEnum {
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -72,7 +74,7 @@ public class TransactionErrorResponseAllOf {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

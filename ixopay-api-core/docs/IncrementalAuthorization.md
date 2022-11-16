@@ -20,7 +20,7 @@
 |**errorUrl** | **URI** |  |  [optional] |
 |**callbackUrl** | **URI** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
-|**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
+|**items** | [**List&lt;Item&gt;**](Item.md) |  |  [optional] |
 |**transactionIndicator** | [**TransactionIndicatorEnum**](#TransactionIndicatorEnum) |  |  [optional] |
 |**language** | **String** |  |  [optional] |
 |**l2l3Data** | [**L2L3Data**](L2L3Data.md) |  |  [optional] |
@@ -38,6 +38,7 @@
 | CARDONFILE | &quot;CARDONFILE&quot; |
 | CARDONFILE_MERCHANT_INITIATED | &quot;CARDONFILE-MERCHANT-INITIATED&quot; |
 | MOTO | &quot;MOTO&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

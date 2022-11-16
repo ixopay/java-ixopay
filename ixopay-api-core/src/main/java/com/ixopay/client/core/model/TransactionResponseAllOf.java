@@ -25,9 +25,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.CustomerProfileData;
 import com.ixopay.client.core.model.ErrorType;
 import com.ixopay.client.core.model.ReturnData;
+import com.ixopay.client.core.model.RiskCheckData;
 import com.ixopay.client.core.model.ScheduleData;
-import com.ixopay.client.core.model.TransactionResponseAllOfDccData;
-import com.ixopay.client.core.model.TransactionResponseAllOfRiskCheckData;
+import com.ixopay.client.core.model.TransactionDccData;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
@@ -62,7 +62,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TransactionResponseAllOf.JSON_PROPERTY_EXTRA_DATA,
   TransactionResponseAllOf.JSON_PROPERTY_DCC_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class TransactionResponseAllOf {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   private Boolean success;
@@ -87,7 +87,9 @@ public class TransactionResponseAllOf {
     
     ERROR("ERROR"),
     
-    PENDING_DCC("PENDING_DCC");
+    PENDING_DCC("PENDING_DCC"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -112,7 +114,7 @@ public class TransactionResponseAllOf {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -127,7 +129,9 @@ public class TransactionResponseAllOf {
     
     FULLPAGE("fullpage"),
     
-    _3DS("3ds");
+    _3DS("3ds"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -152,7 +156,7 @@ public class TransactionResponseAllOf {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -184,7 +188,7 @@ public class TransactionResponseAllOf {
   private CustomerProfileData customerProfileData;
 
   public static final String JSON_PROPERTY_RISK_CHECK_DATA = "riskCheckData";
-  private TransactionResponseAllOfRiskCheckData riskCheckData;
+  private RiskCheckData riskCheckData;
 
   public static final String JSON_PROPERTY_ERRORS = "errors";
   private List<ErrorType> errors = null;
@@ -199,7 +203,7 @@ public class TransactionResponseAllOf {
   private Map<String, String> extraData = null;
 
   public static final String JSON_PROPERTY_DCC_DATA = "dccData";
-  private TransactionResponseAllOfDccData dccData;
+  private TransactionDccData dccData;
 
   public TransactionResponseAllOf() { 
   }
@@ -542,7 +546,7 @@ public class TransactionResponseAllOf {
   }
 
 
-  public TransactionResponseAllOf riskCheckData(TransactionResponseAllOfRiskCheckData riskCheckData) {
+  public TransactionResponseAllOf riskCheckData(RiskCheckData riskCheckData) {
     this.riskCheckData = riskCheckData;
     return this;
   }
@@ -556,14 +560,14 @@ public class TransactionResponseAllOf {
   @JsonProperty(JSON_PROPERTY_RISK_CHECK_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TransactionResponseAllOfRiskCheckData getRiskCheckData() {
+  public RiskCheckData getRiskCheckData() {
     return riskCheckData;
   }
 
 
   @JsonProperty(JSON_PROPERTY_RISK_CHECK_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRiskCheckData(TransactionResponseAllOfRiskCheckData riskCheckData) {
+  public void setRiskCheckData(RiskCheckData riskCheckData) {
     this.riskCheckData = riskCheckData;
   }
 
@@ -688,7 +692,7 @@ public class TransactionResponseAllOf {
   }
 
 
-  public TransactionResponseAllOf dccData(TransactionResponseAllOfDccData dccData) {
+  public TransactionResponseAllOf dccData(TransactionDccData dccData) {
     this.dccData = dccData;
     return this;
   }
@@ -702,14 +706,14 @@ public class TransactionResponseAllOf {
   @JsonProperty(JSON_PROPERTY_DCC_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TransactionResponseAllOfDccData getDccData() {
+  public TransactionDccData getDccData() {
     return dccData;
   }
 
 
   @JsonProperty(JSON_PROPERTY_DCC_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDccData(TransactionResponseAllOfDccData dccData) {
+  public void setDccData(TransactionDccData dccData) {
     this.dccData = dccData;
   }
 

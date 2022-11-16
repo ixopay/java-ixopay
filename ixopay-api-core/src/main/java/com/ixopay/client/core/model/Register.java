@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.Customer;
-import com.ixopay.client.core.model.CustomerProfileData;
+import com.ixopay.client.core.model.CustomerProfile;
 import com.ixopay.client.core.model.L2L3Data;
 import com.ixopay.client.core.model.PayByLink;
 import com.ixopay.client.core.model.Schedule;
@@ -61,7 +61,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Register.JSON_PROPERTY_LANGUAGE,
   Register.JSON_PROPERTY_L2L3_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Register {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;
@@ -115,7 +115,9 @@ public class Register {
     
     CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
     
-    MOTO("MOTO");
+    MOTO("MOTO"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -140,7 +142,7 @@ public class Register {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -154,7 +156,7 @@ public class Register {
   private Schedule schedule;
 
   public static final String JSON_PROPERTY_CUSTOMER_PROFILE_DATA = "customerProfileData";
-  private CustomerProfileData customerProfileData;
+  private CustomerProfile customerProfileData;
 
   public static final String JSON_PROPERTY_THREE_D_SECURE_DATA = "threeDSecureData";
   private ThreeDSecureData threeDSecureData;
@@ -577,7 +579,7 @@ public class Register {
   }
 
 
-  public Register customerProfileData(CustomerProfileData customerProfileData) {
+  public Register customerProfileData(CustomerProfile customerProfileData) {
     this.customerProfileData = customerProfileData;
     return this;
   }
@@ -591,14 +593,14 @@ public class Register {
   @JsonProperty(JSON_PROPERTY_CUSTOMER_PROFILE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CustomerProfileData getCustomerProfileData() {
+  public CustomerProfile getCustomerProfileData() {
     return customerProfileData;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER_PROFILE_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerProfileData(CustomerProfileData customerProfileData) {
+  public void setCustomerProfileData(CustomerProfile customerProfileData) {
     this.customerProfileData = customerProfileData;
   }
 

@@ -108,7 +108,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ThreeDSecureData.JSON_PROPERTY_SDK_REFERENCE_NUMBER,
   ThreeDSecureData.JSON_PROPERTY_SDK_TRANS_I_D
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ThreeDSecureData {
   public static final String JSON_PROPERTY_3DSECURE = "3dsecure";
   private ThreeDSecureType _3dsecure;
@@ -121,7 +121,9 @@ public class ThreeDSecureData {
     
     _02("02"),
     
-    _03("03");
+    _03("03"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -146,7 +148,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -167,7 +169,9 @@ public class ThreeDSecureData {
     
     _05("05"),
     
-    _06("06");
+    _06("06"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -192,7 +196,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -213,7 +217,9 @@ public class ThreeDSecureData {
     
     _05("05"),
     
-    _06("06");
+    _06("06"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -238,7 +244,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -261,7 +267,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -286,7 +294,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -306,7 +314,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -331,7 +341,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -354,7 +364,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -379,7 +391,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -398,7 +410,9 @@ public class ThreeDSecureData {
     
     _04("04"),
     
-    _05("05");
+    _05("05"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -423,7 +437,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -443,7 +457,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -468,7 +484,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -490,7 +506,9 @@ public class ThreeDSecureData {
     
     _04("04"),
     
-    _05("05");
+    _05("05"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -515,7 +533,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -535,7 +553,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -560,7 +580,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -588,7 +608,9 @@ public class ThreeDSecureData {
   public enum SuspiciousAccountActivityIndicatorEnum {
     _01("01"),
     
-    _02("02");
+    _02("02"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -613,7 +635,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -626,7 +648,9 @@ public class ThreeDSecureData {
   public enum ShippingNameEqualIndicatorEnum {
     _01("01"),
     
-    _02("02");
+    _02("02"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -651,7 +675,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -670,7 +694,9 @@ public class ThreeDSecureData {
     
     _04("04"),
     
-    _05("05");
+    _05("05"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -695,7 +721,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -717,7 +743,9 @@ public class ThreeDSecureData {
   public enum BillingShippingAddressMatchEnum {
     Y("Y"),
     
-    N("N");
+    N("N"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -742,7 +770,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -786,7 +814,9 @@ public class ThreeDSecureData {
     
     _06("06"),
     
-    _07("07");
+    _07("07"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -811,7 +841,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -828,7 +858,9 @@ public class ThreeDSecureData {
     
     _03("03"),
     
-    _04("04");
+    _04("04"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -853,7 +885,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -869,7 +901,9 @@ public class ThreeDSecureData {
   public enum ReorderItemsIndicatorEnum {
     _01("01"),
     
-    _02("02");
+    _02("02"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -894,7 +928,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -907,7 +941,9 @@ public class ThreeDSecureData {
   public enum PreOrderPurchaseIndicatorEnum {
     _01("01"),
     
-    _02("02");
+    _02("02"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -932,7 +968,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -972,7 +1008,9 @@ public class ThreeDSecureData {
     
     _11("11"),
     
-    _28("28");
+    _28("28"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -997,7 +1035,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -1020,7 +1058,9 @@ public class ThreeDSecureData {
     
     _06("06"),
     
-    _07("07");
+    _07("07"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -1045,7 +1085,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -1078,7 +1118,9 @@ public class ThreeDSecureData {
     
     _11("11"),
     
-    _12("12");
+    _12("12"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -1103,7 +1145,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -1122,7 +1164,9 @@ public class ThreeDSecureData {
     
     _04("04"),
     
-    _05("05");
+    _05("05"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -1147,7 +1191,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -1186,7 +1230,9 @@ public class ThreeDSecureData {
     
     _32("32"),
     
-    _48("48");
+    _48("48"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -1211,7 +1257,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -1241,7 +1287,9 @@ public class ThreeDSecureData {
     
     _02("02"),
     
-    _03("03");
+    _03("03"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -1266,7 +1314,7 @@ public class ThreeDSecureData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

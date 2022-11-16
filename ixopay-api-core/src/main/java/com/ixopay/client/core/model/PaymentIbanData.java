@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   PaymentIbanData.JSON_PROPERTY_IBAN_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class PaymentIbanData {
   public static final String JSON_PROPERTY_IBAN_DATA = "ibanData";
   private PaymentIbanDataIbanData ibanData;

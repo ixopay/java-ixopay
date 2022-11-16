@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
   ContinueSchedule.JSON_PROPERTY_CONTINUE_DATE_TIME
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ContinueSchedule {
   public static final String JSON_PROPERTY_CONTINUE_DATE_TIME = "continueDateTime";
   private OffsetDateTime continueDateTime;

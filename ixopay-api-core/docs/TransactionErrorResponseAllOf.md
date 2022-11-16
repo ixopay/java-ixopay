@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  |
 |**returnType** | [**ReturnTypeEnum**](#ReturnTypeEnum) |  |  [optional] |
-|**errors** | [**List&lt;ErrorType&gt;**](ErrorType.md) |  |  [optional] |
+|**errors** | **List&lt;ErrorType&gt;** |  |  [optional] |
 
 
 
@@ -18,6 +18,7 @@
 | Name | Value |
 |---- | -----|
 | ERROR | &quot;ERROR&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

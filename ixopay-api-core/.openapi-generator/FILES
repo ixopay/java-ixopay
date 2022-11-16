@@ -16,6 +16,8 @@ docs/ContinueDcc.md
 docs/ContinueDccApi.md
 docs/ContinueSchedule.md
 docs/Customer.md
+docs/CustomerData.md
+docs/CustomerProfile.md
 docs/CustomerProfileData.md
 docs/DccData.md
 docs/Debit.md
@@ -24,7 +26,7 @@ docs/ErrorType.md
 docs/IbanData.md
 docs/IbanDataAllOf.md
 docs/IncrementalAuthorization.md
-docs/ItemsInner.md
+docs/Item.md
 docs/L2L3Data.md
 docs/MaybeScheduleResponse.md
 docs/MaybeStatusResponse.md
@@ -56,6 +58,7 @@ docs/Refund.md
 docs/Register.md
 docs/ReturnData.md
 docs/ReturnDataType.md
+docs/RiskCheckData.md
 docs/Schedule.md
 docs/ScheduleApi.md
 docs/ScheduleData.md
@@ -73,13 +76,12 @@ docs/StatusResponseAllOf.md
 docs/ThreeDSecureData.md
 docs/ThreeDSecureType.md
 docs/TransactionApi.md
+docs/TransactionDccData.md
 docs/TransactionError.md
 docs/TransactionErrorResponse.md
 docs/TransactionErrorResponseAllOf.md
 docs/TransactionResponse.md
 docs/TransactionResponseAllOf.md
-docs/TransactionResponseAllOfDccData.md
-docs/TransactionResponseAllOfRiskCheckData.md
 docs/TransactionStatus.md
 docs/TransactionType.md
 docs/UpdateSchedule.md
@@ -120,6 +122,8 @@ src/main/java/com/ixopay/client/core/model/ChargebackReversalData.java
 src/main/java/com/ixopay/client/core/model/ContinueDcc.java
 src/main/java/com/ixopay/client/core/model/ContinueSchedule.java
 src/main/java/com/ixopay/client/core/model/Customer.java
+src/main/java/com/ixopay/client/core/model/CustomerData.java
+src/main/java/com/ixopay/client/core/model/CustomerProfile.java
 src/main/java/com/ixopay/client/core/model/CustomerProfileData.java
 src/main/java/com/ixopay/client/core/model/DccData.java
 src/main/java/com/ixopay/client/core/model/Debit.java
@@ -128,7 +132,7 @@ src/main/java/com/ixopay/client/core/model/ErrorType.java
 src/main/java/com/ixopay/client/core/model/IbanData.java
 src/main/java/com/ixopay/client/core/model/IbanDataAllOf.java
 src/main/java/com/ixopay/client/core/model/IncrementalAuthorization.java
-src/main/java/com/ixopay/client/core/model/ItemsInner.java
+src/main/java/com/ixopay/client/core/model/Item.java
 src/main/java/com/ixopay/client/core/model/L2L3Data.java
 src/main/java/com/ixopay/client/core/model/MaybeScheduleResponse.java
 src/main/java/com/ixopay/client/core/model/MaybeStatusResponse.java
@@ -158,6 +162,7 @@ src/main/java/com/ixopay/client/core/model/Refund.java
 src/main/java/com/ixopay/client/core/model/Register.java
 src/main/java/com/ixopay/client/core/model/ReturnData.java
 src/main/java/com/ixopay/client/core/model/ReturnDataType.java
+src/main/java/com/ixopay/client/core/model/RiskCheckData.java
 src/main/java/com/ixopay/client/core/model/Schedule.java
 src/main/java/com/ixopay/client/core/model/ScheduleData.java
 src/main/java/com/ixopay/client/core/model/ScheduleErrorResponse.java
@@ -172,13 +177,12 @@ src/main/java/com/ixopay/client/core/model/StatusResponse.java
 src/main/java/com/ixopay/client/core/model/StatusResponseAllOf.java
 src/main/java/com/ixopay/client/core/model/ThreeDSecureData.java
 src/main/java/com/ixopay/client/core/model/ThreeDSecureType.java
+src/main/java/com/ixopay/client/core/model/TransactionDccData.java
 src/main/java/com/ixopay/client/core/model/TransactionError.java
 src/main/java/com/ixopay/client/core/model/TransactionErrorResponse.java
 src/main/java/com/ixopay/client/core/model/TransactionErrorResponseAllOf.java
 src/main/java/com/ixopay/client/core/model/TransactionResponse.java
 src/main/java/com/ixopay/client/core/model/TransactionResponseAllOf.java
-src/main/java/com/ixopay/client/core/model/TransactionResponseAllOfDccData.java
-src/main/java/com/ixopay/client/core/model/TransactionResponseAllOfRiskCheckData.java
 src/main/java/com/ixopay/client/core/model/TransactionStatus.java
 src/main/java/com/ixopay/client/core/model/TransactionType.java
 src/main/java/com/ixopay/client/core/model/UpdateSchedule.java

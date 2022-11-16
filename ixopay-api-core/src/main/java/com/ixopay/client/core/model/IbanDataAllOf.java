@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   IbanDataAllOf.JSON_PROPERTY_BANK_BRANCH_NAME,
   IbanDataAllOf.JSON_PROPERTY_COUNTRY
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class IbanDataAllOf {
   public static final String JSON_PROPERTY_ACCOUNT_OWNER = "accountOwner";
   private String accountOwner;

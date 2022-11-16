@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.ChargebackData;
 import com.ixopay.client.core.model.ChargebackReversalData;
-import com.ixopay.client.core.model.Customer;
+import com.ixopay.client.core.model.CustomerData;
 import com.ixopay.client.core.model.CustomerProfileData;
 import com.ixopay.client.core.model.PayByLinkData;
 import com.ixopay.client.core.model.ReturnData;
@@ -66,7 +66,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   StatusResponseAllOf.JSON_PROPERTY_CUSTOMER,
   StatusResponseAllOf.JSON_PROPERTY_CUSTOMER_PROFILE_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class StatusResponseAllOf {
   public static final String JSON_PROPERTY_TRANSACTION_STATUS = "transactionStatus";
   private TransactionStatus transactionStatus;
@@ -123,7 +123,7 @@ public class StatusResponseAllOf {
   private PayByLinkData payByLinkData;
 
   public static final String JSON_PROPERTY_CUSTOMER = "customer";
-  private Customer customer;
+  private CustomerData customer;
 
   public static final String JSON_PROPERTY_CUSTOMER_PROFILE_DATA = "customerProfileData";
   private CustomerProfileData customerProfileData;
@@ -623,7 +623,7 @@ public class StatusResponseAllOf {
   }
 
 
-  public StatusResponseAllOf customer(Customer customer) {
+  public StatusResponseAllOf customer(CustomerData customer) {
     this.customer = customer;
     return this;
   }
@@ -637,14 +637,14 @@ public class StatusResponseAllOf {
   @JsonProperty(JSON_PROPERTY_CUSTOMER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Customer getCustomer() {
+  public CustomerData getCustomer() {
     return customer;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomer(Customer customer) {
+  public void setCustomer(CustomerData customer) {
     this.customer = customer;
   }
 

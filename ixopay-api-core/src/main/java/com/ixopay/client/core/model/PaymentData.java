@@ -54,7 +54,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.ixopay.client.core.client.JSON;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 @JsonDeserialize(using = PaymentData.PaymentDataDeserializer.class)
 @JsonSerialize(using = PaymentData.PaymentDataSerializer.class)
 public class PaymentData extends AbstractOpenApiSchema {

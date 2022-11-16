@@ -44,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ModelVoid.JSON_PROPERTY_REFERENCE_UUID,
   ModelVoid.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ModelVoid {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;

@@ -51,7 +51,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   CardDataAllOf.JSON_PROPERTY_THREE_D_SECURE,
   CardDataAllOf.JSON_PROPERTY_ECI
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class CardDataAllOf {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

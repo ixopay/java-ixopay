@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Split.JSON_PROPERTY_SELLER_MERCHANT_EXTERNAL_ID,
   Split.JSON_PROPERTY_COMMISSION_FEE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Split {
   public static final String JSON_PROPERTY_IDENTIFICATION = "identification";
   private String identification;

@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Deregister.JSON_PROPERTY_MERCHANT_META_DATA,
   Deregister.JSON_PROPERTY_REFERENCE_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Deregister {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;

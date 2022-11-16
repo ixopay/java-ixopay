@@ -65,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Customer.JSON_PROPERTY_EXTRA_DATA,
   Customer.JSON_PROPERTY_PAYMENT_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Customer {
   public static final String JSON_PROPERTY_IDENTIFICATION = "identification";
   private String identification;
@@ -85,7 +85,9 @@ public class Customer {
   public enum GenderEnum {
     M("M"),
     
-    F("F");
+    F("F"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -110,7 +112,7 @@ public class Customer {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 

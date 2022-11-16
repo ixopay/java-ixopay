@@ -28,8 +28,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,8 +38,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PrepareDebitResponse.JSON_PROPERTY_SUCCESS,
   PrepareDebitResponse.JSON_PROPERTY_ERROR
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class PrepareDebitResponse extends HashMap<String, Object> {
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
+public class PrepareDebitResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   private Boolean success;
 
@@ -160,20 +158,18 @@ public class PrepareDebitResponse extends HashMap<String, Object> {
     PrepareDebitResponse prepareDebitResponse = (PrepareDebitResponse) o;
     return Objects.equals(this.success, prepareDebitResponse.success) &&
         Objects.equals(this.error, prepareDebitResponse.error)&&
-        Objects.equals(this.additionalProperties, prepareDebitResponse.additionalProperties) &&
-        super.equals(o);
+        Objects.equals(this.additionalProperties, prepareDebitResponse.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, error, super.hashCode(), additionalProperties);
+    return Objects.hash(success, error, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PrepareDebitResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");

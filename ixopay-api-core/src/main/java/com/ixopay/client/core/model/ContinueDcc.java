@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ContinueDcc.JSON_PROPERTY_CONTINUE_DCC_UUID,
   ContinueDcc.JSON_PROPERTY_SELECTED_DCC_CURRENCY
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ContinueDcc {
   public static final String JSON_PROPERTY_CONTINUE_DCC_UUID = "continueDccUuid";
   private String continueDccUuid;

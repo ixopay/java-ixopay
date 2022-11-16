@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   PaymentIbanDataIbanData.JSON_PROPERTY_MANDATE_ID,
   PaymentIbanDataIbanData.JSON_PROPERTY_MANDATE_DATE
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class PaymentIbanDataIbanData {
   public static final String JSON_PROPERTY_IBAN = "iban";
   private String iban;

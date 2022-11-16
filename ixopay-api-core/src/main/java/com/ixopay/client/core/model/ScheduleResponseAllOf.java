@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ScheduleResponseAllOf.JSON_PROPERTY_MERCHANT_META_DATA,
   ScheduleResponseAllOf.JSON_PROPERTY_REGISTRATION_UUID
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class ScheduleResponseAllOf {
   public static final String JSON_PROPERTY_SCHEDULE_ID = "scheduleId";
   private String scheduleId;

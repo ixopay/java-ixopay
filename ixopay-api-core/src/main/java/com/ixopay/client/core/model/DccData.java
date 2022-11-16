@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   DccData.JSON_PROPERTY_SELECTED_CURRENCY,
   DccData.JSON_PROPERTY_MARK_UP
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class DccData {
   public static final String JSON_PROPERTY_REMOTE_IDENTIFIER = "remoteIdentifier";
   private String remoteIdentifier;

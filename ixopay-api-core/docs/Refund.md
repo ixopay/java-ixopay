@@ -19,7 +19,7 @@
 |**callbackUrl** | **String** |  |  [optional] |
 |**transactionToken** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
-|**items** | [**List&lt;ItemsInner&gt;**](ItemsInner.md) |  |  [optional] |
+|**items** | [**List&lt;Item&gt;**](Item.md) |  |  [optional] |
 |**splits** | [**List&lt;Split&gt;**](Split.md) |  |  [optional] |
 |**l2l3Data** | [**L2L3Data**](L2L3Data.md) |  |  [optional] |
 

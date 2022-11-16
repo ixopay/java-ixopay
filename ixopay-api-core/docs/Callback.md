@@ -17,18 +17,18 @@
 |**currency** | **String** |  |  [optional] |
 |**surchargeAmount** | **String** |  |  [optional] |
 |**totalAmount** | **String** |  |  [optional] |
-|**scheduleData** | [**ScheduleData**](ScheduleData.md) |  |  [optional] |
-|**customerProfileData** | [**CustomerProfileData**](CustomerProfileData.md) |  |  [optional] |
+|**scheduleData** | **ScheduleData** |  |  [optional] |
+|**customerProfileData** | **CustomerProfileData** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
 |**errorCode** | **Integer** |  |  [optional] |
 |**adapterMessage** | **String** |  |  [optional] |
 |**adapterCode** | **String** |  |  [optional] |
-|**chargebackData** | [**ChargebackData**](ChargebackData.md) |  |  [optional] |
-|**chargebackReversalData** | [**ChargebackReversalData**](ChargebackReversalData.md) |  |  [optional] |
+|**chargebackData** | **ChargebackData** |  |  [optional] |
+|**chargebackReversalData** | **ChargebackReversalData** |  |  [optional] |
 |**extraData** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**merchantMetaData** | **String** |  |  [optional] |
 |**returnData** | [**ReturnData**](ReturnData.md) |  |  [optional] |
-|**customer** | [**Customer**](Customer.md) |  |  [optional] |
+|**customer** | **CustomerData** |  |  [optional] |
 
 
 
@@ -39,6 +39,7 @@
 | OK | &quot;OK&quot; |
 | PENDING | &quot;PENDING&quot; |
 | ERROR | &quot;ERROR&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.ixopay.client.core.model.ItemsInner;
+import com.ixopay.client.core.model.Item;
 import com.ixopay.client.core.model.L2L3Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -56,7 +56,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   IncrementalAuthorization.JSON_PROPERTY_LANGUAGE,
   IncrementalAuthorization.JSON_PROPERTY_L2L3_DATA
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class IncrementalAuthorization {
   public static final String JSON_PROPERTY_MERCHANT_TRANSACTION_ID = "merchantTransactionId";
   private String merchantTransactionId;
@@ -98,7 +98,7 @@ public class IncrementalAuthorization {
   private String description;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ItemsInner> items = null;
+  private List<Item> items = null;
 
   /**
    * Gets or Sets transactionIndicator
@@ -116,7 +116,9 @@ public class IncrementalAuthorization {
     
     CARDONFILE_MERCHANT_INITIATED("CARDONFILE-MERCHANT-INITIATED"),
     
-    MOTO("MOTO");
+    MOTO("MOTO"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -141,7 +143,7 @@ public class IncrementalAuthorization {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -503,12 +505,12 @@ public class IncrementalAuthorization {
   }
 
 
-  public IncrementalAuthorization items(List<ItemsInner> items) {
+  public IncrementalAuthorization items(List<Item> items) {
     this.items = items;
     return this;
   }
 
-  public IncrementalAuthorization addItemsItem(ItemsInner itemsItem) {
+  public IncrementalAuthorization addItemsItem(Item itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -525,14 +527,14 @@ public class IncrementalAuthorization {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ItemsInner> getItems() {
+  public List<Item> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ItemsInner> items) {
+  public void setItems(List<Item> items) {
     this.items = items;
   }
 

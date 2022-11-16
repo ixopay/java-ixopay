@@ -13,7 +13,7 @@
 
 package com.ixopay.client.core.client;
 
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Pair {
     private String name = "";
     private String value = "";

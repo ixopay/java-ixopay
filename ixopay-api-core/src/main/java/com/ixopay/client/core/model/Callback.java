@@ -13,6 +13,10 @@
 
 package com.ixopay.client.core.model;
 
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import java.util.Objects;
 import java.util.Arrays;
 import java.util.Map;
@@ -24,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.ixopay.client.core.model.ChargebackData;
 import com.ixopay.client.core.model.ChargebackReversalData;
-import com.ixopay.client.core.model.Customer;
+import com.ixopay.client.core.model.CustomerData;
 import com.ixopay.client.core.model.CustomerProfileData;
 import com.ixopay.client.core.model.ReturnData;
 import com.ixopay.client.core.model.ScheduleData;
@@ -63,7 +67,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Callback.JSON_PROPERTY_RETURN_DATA,
   Callback.JSON_PROPERTY_CUSTOMER
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Callback {
   /**
    * Gets or Sets result
@@ -73,7 +77,9 @@ public class Callback {
     
     PENDING("PENDING"),
     
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    
+    UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
 
     private String value;
 
@@ -98,7 +104,7 @@ public class Callback {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return UNKNOWN_DEFAULT_OPEN_API;
     }
   }
 
@@ -166,7 +172,7 @@ public class Callback {
   private ReturnData returnData;
 
   public static final String JSON_PROPERTY_CUSTOMER = "customer";
-  private Customer customer;
+  private CustomerData customer;
 
   public Callback() { 
   }
@@ -725,7 +731,7 @@ public class Callback {
   }
 
 
-  public Callback customer(Customer customer) {
+  public Callback customer(CustomerData customer) {
     this.customer = customer;
     return this;
   }
@@ -739,17 +745,60 @@ public class Callback {
   @JsonProperty(JSON_PROPERTY_CUSTOMER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Customer getCustomer() {
+  public CustomerData getCustomer() {
     return customer;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomer(Customer customer) {
+  public void setCustomer(CustomerData customer) {
     this.customer = customer;
   }
 
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   * @param key the name of the property
+   * @param value the value value of the property
+   * @return self reference
+   */
+  @JsonAnySetter
+  public Callback putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) properties.
+   * @return the additional (undeclared) properties
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   * @param key the name of the property
+   * @return the additional (undeclared) property with the specified name
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
   /**
    * Return true if this Callback object is equal to o.
@@ -784,12 +833,13 @@ public class Callback {
         Objects.equals(this.extraData, callback.extraData) &&
         Objects.equals(this.merchantMetaData, callback.merchantMetaData) &&
         Objects.equals(this.returnData, callback.returnData) &&
-        Objects.equals(this.customer, callback.customer);
+        Objects.equals(this.customer, callback.customer)&&
+        Objects.equals(this.additionalProperties, callback.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(result, uuid, merchantTransactionId, purchaseId, transactionType, paymentMethod, amount, currency, surchargeAmount, totalAmount, scheduleData, customerProfileData, errorMessage, errorCode, adapterMessage, adapterCode, chargebackData, chargebackReversalData, extraData, merchantMetaData, returnData, customer);
+    return Objects.hash(result, uuid, merchantTransactionId, purchaseId, transactionType, paymentMethod, amount, currency, surchargeAmount, totalAmount, scheduleData, customerProfileData, errorMessage, errorCode, adapterMessage, adapterCode, chargebackData, chargebackReversalData, extraData, merchantMetaData, returnData, customer, additionalProperties);
   }
 
   @Override
@@ -818,6 +868,7 @@ public class Callback {
     sb.append("    merchantMetaData: ").append(toIndentedString(merchantMetaData)).append("\n");
     sb.append("    returnData: ").append(toIndentedString(returnData)).append("\n");
     sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

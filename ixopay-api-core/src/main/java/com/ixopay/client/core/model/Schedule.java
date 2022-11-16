@@ -41,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Schedule.JSON_PROPERTY_MERCHANT_META_DATA,
   Schedule.JSON_PROPERTY_CALLBACK_URL
 })
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegenWithComposedSchema")
 public class Schedule {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   private String amount;
